@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CrearFicheroReserva {
-	static ArrayList<Reserva> ReservaArrayList = new ArrayList<Reserva>();
-
+	
 	public static void main(String[] args) {
 		String numeroReserva = "";
 		File carpeta = new File("c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva");
