@@ -31,8 +31,7 @@ public class DatuakErakutsi extends JPanel {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				herriaBilatu = txbxHerria.getText();
-				
-				label.setText(getIzena());
+				label.setText(controlador.Kontsultak.getIzena());
 			}
 		});
 		btnBilatu.setBounds(346, 59, 89, 23);
@@ -59,7 +58,7 @@ public class DatuakErakutsi extends JPanel {
 		scrollBar = new JScrollBar();
 		scrollBar.setBounds(413, 0, 17, 193);
 		panel.add(scrollBar);
-		
+
 		label = new JLabel("");
 		label.setBounds(10, 11, 46, 14);
 		panel.add(label);

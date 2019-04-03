@@ -9,7 +9,8 @@ public class Kontsultak {
 
 	Konexioa conexion = new Konexioa();
 	ResultSet resultado;
-	String  izena, herria;
+	static String  izena;
+	String herria;
 	int kodigoa, izarrak;
 	double prezioa;
 	
@@ -33,7 +34,7 @@ public class Kontsultak {
 	}
 
 
-	public String getIzena() {
+	public static String getIzena() {
 		
 		return izena;
 	}
