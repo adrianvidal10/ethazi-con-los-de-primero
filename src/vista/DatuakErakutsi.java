@@ -3,6 +3,9 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import controlador.Kontsultak;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
@@ -28,7 +31,8 @@ public class DatuakErakutsi extends JPanel {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				herriaBilatu = txbxHerria.getText();
-				label.setText(getbida);
+				
+				label.setText(getIzena());
 			}
 		});
 		btnBilatu.setBounds(346, 59, 89, 23);

@@ -9,7 +9,7 @@ public class Kontsultak {
 
 	Konexioa conexion = new Konexioa();
 	ResultSet resultado;
-	String  titulua, herria;
+	String  izena, herria;
 	int kodigoa, izarrak;
 	double prezioa;
 	
@@ -21,7 +21,7 @@ public class Kontsultak {
 			while (resultado.next()) {
 
 				kodigoa = resultado.getInt("kodigoa");
-				titulua = resultado.getString("titulua");
+				izena = resultado.getString("izena");
 				herria = resultado.getString("herria");
 				izarrak = resultado.getInt("izarrak");
 				prezioa = resultado.getDouble("prezioa");
@@ -33,9 +33,9 @@ public class Kontsultak {
 	}
 
 
-	public ResultSet getbidaliResultSet() {
+	public String getIzena() {
 		
-		return resultado;
+		return izena;
 	}
 
 }
