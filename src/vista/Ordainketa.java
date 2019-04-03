@@ -207,11 +207,12 @@ public class Ordainketa extends JFrame {
 		button_11.setBounds(106, 190, 73, 23);
 		getContentPane().add(button_11);
 		
-		  baieztatu_botoia.addActionListener(new ActionListener() { public void
-		  actionPerformed(ActionEvent e) { double guztira =
-		  micoordinador.borobilduDirua(Double.parseDouble(totala));
+		  baieztatu_botoia.addActionListener(new ActionListener() { 
+		  public void actionPerformed(ActionEvent e) { 
+		  double guztira = micoordinador.borobilduDirua(Double.parseDouble(totala));
 		  textField_1.setText(String.valueOf(guztira));
-		  ordaindu_Botoia.setEnabled(true); } });
+		  ordaindu_Botoia.setEnabled(true); } 
+		  });
 		 
 
 		// Baieztatu botoia sistema sartzen du dirua.
@@ -226,10 +227,13 @@ public class Ordainketa extends JFrame {
 		 * aurrera joateko aukera izango dugu.
 		 */
 		
-		  ordaindu_Botoia.addActionListener(new ActionListener() { public void
-		  actionPerformed(ActionEvent arg0) { ordainketaKudeatu();
-		  ordaindu_Botoia.setEnabled(false); textField_1.setText(""); totala = "";
-		  } });
+		  ordaindu_Botoia.addActionListener(new ActionListener() { 
+			  public void actionPerformed(ActionEvent arg0) { 
+				  ordainketaKudeatu();
+				  ordaindu_Botoia.setEnabled(false); 
+				  textField_1.setText(""); totala = "";
+		  	  } 
+		  });
 		 
 
 		ordaindu_Botoia.setBounds(130, 270, 275, 68);
@@ -251,7 +255,7 @@ public class Ordainketa extends JFrame {
 		btnAurrera = new JButton("Aurrera");
 		btnAurrera.setEnabled(false);
 		
-		/* btnAurrera.addActionListener(new ActionListener() { public void
+		/*btnAurrera.addActionListener(new ActionListener() { public void
 		 actionPerformed(ActionEvent e) { micoordinador.agurPantaila(); } });*/
 		 
 		btnAurrera.setEnabled(false);

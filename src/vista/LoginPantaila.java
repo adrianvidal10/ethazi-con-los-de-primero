@@ -67,6 +67,7 @@ public class LoginPantaila extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// botoiaren kodea
 				System.out.println("LOGIN BOTOIA");
+				micoordinador.ordainketaPantaila();
 				micoordinador.mostrarVentanaOrdainketa();
 				// logindatuak();
 				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
