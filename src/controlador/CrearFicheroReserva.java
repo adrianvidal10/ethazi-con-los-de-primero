@@ -2,11 +2,13 @@ package controlador;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CrearFicheroReserva {
-	public static void main(String[] args) {
-		String numeroReserva = "0";
+	static ArrayList<Reserva> ReservaArrayList = new ArrayList<Reserva>();
 
+	public static void main(String[] args) {
+		String numeroReserva = "";
 		File carpeta = new File("c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
@@ -24,17 +26,15 @@ public class CrearFicheroReserva {
 			for (int i = 0; i < listado.length; i++) {
 				numeroReserva = listado[i];
 			}
-			System.out.println(numeroReserva);
+
 			numeroReserva = numeroReserva.substring(7, 11);
 			int numeroEntero = Integer.parseInt(numeroReserva);
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
 			File fichero = new File(
 					"c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva/reserva" + numeroReserva + ".txt");
-
 			try {
 
-				// A partir del objeto File creamos el fichero físicamente
 				if (fichero.createNewFile())
 					System.out.println("El fichero se ha creado correctamente");
 				else
@@ -42,7 +42,7 @@ public class CrearFicheroReserva {
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-
+			return;
 		}
 	}
 }
