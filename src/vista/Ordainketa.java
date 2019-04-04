@@ -209,9 +209,18 @@ public class Ordainketa extends JFrame {
 		
 		  baieztatu_botoia.addActionListener(new ActionListener() { 
 		  public void actionPerformed(ActionEvent e) { 
-		  double guztira = micoordinador.borobilduDirua(Double.parseDouble(totala));
-		  textField_1.setText(String.valueOf(guztira));
-		  ordaindu_Botoia.setEnabled(true); } 
+		  double guztira=0;
+		  try {
+			 guztira = micoordinador.borobilduDirua(Double.parseDouble(totala));
+			 textField_1.setText(String.valueOf(guztira));
+			 ordaindu_Botoia.setEnabled(true);
+		} catch (Exception e2) {
+			e2.getMessage();
+			e2.printStackTrace();
+		}
+		 // textField_1.setText(String.valueOf(guztira));
+		 // ordaindu_Botoia.setEnabled(true); 
+		  	} 
 		  });
 		 
 
