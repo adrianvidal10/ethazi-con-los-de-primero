@@ -3,6 +3,7 @@ package controlador;
 import vista.*;
 
 public class Main {
+
 	// Atributuak:
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
@@ -12,6 +13,10 @@ public class Main {
 		//Modelo.BD konek = new Modelo.BD();
 		Main miprincipal = new Main();
 		miprincipal.iniciar();
+		
+		Kontsultak kon = new Kontsultak();
+		DatuakErakutsi pantalla = new DatuakErakutsi();
+		pantalla.setVisible(true);
 		
 	}
 
@@ -53,5 +58,8 @@ public class Main {
 		return(erabakia);
 		
 	}*/
+
+
+
 
 }
