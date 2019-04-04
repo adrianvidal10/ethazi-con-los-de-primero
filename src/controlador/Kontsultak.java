@@ -9,15 +9,16 @@ public class Kontsultak {
 
 	Konexioa conexion = new Konexioa();
 	ResultSet resultado;
-	static String  izena;
 	String herria;
+	String izena;
 	int kodigoa, izarrak;
 	double prezioa;
-	
+	String testua;
 
-	public void selectHotelak() {
-		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = "+ DatuakErakutsi.getherriaBilatu());
-
+	public void selectHotelak(String herria) {
+		
+		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = '" + herria + "'");
+		System.out.println(resultado);
 		try {
 			while (resultado.next()) {
 
@@ -26,17 +27,21 @@ public class Kontsultak {
 				herria = resultado.getString("herria");
 				izarrak = resultado.getInt("izarrak");
 				prezioa = resultado.getDouble("prezioa");
+
+				testua = " kodigoa: " + kodigoa + " izena: " + izena + " herria: " + herria + " izarrak: " + izarrak
+						+ " prezioa: " + prezioa;
+				System.out.println(testua);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 	
+	public  String mandarhotel(String herri) {
+		String emaitza="";
+		selectHotelak(herri);
+		emaitza = this.testua;
+		return emaitza;
 	}
-
-
-	public static String getIzena() {
 		
-		return izena;
-	}
-
 }

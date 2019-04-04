@@ -1,7 +1,7 @@
 package modelo;
 
 public class Hotela {
-
+	private Konexioa kon = new Konexioa();
 	private String izena, herria;
 	private int kodigoa, izarrak, prezioa;
 
