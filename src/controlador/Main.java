@@ -8,15 +8,15 @@ public class Main {
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private Koordinatzailea micoordinador;
-	
+	private DatuakErakutsi PantailaDatuakErakutsi;
 	public static void main(String[] args) {
 		//Modelo.BD konek = new Modelo.BD();
 		Main miprincipal = new Main();
 		miprincipal.iniciar();
 		
 		Kontsultak kon = new Kontsultak();
-		DatuakErakutsi pantalla = new DatuakErakutsi();
-		pantalla.setVisible(true);
+		
+		
 		
 	}
 
@@ -24,17 +24,17 @@ public class Main {
 		
 		PantailaLogin = new LoginPantaila();
 		PantailaOrdainketa=new Ordainketa();
-
+		PantailaDatuakErakutsi  = new DatuakErakutsi();
 		micoordinador= new Koordinatzailea();
 		
 		/*Se establecen las relaciones entre clases*/
 		PantailaLogin.setcoordinador(micoordinador);
 		PantailaOrdainketa.setcoordinador(micoordinador);
-
+		PantailaDatuakErakutsi.setcoordinador(micoordinador);
 		/*Se establecen relaciones con la clase coordinador*/
 		micoordinador.setMiVentanaRegistro(PantailaLogin);
 		micoordinador.setordainketa(PantailaOrdainketa);
-	
+		micoordinador.setDatuakErakutsi(PantailaDatuakErakutsi);
 		PantailaLogin.setVisible(true);
 	}
 	

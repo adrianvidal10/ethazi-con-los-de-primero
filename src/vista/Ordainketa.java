@@ -1,6 +1,8 @@
 package vista;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -262,6 +264,13 @@ public class Ordainketa extends JFrame {
 		contentPane.add(textField_1);
 
 		btnAurrera = new JButton("Aurrera");
+		btnAurrera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 		btnAurrera.setEnabled(false);
 		
 		/*btnAurrera.addActionListener(new ActionListener() { public void

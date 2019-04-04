@@ -57,7 +57,9 @@ public class LoginPantaila extends JFrame {
 		JButton btnLogueatu = new JButton("LOGUEATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/// micoordinador.erakutsiLOGUEATU();
+				micoordinador.mostrarPantailaDatuakErakutsi();
+				
+				
 			}
 		});
 		btnLogueatu.setFont(new Font("Source Code Pro Black", Font.BOLD, 15));
@@ -67,8 +69,10 @@ public class LoginPantaila extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// botoiaren kodea
 				System.out.println("LOGIN BOTOIA");
-				micoordinador.ordainketaPantaila();
-				micoordinador.mostrarVentanaOrdainketa();
+				//micoordinador.ordainketaPantaila();
+				//micoordinador.mostrarVentanaOrdainketa();
+				micoordinador.mostrarPantailaDatuakErakutsi();
+				
 				// logindatuak();
 				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
 				/*if (youshouldnotpass == true) {

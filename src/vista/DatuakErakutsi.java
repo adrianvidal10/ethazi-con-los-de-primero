@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Kontsultak;
+import controlador.Koordinatzailea;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
 public class DatuakErakutsi extends JFrame {
+	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
 	private JButton btnBilatu, btnAtzera;
 	private JLabel lblHerria;
@@ -39,7 +41,7 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Kontsultak ko = new Kontsultak();
-				label.setText(ko.mandarhotel(getherriaBilatu()));
+				
 			}
 		});
 		contentPane.setLayout(null);
@@ -73,7 +75,10 @@ public class DatuakErakutsi extends JFrame {
 		panel.add(table);
 
 	}
-
+	public void setcoordinador(Koordinatzailea micoordinador) {
+		this.micoordinador = micoordinador;
+	}
+	
 	public static String getherriaBilatu() {
 		return  txbxHerria.getText();
 	}

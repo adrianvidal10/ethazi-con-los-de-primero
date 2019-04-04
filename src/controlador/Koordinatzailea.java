@@ -7,7 +7,7 @@ public class Koordinatzailea {
 	// Atributuak:
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
-
+	private DatuakErakutsi PantailaDatuakErakutsi;
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**
@@ -55,7 +55,29 @@ public class Koordinatzailea {
 		PantailaLogin.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
 	}
+	
+	public DatuakErakutsi getDatuakErakutsi() {
+		return PantailaDatuakErakutsi;
+	}
 
+	/**
+	 * DatuakErakutsi pantaila esartzen du.
+	 * 
+	 * @param miVentanaRegistro
+	 */
+	public void setDatuakErakutsi(DatuakErakutsi PantailaDatuakErakutsi) {
+		this.PantailaDatuakErakutsi = PantailaDatuakErakutsi;
+	}
+
+	// ******************
+	/**
+	 * Login pantaila aurkeztekoa dago.
+	 */
+	public void mostrarPantailaDatuakErakutsi() {
+		// VENTANA PRINTZIPALA.setVisible(false);
+		PantailaDatuakErakutsi.setVisible(true);
+	}
+	
 	public double borobilduDirua(double dirua) {
 		double emaitza = Math.round(dirua * 100.0) / 100.0;
 		return emaitza;
