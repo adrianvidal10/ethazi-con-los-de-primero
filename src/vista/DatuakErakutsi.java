@@ -77,9 +77,8 @@ public class DatuakErakutsi extends JFrame {
 		JButton btnOrdainketa = new JButton("Ordainketa");
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//ordainketa 
 				   micoordinador.mostrarVentanaOrdainketa();
-				
 				
 			}
 		});
