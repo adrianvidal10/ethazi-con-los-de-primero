@@ -31,7 +31,7 @@ public class DatuakErakutsi extends JFrame {
 	 */
 	public DatuakErakutsi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 456, 345);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,6 +73,18 @@ public class DatuakErakutsi extends JFrame {
 		table = new JTable();
 		table.setBounds(0, 165, 425, -164);
 		panel.add(table);
+		
+		JButton btnOrdainketa = new JButton("Ordainketa");
+		btnOrdainketa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				   micoordinador.mostrarVentanaOrdainketa();
+				
+				
+			}
+		});
+		btnOrdainketa.setBounds(346, 273, 89, 23);
+		contentPane.add(btnOrdainketa);
 
 	}
 	public void setcoordinador(Koordinatzailea micoordinador) {
