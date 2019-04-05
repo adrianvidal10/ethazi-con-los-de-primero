@@ -8,10 +8,13 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Kontsultak;
 import controlador.Koordinatzailea;
+import modelo.Hotela;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -25,6 +28,7 @@ public class DatuakErakutsi extends JFrame {
 	static String herriaBilatu;
 	private JPanel contentPane;
 	private JTable table;
+	private int i;
 
 	/**
 	 * Create the panel.
@@ -40,8 +44,7 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Kontsultak ko = new Kontsultak();
-				
+				taulaBete();
 			}
 		});
 		contentPane.setLayout(null);
@@ -65,32 +68,48 @@ public class DatuakErakutsi extends JFrame {
 		panel.setBounds(0, 96, 435, 166);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(418, 0, 17, 166);
 		panel.add(scrollBar);
-		
+
 		table = new JTable();
 		table.setBounds(0, 165, 425, -164);
 		panel.add(table);
-		
+
 		JButton btnOrdainketa = new JButton("Ordainketa");
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ordainketa 
-				   micoordinador.mostrarVentanaOrdainketa();
-				
+				// ordainketa
+				micoordinador.mostrarVentanaOrdainketa();
+
 			}
+
 		});
 		btnOrdainketa.setBounds(346, 273, 89, 23);
 		contentPane.add(btnOrdainketa);
 
 	}
+
+	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
+		String[][] taula = new String[i][4];
+		Hotela h = new Hotela();
+		for (int i = 0; i < hotelZerrenda.size(); i++) {
+			table.setRowHeight(i);
+			h = hotelZerrenda.get(i);
+			taula[i][0] = h.getIzena();
+			taula[i][1] = Integer.toString(h.getIzarrak());
+			taula[i][2] = h.getIzena();
+			taula[i][3] = String.valueOf(h.getPrezioa());
+		}
+
+	}
+
 	public void setcoordinador(Koordinatzailea micoordinador) {
 		this.micoordinador = micoordinador;
 	}
-	
+
 	public static String getherriaBilatu() {
-		return  txbxHerria.getText();
+		return txbxHerria.getText();
 	}
 }

@@ -2,11 +2,13 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import modelo.Hotela;
 import modelo.Konexioa;
-import vista.DatuakErakutsi;
 
 public class Kontsultak {
-
+	ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
 	Konexioa conexion = new Konexioa();
 	ResultSet resultado;
 	String herria;
@@ -22,11 +24,18 @@ public class Kontsultak {
 		try {
 			while (resultado.next()) {
 
+				Hotela h = new Hotela();
 				kodigoa = resultado.getInt("kodigoa");
+				h.setKodigoa(kodigoa);
 				izena = resultado.getString("izena");
+				h.setIzena(izena);
 				herria = resultado.getString("herria");
+				h.setHerria(herria);
 				izarrak = resultado.getInt("izarrak");
+				h.setIzarrak(izarrak);
 				prezioa = resultado.getDouble("prezioa");
+				h.setPrezioa(prezioa);
+				hotelZerrenda.add(h);
 
 				testua = " kodigoa: " + kodigoa + " izena: " + izena + " herria: " + herria + " izarrak: " + izarrak
 						+ " prezioa: " + prezioa;

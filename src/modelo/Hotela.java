@@ -3,8 +3,21 @@ package modelo;
 public class Hotela {
 	private Konexioa kon = new Konexioa();
 	private String izena, herria;
-	private int kodigoa, izarrak, prezioa;
+	private int kodigoa, izarrak;
+	private double prezioa;
 
+	public Hotela(String izena, String herria, int kodigoa, int izarrak, int prezioa) {
+		super();
+		this.izena = izena;
+		this.herria = herria;
+		this.kodigoa = kodigoa;
+		this.izarrak = izarrak;
+		this.prezioa = prezioa;
+	}
+
+	public Hotela() {
+	}
+	
 	public String getIzena() {
 		return izena;
 	}
@@ -37,11 +50,11 @@ public class Hotela {
 		this.izarrak = izarrak;
 	}
 
-	public int getPrezioa() {
+	public double getPrezioa() {
 		return prezioa;
 	}
 
-	public void setPrezioa(int prezioa) {
+	public void setPrezioa(double prezioa) {
 		this.prezioa = prezioa;
 	}
 
@@ -49,19 +62,6 @@ public class Hotela {
 	public String toString() {
 		return "Hotela " + kodigoa + "Izena: " + izena + ", herria=" + herria + ", izarrak=" + izarrak + ", prezioa="
 				+ prezioa;
-	}
-
-	public Hotela(String izena, String herria, int kodigoa, int izarrak, int prezioa) {
-		super();
-		this.izena = izena;
-		this.herria = herria;
-		this.kodigoa = kodigoa;
-		this.izarrak = izarrak;
-		this.prezioa = prezioa;
-	}
-
-	public Hotela() {
-		super();
 	}
 	
 	
