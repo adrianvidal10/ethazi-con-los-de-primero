@@ -22,6 +22,7 @@ public class Konexioa {
 				System.out.println("Ondo joan da konexioa,  " + url + " . . . Konektatua");
 			}
 		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
 			System.out.println("Ezin izan da, " + url + "-rekin konekxioa egin.");
 		} catch (ClassNotFoundException ex) {
 			System.out.println(ex);
