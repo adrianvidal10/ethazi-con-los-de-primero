@@ -1,5 +1,7 @@
 package controlador;
 
+import java.util.ArrayList;
+
 import modelo.*;
 import vista.*;
 
@@ -8,6 +10,7 @@ public class Koordinatzailea {
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
+
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**
@@ -55,7 +58,7 @@ public class Koordinatzailea {
 		PantailaLogin.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
 	}
-	
+
 	public DatuakErakutsi getDatuakErakutsi() {
 		return PantailaDatuakErakutsi;
 	}
@@ -77,7 +80,7 @@ public class Koordinatzailea {
 		// VENTANA PRINTZIPALA.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(true);
 	}
-	
+
 	public double borobilduDirua(double dirua) {
 		double emaitza = Math.round(dirua * 100.0) / 100.0;
 		return emaitza;
@@ -90,6 +93,12 @@ public class Koordinatzailea {
 		Double zenbakia = Double.parseDouble(dirua);
 		PantailaOrdainketa.bidalidirua(String.valueOf(zenbakia));
 		// idatxiTxt();
+	}
+
+	public ArrayList<String> bidaliSelectHotelak(String herria) {
+		Kontsultak kon = new Kontsultak();
+		return kon.mandarhotel(herria);
+
 	}
 
 }
