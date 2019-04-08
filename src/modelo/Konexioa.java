@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.sql.Statement;
 
 public class Konexioa {
@@ -21,12 +22,11 @@ public class Konexioa {
 			if (konx != null) {
 				System.out.println("Ondo joan da konexioa,  " + url + " . . . Konektatua");
 			}
-		} catch (SQLException ex) {
+		} catch (SQLException | java.lang.ClassNotFoundException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Ezin izan da, " + url + "-rekin konekxioa egin.");
-		} catch (ClassNotFoundException ex) {
-			System.out.println(ex);
-		}
+		
+		} 
+		
 	}
 
 	public ResultSet getQuery(String _query) {
