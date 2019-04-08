@@ -24,7 +24,7 @@ public class Kontsultak {
 				kodigoa = resultado.getInt("kodigoa");
 				izena = resultado.getString("izena");
 				herria = resultado.getString("herria");
-				izarrak = resultado.getInt("izarra");
+				izarrak = resultado.getInt("izarrak");
 				prezioa = resultado.getDouble("prezioa");
 				testua = "Kodigoa: " + kodigoa + " Izena: " + izena + " Herria: " + herria + " Izarrak: " + izarrak + " Prezioa: " + prezioa + "€" + "\n";
 				emaitzak.add(testua);
