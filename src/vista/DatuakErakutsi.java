@@ -19,16 +19,19 @@ import java.util.Iterator;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import java.awt.TextArea;
 
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
 	private JButton btnBilatu, btnAtzera;
 	private JLabel lblHerria;
-	private JTextField erakutsiEmaitza;
+	private JTextArea erakutsiEmaitza;
 	private JPanel panel;
 	static String herriaBilatu;
 	private JPanel contentPane;
@@ -68,11 +71,9 @@ public class DatuakErakutsi extends JFrame {
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(418, 0, 17, 166);
 		panel.add(scrollBar);
-
-		erakutsiEmaitza = new JTextField("");
-		erakutsiEmaitza.setEditable(false);
-		erakutsiEmaitza.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		erakutsiEmaitza.setBounds(0, 0, 413, 166);
+		
+		erakutsiEmaitza = new JTextArea();
+		erakutsiEmaitza.setBounds(12, 0, 396, 166);
 		panel.add(erakutsiEmaitza);
 
 		btnBilatu = new JButton("Bilatu");
@@ -102,11 +103,7 @@ public class DatuakErakutsi extends JFrame {
 	private void taulaBete(ArrayList<String> hotelZerrenda) {
 		Iterator<String> it = hotelZerrenda.iterator();
 		while (it.hasNext()) {
-			if (this.erakutsiEmaitza.getText() == null) {
-				this.erakutsiEmaitza.setText(it.next() + "\n");
-			} else {
-				this.erakutsiEmaitza.setText(this.erakutsiEmaitza.getText() + it.next() + "\n");
-			}
+			this.erakutsiEmaitza.append(it.next());
 		}
 	}
 

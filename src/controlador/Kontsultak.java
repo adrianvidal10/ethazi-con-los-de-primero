@@ -18,15 +18,15 @@ public class Kontsultak {
 
 	public void selectHotelak(String herri) {
 		String testua;
-		resultado = conexion.getQuery("SELECT * FROM hotelak WHERE herria = '" + herri + "'");
+		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = '" + herri + "'");
 		try {
 			while (resultado.next()) {
 				kodigoa = resultado.getInt("kodigoa");
 				izena = resultado.getString("izena");
 				herria = resultado.getString("herria");
-				izarrak = resultado.getInt("izarra");
+				izarrak = resultado.getInt("izarrak");
 				prezioa = resultado.getDouble("prezioa");
-				testua = "Kodigoa: " + kodigoa + " Izena: " + izena + " Herria: " + herria + " Izarrak: " + izarrak + " Prezioa: " + prezioa + "€";
+				testua = "Kodigoa: " + kodigoa + " Izena: " + izena + " Herria: " + herria + " Izarrak: " + izarrak + " Prezioa: " + prezioa + "€" + "\n";
 				emaitzak.add(testua);
 				}
 			
