@@ -24,6 +24,7 @@ public class Konexioa {
 			}
 		} catch (SQLException | java.lang.ClassNotFoundException ex) {
 			System.out.println(ex.getMessage());
+			System.exit(0);
 		
 		} 
 		
