@@ -4,7 +4,7 @@ import vista.*;
 
 public class Main {
 
-	// Atributuak:
+	// Atributuak :
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private Koordinatzailea micoordinador;
