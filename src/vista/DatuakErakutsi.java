@@ -60,7 +60,7 @@ public class DatuakErakutsi extends JFrame {
 		getContentPane().add(lblHerria);
 
 		btnAtzera = new JButton("Atzera");
-		btnAtzera.setBounds(24, 11, 65, 23);
+		btnAtzera.setBounds(24, 11, 82, 23);
 		getContentPane().add(btnAtzera);
 
 		panel = new JPanel();
@@ -95,7 +95,7 @@ public class DatuakErakutsi extends JFrame {
 			}
 
 		});
-		btnOrdainketa.setBounds(346, 273, 89, 23);
+		btnOrdainketa.setBounds(333, 273, 102, 23);
 		contentPane.add(btnOrdainketa);
 
 	}
