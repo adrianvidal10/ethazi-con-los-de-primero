@@ -98,11 +98,11 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(btnOrdainketaBurutu);
 
 		lblPrezioTotala = new JLabel("Prezio totala:");
-		lblPrezioTotala.setBounds(28, 228, 70, 14);
+		lblPrezioTotala.setBounds(28, 228, 92, 14);
 		contentPane.add(lblPrezioTotala);
 
 		lblPrezioTotErakutsi = new JLabel("New label");
-		lblPrezioTotErakutsi.setBounds(108, 228, 73, 14);
+		lblPrezioTotErakutsi.setBounds(119, 228, 73, 14);
 		contentPane.add(lblPrezioTotErakutsi);
 
 		dateChooser = new JDateChooser();
