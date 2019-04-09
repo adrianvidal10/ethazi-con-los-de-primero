@@ -15,20 +15,24 @@ import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.awt.Font;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
 	private JButton btnBilatu, btnAtzera;
 	private JLabel lblHerria;
+	private JTextField erakutsiEmaitza;
 	private JPanel panel;
 	static String herriaBilatu;
 	private JPanel contentPane;
-	private JTable table;
-	private int i;
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -41,15 +45,7 @@ public class DatuakErakutsi extends JFrame {
 		setContentPane(contentPane);
 		getContentPane().setLayout(null);
 
-		btnBilatu = new JButton("Bilatu");
-		btnBilatu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				taulaBete();
-			}
-		});
 		contentPane.setLayout(null);
-		btnBilatu.setBounds(346, 59, 89, 23);
-		getContentPane().add(btnBilatu);
 
 		txbxHerria = new JTextField();
 		txbxHerria.setBounds(103, 60, 195, 20);
@@ -73,16 +69,28 @@ public class DatuakErakutsi extends JFrame {
 		scrollBar.setBounds(418, 0, 17, 166);
 		panel.add(scrollBar);
 
-		table = new JTable();
-		table.setBounds(0, 165, 425, -164);
-		panel.add(table);
+		erakutsiEmaitza = new JTextField("");
+		erakutsiEmaitza.setEditable(false);
+		erakutsiEmaitza.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		erakutsiEmaitza.setBounds(0, 0, 413, 166);
+		panel.add(erakutsiEmaitza);
+
+		btnBilatu = new JButton("Bilatu");
+		btnBilatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<String> emaitzak = new ArrayList<String>();
+				emaitzak = micoordinador.bidaliSelectHotelak(getherriaBilatu());
+				taulaBete(emaitzak);
+			}
+		});
+		btnBilatu.setBounds(346, 59, 89, 23);
+		getContentPane().add(btnBilatu);
 
 		JButton btnOrdainketa = new JButton("Ordainketa");
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// ordainketa
 				micoordinador.mostrarVentanaOrdainketa();
-
 			}
 
 		});
@@ -91,18 +99,15 @@ public class DatuakErakutsi extends JFrame {
 
 	}
 
-	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
-		String[][] taula = new String[i][4];
-		Hotela h = new Hotela();
-		for (int i = 0; i < hotelZerrenda.size(); i++) {
-			table.setRowHeight(i);
-			h = hotelZerrenda.get(i);
-			taula[i][0] = h.getIzena();
-			taula[i][1] = Integer.toString(h.getIzarrak());
-			taula[i][2] = h.getIzena();
-			taula[i][3] = String.valueOf(h.getPrezioa());
+	private void taulaBete(ArrayList<String> hotelZerrenda) {
+		Iterator<String> it = hotelZerrenda.iterator();
+		while (it.hasNext()) {
+			if (this.erakutsiEmaitza.getText() == null) {
+				this.erakutsiEmaitza.setText(it.next() + "\n");
+			} else {
+				this.erakutsiEmaitza.setText(this.erakutsiEmaitza.getText() + it.next() + "\n");
+			}
 		}
-
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
