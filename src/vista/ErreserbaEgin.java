@@ -134,7 +134,7 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(lblAmaieraData);
 		
 		lblDisponibilidad = new JLabel("New label");
-		lblDisponibilidad.setBounds(232, 172, 165, 14);
+		lblDisponibilidad.setBounds(243, 172, 165, 14);
 		
 		int cont = 1;
 		
