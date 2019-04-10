@@ -5,12 +5,12 @@ import java.io.IOException;
 
 public class CrearFicheroReserva {
 	
-	public static void main(String[] args) {
+	public static void sortuFitxeroa() {
 		String numeroReserva = "";
-		File carpeta = new File("c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva");
+		File carpeta = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
-			File fichero = new File("c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva/reserva0001.txt");
+			File fichero = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva0001.txt");
 			try {
 				if (fichero.createNewFile())
 					System.out.println("El fichero se ha creado correctamente");
@@ -30,7 +30,7 @@ public class CrearFicheroReserva {
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
 			File fichero = new File(
-					"c:/Users/mañana.ORD30/git/repository/OstatuG5/ficherosReserva/reserva" + numeroReserva + ".txt");
+					"C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
 			try {
 
 				if (fichero.createNewFile())
