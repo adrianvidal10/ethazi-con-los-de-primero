@@ -2,7 +2,7 @@ package controlador;
 
 import java.io.File;
 import java.io.IOException;
-
+//A
 public class CrearFicheroReserva {
 	
 	public static void sortuFitxeroa() {

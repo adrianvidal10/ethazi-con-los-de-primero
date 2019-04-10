@@ -1,5 +1,5 @@
 package vista;
-
+//A
 import java.awt.*;
 import javax.swing.JOptionPane;
 
