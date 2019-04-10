@@ -24,6 +24,8 @@ public class ErreserbaEgin extends JFrame {
 
 	private JPanel contentPane;
 	JDateChooser dateChooser, dateChooser_1;
+	Date erreserbaHasiera;
+	
 	JLabel lblHasieraData, lblAmaieraData, lblErreserbaEgin, lblOstatuarenIzena, lblPrezioTotala, lblOheMota,
 			lblOstatuarenIzenaErakutsi, lblGelaMota, lblPrezioTotErakutsi;
 
@@ -106,19 +108,18 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(lblPrezioTotErakutsi);
 
 		dateChooser = new JDateChooser();
+	
 		dateChooser.setMinSelectableDate(gaur);
 		dateChooser.setBounds(301, 80, 106, 20);
 		contentPane.add(dateChooser);
 
+		
 		dateChooser_1 = new JDateChooser();
-
-		Date erreserbaHasiera = dateChooser.getDate();
 
 		dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				dateChooser_1.setMinSelectableDate(gaur);	
-				//dateChooser_1.setMinSelectableDate(erreserbaHasiera);
+				erreserbaHasiera = dateChooser.getDate();
+				dateChooser_1.setMinSelectableDate(erreserbaHasiera);
 			}
 		});
 
