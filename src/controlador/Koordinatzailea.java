@@ -95,7 +95,7 @@ public class Koordinatzailea {
 		// idatxiTxt();
 	}
 
-	public ArrayList<String> bidaliSelectHotelak(String herria) {
+	public ArrayList<Hotela> bidaliSelectHotelak(String herria) {
 		Kontsultak kon = new Kontsultak();
 		return kon.mandarhotel(herria);
 

@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import controlador.Kontsultak;
 import controlador.Koordinatzailea;
@@ -16,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -25,17 +28,19 @@ import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import java.awt.TextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Scrollbar;
 
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
 	private JButton btnBilatu, btnAtzera;
 	private JLabel lblHerria;
-	private JTextArea erakutsiEmaitza;
-	private JPanel panel;
 	static String herriaBilatu;
-	private JPanel contentPane;
+	private JPanel contentPane, panel;
 	private JTextField textField;
+	private JTable table_1;
 
 	/**
 	 * Create the panel.
@@ -61,29 +66,15 @@ public class DatuakErakutsi extends JFrame {
 
 		btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(24, 11, 82, 23);
-		//getContentPane().add(btnAtzera);
-
-		panel = new JPanel();
-		panel.setBounds(0, 96, 435, 166);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(418, 0, 17, 166);
-		panel.add(scrollBar);
-
-		erakutsiEmaitza = new JTextArea();
-		erakutsiEmaitza.setBounds(12, 0, 396, 166);
-		panel.add(erakutsiEmaitza);
 
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ArrayList<String> emaitzak = new ArrayList<String>();
 				try {
-					emaitzak = micoordinador.bidaliSelectHotelak(getherriaBilatu());
-					taulaBete(emaitzak);
-				}catch(Exception e) {
+					ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
+					hotelZerrenda = micoordinador.bidaliSelectHotelak(getherriaBilatu());
+					taulaBete(hotelZerrenda);
+				} catch (Exception e) {
 					System.out.println("Ez dago hotelik herri honetan.");
 				}
 
@@ -103,21 +94,37 @@ public class DatuakErakutsi extends JFrame {
 		btnOrdainketa.setBounds(333, 273, 102, 23);
 		contentPane.add(btnOrdainketa);
 
+		panel = new JPanel();
+		panel.setBounds(0, 85, 435, 184);
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+
 	}
 
-	private void taulaBete(ArrayList<String> hotelZerrenda) {
-		Iterator<String> it = hotelZerrenda.iterator();
-		if (erakutsiEmaitza == null) {
-			while (it.hasNext()) {
-				this.erakutsiEmaitza.append(it.next());
-			}
-		} else {
-			this.erakutsiEmaitza.setText(it.next());
-			while (it.hasNext()) {
-				this.erakutsiEmaitza.append(it.next());
-			}
+ 	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
+		List<String> columns = new ArrayList<String>();
+		List<String[]> values = new ArrayList<String[]>();
+		Hotela h = new Hotela();
+
+		columns.add("Izena");
+		columns.add("Izarrak");
+		columns.add("Herria");
+		columns.add("Prezioa");
+
+		for (int i = 0; i < hotelZerrenda.size(); i++) {
+			h = hotelZerrenda.get(i);
+			values.add(new String[] { h.getIzena(), Integer.toString(h.getIzarrak()), h.getHerria(),
+					String.valueOf(h.getPrezioa()) });
 		}
 
+		TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
+		JTable table = new JTable(tableModel);
+		panel.add(new JScrollPane(table), BorderLayout.CENTER);
+
+		panel.add(table.getTableHeader(), BorderLayout.NORTH);
+
+		panel.setVisible(true);
+		panel.setSize(440, 180);
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
@@ -125,6 +132,6 @@ public class DatuakErakutsi extends JFrame {
 	}
 
 	public static String getherriaBilatu() {
-		return txbxHerria.getText();
+ 		return txbxHerria.getText();
 	}
 }
