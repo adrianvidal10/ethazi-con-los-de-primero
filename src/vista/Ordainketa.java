@@ -266,7 +266,7 @@ public class Ordainketa extends JFrame {
 		btnAurrera = new JButton("Aurrera");
 		btnAurrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				controlador.CrearFicheroReserva.sortuFitxeroa();
 				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo", JOptionPane.INFORMATION_MESSAGE);
 				
 			}

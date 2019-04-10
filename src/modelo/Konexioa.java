@@ -20,7 +20,7 @@ public class Konexioa {
 			Class.forName("com.mysql.jdbc.Connection");
 			konx = (Connection) DriverManager.getConnection(url, usuario, pwd);
 			if (konx != null) {
-				System.out.println("Ondo joan da konexioa,  " + url + " . . . Konektatua");
+				//System.out.println("Ondo joan da konexioa,  " + url + " . . . Konektatua");
 			}
 		} catch (SQLException | java.lang.ClassNotFoundException ex) {
 			System.out.println(ex.getMessage());

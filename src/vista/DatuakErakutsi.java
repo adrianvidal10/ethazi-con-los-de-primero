@@ -61,7 +61,7 @@ public class DatuakErakutsi extends JFrame {
 
 		btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(24, 11, 82, 23);
-		getContentPane().add(btnAtzera);
+		//getContentPane().add(btnAtzera);
 
 		panel = new JPanel();
 		panel.setBounds(0, 96, 435, 166);
@@ -71,7 +71,7 @@ public class DatuakErakutsi extends JFrame {
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(418, 0, 17, 166);
 		panel.add(scrollBar);
-		
+
 		erakutsiEmaitza = new JTextArea();
 		erakutsiEmaitza.setBounds(12, 0, 396, 166);
 		panel.add(erakutsiEmaitza);
@@ -80,8 +80,13 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<String> emaitzak = new ArrayList<String>();
-				emaitzak = micoordinador.bidaliSelectHotelak(getherriaBilatu());
-				taulaBete(emaitzak);
+				try {
+					emaitzak = micoordinador.bidaliSelectHotelak(getherriaBilatu());
+					taulaBete(emaitzak);
+				}catch(Exception e) {
+					System.out.println("Ez dago hotelik herri honetan.");
+				}
+
 			}
 		});
 		btnBilatu.setBounds(346, 59, 89, 23);
@@ -102,9 +107,17 @@ public class DatuakErakutsi extends JFrame {
 
 	private void taulaBete(ArrayList<String> hotelZerrenda) {
 		Iterator<String> it = hotelZerrenda.iterator();
-		while (it.hasNext()) {
-			this.erakutsiEmaitza.append(it.next());
+		if (erakutsiEmaitza == null) {
+			while (it.hasNext()) {
+				this.erakutsiEmaitza.append(it.next());
+			}
+		} else {
+			this.erakutsiEmaitza.setText(it.next());
+			while (it.hasNext()) {
+				this.erakutsiEmaitza.append(it.next());
+			}
 		}
+
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
