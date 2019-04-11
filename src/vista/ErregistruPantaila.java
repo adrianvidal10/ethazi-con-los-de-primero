@@ -11,7 +11,6 @@ import com.toedter.calendar.JDateChooser;
 
 import controlador.Koordinatzailea;
 
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -48,7 +47,6 @@ public class ErregistruPantaila extends JFrame {
 	private JTextField textField_3;
 	private JLabel lblNewLabel_7;
 	private JDateChooser lehendata;
-
 	private String izena;
 	private String data;
 	private JLabel lblNewLabel_9;
@@ -115,10 +113,13 @@ public class ErregistruPantaila extends JFrame {
 		btnLogin.setEnabled(false);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*Bezeroa bezeroa = new Bezeroa(textField.getText() + textField_5.getText().toUpperCase(),
-						textField_1.getText(), textField_2.getText(), data, textField_3.getText().toUpperCase(),
-						getMD5(passwordField.getText()));*/
-				//Bezeroa.txertatuBezeroa(bezeroa);
+				/*
+				 * Bezeroa bezeroa = new Bezeroa(textField.getText() +
+				 * textField_5.getText().toUpperCase(), textField_1.getText(),
+				 * textField_2.getText(), data, textField_3.getText().toUpperCase(),
+				 * getMD5(passwordField.getText()));
+				 */
+				// Bezeroa.txertatuBezeroa(bezeroa);
 				micoordinador.mostrarVentanaLogin();
 
 			}

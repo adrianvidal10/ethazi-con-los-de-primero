@@ -27,7 +27,6 @@ public class Bezeroa {
 		this.fecha = fecha;
 		this.sexua = sexua;
 		this.pasahitza = pasahitza;
-
 	}
 
 	/*
