@@ -5,8 +5,7 @@ public class ClassNotFoundException extends Exception {
 		super("Konfigurazio errore bat egon da, aplikazioa itxiko da.");
 	}
 
-	/* sdfsfs */
-	public String getMessage() {
-		return "Konfigurazio errore bat egon da, aplikazioa itxiko da.";
-	}
 }
+
+
+
