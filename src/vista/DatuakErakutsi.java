@@ -13,8 +13,11 @@ import controlador.Koordinatzailea;
 import modelo.Hotela;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,6 +34,7 @@ import java.awt.TextArea;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Scrollbar;
+import javax.swing.ListSelectionModel;
 
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
@@ -40,7 +44,9 @@ public class DatuakErakutsi extends JFrame {
 	static String herriaBilatu;
 	private JPanel contentPane, panel;
 	private JTextField textField;
+	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
 
 	/**
 	 * Create the panel.
@@ -101,30 +107,47 @@ public class DatuakErakutsi extends JFrame {
 
 	}
 
- 	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
-		List<String> columns = new ArrayList<String>();
-		List<String[]> values = new ArrayList<String[]>();
-		Hotela h = new Hotela();
+	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
+		
+		List<String[]> filas = loadtable(hotelZerrenda);
 
-		columns.add("Izena");
-		columns.add("Izarrak");
-		columns.add("Herria");
-		columns.add("Prezioa");
+		TableModel tableModel =  new DefaultTableModel(filas.toArray(new Object[][] {}),
+				getColumns().toArray()) {		
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table = new JTable(tableModel);
+		table.setShowVerticalLines(false);
+		table.setShowHorizontalLines(false);
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		
 
-		for (int i = 0; i < hotelZerrenda.size(); i++) {
-			h = hotelZerrenda.get(i);
-			values.add(new String[] { h.getIzena(), Integer.toString(h.getIzarrak()), h.getHerria(),
-					String.valueOf(h.getPrezioa()) });
-		}
-
-		TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-		JTable table = new JTable(tableModel);
 		panel.add(new JScrollPane(table), BorderLayout.CENTER);
-
 		panel.add(table.getTableHeader(), BorderLayout.NORTH);
 
 		panel.setVisible(true);
 		panel.setSize(440, 180);
+		}
+	private List<String> getColumns() {
+		List<String> columnas = new ArrayList<String>();
+		columnas.add("Izena");
+		columnas.add("Izarrak");
+		columnas.add("Herria");
+		columnas.add("Prezioa");
+		return columnas;
+	}
+
+	private List<String[]> loadtable(ArrayList<Hotela> hotelZerrenda) {
+		List<String[]> filas = new ArrayList<String[]>();
+		Hotela hotel = new Hotela();
+		for (int i = 0; i < hotelZerrenda.size(); i++) {
+			hotel = hotelZerrenda.get(i);
+			filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
+					String.valueOf(hotel.getPrezioa()) });
+		}
+		return filas;
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
@@ -132,6 +155,6 @@ public class DatuakErakutsi extends JFrame {
 	}
 
 	public static String getherriaBilatu() {
- 		return txbxHerria.getText();
+		return txbxHerria.getText();
 	}
 }

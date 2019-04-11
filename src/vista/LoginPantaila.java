@@ -57,9 +57,7 @@ public class LoginPantaila extends JFrame {
 		JButton btnLogueatu = new JButton("LOGUEATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				micoordinador.mostrarPantailaDatuakErakutsi();
-				
-				
+				micoordinador.mostrarPantailaErregistru();	
 			}
 		});
 		btnLogueatu.setFont(new Font("Source Code Pro Black", Font.BOLD, 15));

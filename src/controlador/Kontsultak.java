@@ -1,4 +1,5 @@
 package controlador;
+
 //A
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +19,11 @@ public class Kontsultak {
 
 	public void selectHotelak(String herri) {
 		String testua;
-		Hotela h = new Hotela();
+
 		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = '" + herri + "'");
 		try {
 			while (resultado.next()) {
+				Hotela h = new Hotela();
 				kodigoa = resultado.getInt("kodigoa");
 				h.setKodigoa(kodigoa);
 				izena = resultado.getString("izena");
@@ -32,8 +34,6 @@ public class Kontsultak {
 				h.setIzarrak(izarrak);
 				prezioa = resultado.getDouble("prezioa");
 				h.setPrezioa(prezioa);
-				// testua = "Izena: " + izena + " Herria: " + herria + " Izarrak: " + izarrak +
-				// " Prezioa: " + prezioa + "€" + "\n";
 				hotelZerrenda.add(h);
 			}
 

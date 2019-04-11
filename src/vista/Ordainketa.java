@@ -196,7 +196,7 @@ public class Ordainketa extends JFrame {
 		button_10.setBounds(272, 190, 73, 23);
 		getContentPane().add(button_10);
 
-		JButton button_11 = new JButton("ezabatu");
+		JButton button_11 = new JButton("C");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += "";
@@ -286,6 +286,15 @@ public class Ordainketa extends JFrame {
 		textField_2.setBounds(106, 227, 267, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
+		
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				micoordinador.mostrarPantailaDatuakErakutsi();
+			}
+		});
+		btnAtzera.setBounds(10, 11, 89, 23);
+		contentPane.add(btnAtzera);
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
