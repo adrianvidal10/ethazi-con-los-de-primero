@@ -35,7 +35,8 @@ public class Main {
 		micoordinador.setordainketa(PantailaOrdainketa);
 		micoordinador.setDatuakErakutsi(PantailaDatuakErakutsi);
 		micoordinador.setPantailaErregistru(PantailaErregistru);
-		PantailaLogin.setVisible(true);
+		PantailaDatuakErakutsi.setVisible(true);
+	
 	}
 	
 	

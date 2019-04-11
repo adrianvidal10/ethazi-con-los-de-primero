@@ -54,7 +54,7 @@ public class LoginPantaila extends JFrame {
 		btnSartu.setBounds(83, 282, 176, 32);
 		getContentPane().add(btnSartu);
 
-		JButton btnLogueatu = new JButton("LOGUEATU");
+		JButton btnLogueatu = new JButton("ERREGISRTATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				micoordinador.mostrarPantailaErregistru();	
@@ -69,7 +69,7 @@ public class LoginPantaila extends JFrame {
 				System.out.println("LOGIN BOTOIA");
 				//micoordinador.ordainketaPantaila();
 				//micoordinador.mostrarVentanaOrdainketa();
-				micoordinador.mostrarPantailaDatuakErakutsi();
+				micoordinador.mostrarVentanaOrdainketa();
 				
 				// logindatuak();
 				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);

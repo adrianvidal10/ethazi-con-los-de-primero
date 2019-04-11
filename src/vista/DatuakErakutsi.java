@@ -102,7 +102,7 @@ public class DatuakErakutsi extends JFrame {
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// ordainketa
-				micoordinador.mostrarVentanaOrdainketa();
+				micoordinador.mostrarVentanaLogin();
 			}
 
 		});
