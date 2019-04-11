@@ -1,5 +1,5 @@
 package modelo;
-
+//
 public class SQLException extends Exception{
 
 	public SQLException() {

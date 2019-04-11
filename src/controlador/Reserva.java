@@ -1,5 +1,5 @@
 package controlador;
-
+//
 public class Reserva {
 	String hotelIzena = "hotel1";
 	String nork = "pepito";
