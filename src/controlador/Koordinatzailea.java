@@ -41,7 +41,7 @@ public class Koordinatzailea {
 	 */
 	public void mostrarVentanaLogin() {
 		PantailaErregistru.setVisible(false);
-		PantailaOrdainketa.setVisible(false); 
+		PantailaOrdainketa.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(false);
 		PantailaLogin.setVisible(true);
 
@@ -86,6 +86,7 @@ public class Koordinatzailea {
 	public void mostrarPantailaDatuakErakutsi() {
 		// VENTANA PRINTZIPALA.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(true);
+		PantailaOrdainketa.dispose();
 	}
 
 	/*
@@ -107,7 +108,7 @@ public class Koordinatzailea {
 		PantailaErregistru.setVisible(false);
 		PantailaLogin.setVisible(true);
 	}
-	
+
 	public double borobilduDirua(double dirua) {
 		double emaitza = Math.round(dirua * 100.0) / 100.0;
 		return emaitza;
@@ -167,7 +168,7 @@ public class Koordinatzailea {
 		System.out.println(passwd1);
 		System.out.println(passwd2);
 		PASAHITZAK = balidatuPasahitzak(passwd1, passwd2);
-		sexua= PantailaErregistru.erakutsiSexua();
+		sexua = PantailaErregistru.erakutsiSexua();
 		System.out.println(sexua);
 		SEXUA = balidatuSexua(sexua);
 		sexua = sexua.toUpperCase();
@@ -180,21 +181,19 @@ public class Koordinatzailea {
 			Nan = zenbakiak + letra;
 			PantailaErregistru.balidatuLogina("Bazaude datu basean");
 			PantailaErregistru.youshouldpass();
-			
-			/*Txertatu = Bezeroa.konprobatuDatuBasea(Nan);
-			if (Txertatu == true) {
-				PantailaErregistru.balidatuLogina("Bazaude datu basean");
-			}
 
-			else {
-				PantailaErregistru.youshouldpass();
-
-				
-				 // Bezeroa bezeroa = new Bezeroa(Nan,Izena,Abizena,data,sexua,passwd1);				  
-				 //Bezeroa.txertatuBezeroa( bezeroa);
-				 
-				System.out.println("Te estas registrando");
-			//}*/
+			/*
+			 * Txertatu = Bezeroa.konprobatuDatuBasea(Nan); if (Txertatu == true) {
+			 * PantailaErregistru.balidatuLogina("Bazaude datu basean"); }
+			 * 
+			 * else { PantailaErregistru.youshouldpass();
+			 * 
+			 * 
+			 * // Bezeroa bezeroa = new Bezeroa(Nan,Izena,Abizena,data,sexua,passwd1);
+			 * //Bezeroa.txertatuBezeroa( bezeroa);
+			 * 
+			 * System.out.println("Te estas registrando"); //}
+			 */
 
 		}
 

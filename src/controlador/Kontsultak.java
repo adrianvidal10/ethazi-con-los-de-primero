@@ -18,11 +18,11 @@ public class Kontsultak {
 
 	public void selectHotelak(String herri) {
 		String testua;
-		Hotela h = new Hotela();
+		
 		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = '" + herri + "'");
 		try {
 			while (resultado.next()) {
-
+				Hotela h = new Hotela();
 				kodigoa = resultado.getInt("kodigoa");
 				h.setKodigoa(kodigoa);
 				izena = resultado.getString("izena");
