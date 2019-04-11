@@ -51,6 +51,7 @@ public class Ordainketa extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki1;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -62,6 +63,7 @@ public class Ordainketa extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki4;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -74,6 +76,7 @@ public class Ordainketa extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki7;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -86,6 +89,7 @@ public class Ordainketa extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki8;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -98,6 +102,7 @@ public class Ordainketa extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki5;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -110,6 +115,7 @@ public class Ordainketa extends JFrame {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki2;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -122,6 +128,7 @@ public class Ordainketa extends JFrame {
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki3;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -134,6 +141,7 @@ public class Ordainketa extends JFrame {
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki6;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -146,6 +154,7 @@ public class Ordainketa extends JFrame {
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki9;
+				textField_1.setText(totala);
 			}
 		});
 
@@ -158,6 +167,7 @@ public class Ordainketa extends JFrame {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				totala += zenbaki0;
+				textField_1.setText(totala);
 			}
 		});
 
