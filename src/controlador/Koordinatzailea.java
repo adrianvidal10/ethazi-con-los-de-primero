@@ -407,4 +407,8 @@ public class Koordinatzailea {
 
 	}
 
+	public void erreserbarenPrezioa(String prezioa) {
+		PantailaOrdainketa.setPrezioa(prezioa);
+	}
+
 }

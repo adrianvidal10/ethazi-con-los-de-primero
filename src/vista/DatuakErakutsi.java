@@ -28,6 +28,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import java.awt.TextArea;
@@ -108,11 +110,10 @@ public class DatuakErakutsi extends JFrame {
 	}
 
 	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
-		
+
 		List<String[]> filas = loadtable(hotelZerrenda);
 
-		TableModel tableModel =  new DefaultTableModel(filas.toArray(new Object[][] {}),
-				getColumns().toArray()) {		
+		TableModel tableModel = new DefaultTableModel(filas.toArray(new Object[][] {}), getColumns().toArray()) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -122,14 +123,23 @@ public class DatuakErakutsi extends JFrame {
 		table.setShowHorizontalLines(false);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
-		
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				final int row = table.rowAtPoint(new Point(e.getX(), e.getY()));
+				table.setRowSelectionInterval(row, row);
+				int row2 = table.rowAtPoint(e.getPoint());
+				String prezioa = table.getValueAt(row2, 3).toString();
+				micoordinador.erreserbarenPrezioa(prezioa);
+			}
+		});
 
 		panel.add(new JScrollPane(table), BorderLayout.CENTER);
 		panel.add(table.getTableHeader(), BorderLayout.NORTH);
 
 		panel.setVisible(true);
 		panel.setSize(440, 180);
-		}
+	}
+
 	private List<String> getColumns() {
 		List<String> columnas = new ArrayList<String>();
 		columnas.add("Izena");
