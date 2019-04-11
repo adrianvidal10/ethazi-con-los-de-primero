@@ -1,5 +1,5 @@
 package vista;
-//A
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,6 +28,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import java.awt.TextArea;
@@ -35,6 +37,13 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Scrollbar;
 import javax.swing.ListSelectionModel;
+import com.toedter.calendar.JDateChooser;
+import java.awt.Checkbox;
+import javax.swing.JSeparator;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JCheckBox;
 
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
@@ -53,7 +62,7 @@ public class DatuakErakutsi extends JFrame {
 	 */
 	public DatuakErakutsi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 456, 345);
+		setBounds(100, 100, 592, 470);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,12 +71,12 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.setLayout(null);
 
 		txbxHerria = new JTextField();
-		txbxHerria.setBounds(103, 60, 195, 20);
+		txbxHerria.setBounds(70, 31, 89, 20);
 		getContentPane().add(txbxHerria);
 		txbxHerria.setColumns(10);
 
 		lblHerria = new JLabel("Herria:");
-		lblHerria.setBounds(29, 63, 46, 14);
+		lblHerria.setBounds(31, 34, 46, 14);
 		getContentPane().add(lblHerria);
 
 		btnAtzera = new JButton("Atzera");
@@ -86,7 +95,7 @@ public class DatuakErakutsi extends JFrame {
 
 			}
 		});
-		btnBilatu.setBounds(346, 59, 89, 23);
+		btnBilatu.setBounds(406, 158, 89, 23);
 		getContentPane().add(btnBilatu);
 
 		JButton btnOrdainketa = new JButton("Ordainketa");
@@ -97,22 +106,71 @@ public class DatuakErakutsi extends JFrame {
 			}
 
 		});
-		btnOrdainketa.setBounds(333, 273, 102, 23);
+		btnOrdainketa.setBounds(426, 387, 102, 23);
 		contentPane.add(btnOrdainketa);
 
 		panel = new JPanel();
-		panel.setBounds(0, 85, 435, 184);
+		panel.setBounds(31, 192, 514, 184);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
+		
+		JDateChooser dtChHasieraData = new JDateChooser();
+		dtChHasieraData.setBounds(240, 31, 95, 20);
+		contentPane.add(dtChHasieraData);
+		
+		JDateChooser dtChAmaieraData = new JDateChooser();
+		dtChAmaieraData.setBounds(416, 31, 95, 20);
+		contentPane.add(dtChAmaieraData);
+		
+		Checkbox chbxPreziozOrdenatu = new Checkbox("Prezioz ordenatu");
+		chbxPreziozOrdenatu.setBounds(218, 77, 111, 22);
+		contentPane.add(chbxPreziozOrdenatu);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(20, 62, 508, 2);
+		contentPane.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(20, 105, 508, 2);
+		contentPane.add(separator_1);
+		
+		JLabel lblOstatuMota = new JLabel("Ostatu mota: ");
+		lblOstatuMota.setBounds(30, 77, 67, 14);
+		contentPane.add(lblOstatuMota);
+		
+		JComboBox cbxOstatuMota = new JComboBox();
+		cbxOstatuMota.setBounds(100, 74, 102, 20);
+		contentPane.add(cbxOstatuMota);
+		
+		JLabel lblHasieraData = new JLabel("Hasiera data:");
+		lblHasieraData.setBounds(171, 34, 71, 14);
+		contentPane.add(lblHasieraData);
+		
+		JLabel lblAmaieraData = new JLabel("Amaiera data:");
+		lblAmaieraData.setBounds(345, 34, 71, 14);
+		contentPane.add(lblAmaieraData);
+		
+		JSpinner spnIzarKop = new JSpinner();
+		spnIzarKop.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spnIzarKop.setEnabled(false);
+		spnIzarKop.setBounds(406, 77, 29, 20);
+		contentPane.add(spnIzarKop);
+		
+		JLabel lblIzarKopurua = new JLabel("Izar kopurua:");
+		lblIzarKopurua.setBounds(341, 77, 75, 14);
+		contentPane.add(lblIzarKopurua);
+		
+		JCheckBox chckbxParkina = new JCheckBox("Parkina");
+		chckbxParkina.setBounds(398, 114, 67, 23);
+		contentPane.add(chckbxParkina);
 
 	}
 
 	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
-		
+
 		List<String[]> filas = loadtable(hotelZerrenda);
 
-		TableModel tableModel =  new DefaultTableModel(filas.toArray(new Object[][] {}),
-				getColumns().toArray()) {		
+		TableModel tableModel = new DefaultTableModel(filas.toArray(new Object[][] {}), getColumns().toArray()) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -122,14 +180,23 @@ public class DatuakErakutsi extends JFrame {
 		table.setShowHorizontalLines(false);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
-		
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				final int row = table.rowAtPoint(new Point(e.getX(), e.getY()));
+				table.setRowSelectionInterval(row, row);
+				int row2 = table.rowAtPoint(e.getPoint());
+				String prezioa = table.getValueAt(row2, 3).toString();
+				micoordinador.erreserbarenPrezioa(prezioa);
+			}
+		});
 
 		panel.add(new JScrollPane(table), BorderLayout.CENTER);
 		panel.add(table.getTableHeader(), BorderLayout.NORTH);
 
 		panel.setVisible(true);
 		panel.setSize(440, 180);
-		}
+	}
+
 	private List<String> getColumns() {
 		List<String> columnas = new ArrayList<String>();
 		columnas.add("Izena");

@@ -1,5 +1,5 @@
 package modelo;
-//A
+
 public class Hotela {
 	private Konexioa kon = new Konexioa();
 	private String izena, herria;

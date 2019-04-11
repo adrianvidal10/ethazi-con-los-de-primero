@@ -1,5 +1,5 @@
 package modelo;
-
+//
 import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -27,7 +27,6 @@ public class Bezeroa {
 		this.fecha = fecha;
 		this.sexua = sexua;
 		this.pasahitza = pasahitza;
-
 	}
 
 	/*

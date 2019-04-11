@@ -1,5 +1,5 @@
 package vista;
-//A
+
 import java.awt.*;
 import javax.swing.JOptionPane;
 
@@ -23,6 +23,7 @@ public class Ordainketa extends JFrame {
 	private String zenbaki7 = "7";
 	private String zenbaki8 = "8";
 	private String zenbaki9 = "9";
+	private String prezioa;
 	private String zenbaki0 = "0";
 	private String zenbakikoma = ".";
 	private String totala = "";
@@ -208,23 +209,22 @@ public class Ordainketa extends JFrame {
 		button_11.setBackground(SystemColor.scrollbar);
 		button_11.setBounds(106, 190, 73, 23);
 		getContentPane().add(button_11);
-		
-		  baieztatu_botoia.addActionListener(new ActionListener() { 
-		  public void actionPerformed(ActionEvent e) { 
-		  double guztira=0;
-		  try {
-			 guztira = micoordinador.borobilduDirua(Double.parseDouble(totala));
-			 textField_1.setText(String.valueOf(guztira));
-			 ordaindu_Botoia.setEnabled(true);
-		} catch (Exception e2) {
-			e2.getMessage();
-			e2.printStackTrace();
-		}
-		 // textField_1.setText(String.valueOf(guztira));
-		 // ordaindu_Botoia.setEnabled(true); 
-		  	} 
-		  });
-		 
+
+		baieztatu_botoia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double guztira = 0;
+				try {
+					guztira = micoordinador.borobilduDirua(Double.parseDouble(totala));
+					textField_1.setText(String.valueOf(guztira));
+					ordaindu_Botoia.setEnabled(true);
+				} catch (Exception e2) {
+					e2.getMessage();
+					e2.printStackTrace();
+				}
+				// textField_1.setText(String.valueOf(guztira));
+				// ordaindu_Botoia.setEnabled(true);
+			}
+		});
 
 		// Baieztatu botoia sistema sartzen du dirua.
 		baieztatu_botoia.setFont(new Font("Tahoma", Font.PLAIN, 7));
@@ -237,15 +237,15 @@ public class Ordainketa extends JFrame {
 		 * edo kenketaren balioa ematen du, >=0 bada Joption pane bat aterako da eta
 		 * aurrera joateko aukera izango dugu.
 		 */
-		
-		  ordaindu_Botoia.addActionListener(new ActionListener() { 
-			  public void actionPerformed(ActionEvent arg0) { 
-				  ordainketaKudeatu();
-				  ordaindu_Botoia.setEnabled(false); 
-				  textField_1.setText(""); totala = "";
-		  	  } 
-		  });
-		 
+
+		ordaindu_Botoia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ordainketaKudeatu();
+				ordaindu_Botoia.setEnabled(false);
+				textField_1.setText("");
+				totala = "";
+			}
+		});
 
 		ordaindu_Botoia.setBounds(130, 270, 275, 68);
 		getContentPane().add(ordaindu_Botoia);
@@ -267,15 +267,18 @@ public class Ordainketa extends JFrame {
 		btnAurrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlador.CrearFicheroReserva.sortuFitxeroa();
-				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo", JOptionPane.INFORMATION_MESSAGE);
-				
+				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo",
+						JOptionPane.INFORMATION_MESSAGE);
+
 			}
 		});
 		btnAurrera.setEnabled(false);
-		
-		/*btnAurrera.addActionListener(new ActionListener() { public void
-		 actionPerformed(ActionEvent e) { micoordinador.agurPantaila(); } });*/
-		 
+
+		/*
+		 * btnAurrera.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent e) { micoordinador.agurPantaila(); } });
+		 */
+
 		btnAurrera.setEnabled(false);
 		btnAurrera.setBounds(130, 406, 275, 68);
 		contentPane.add(btnAurrera);
@@ -286,7 +289,7 @@ public class Ordainketa extends JFrame {
 		textField_2.setBounds(106, 227, 267, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
-		
+
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -383,6 +386,7 @@ public class Ordainketa extends JFrame {
 		return kenketa;
 
 	}
+
 	/**
 	 * Metodo honek ordainketa prozesuaren kudeaketa egiten du.
 	 */
@@ -413,5 +417,9 @@ public class Ordainketa extends JFrame {
 			textField.setText(String.valueOf(kenketa));
 		}
 
+	}
+
+	public void setPrezioa(String prezioa) {
+		textField.setText(prezioa);
 	}
 }
