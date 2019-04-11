@@ -38,7 +38,7 @@ public class Main {
 		PantailaDatuakErakutsi.setVisible(true);
 	
 	}
-	//
+	
 	
 	
 	/*//Logineko pantailako datuak kudeatzen duen metodoa da hau
