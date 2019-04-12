@@ -115,11 +115,11 @@ public class DatuakErakutsi extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JDateChooser dtChHasieraData = new JDateChooser();
-		dtChHasieraData.setBounds(240, 31, 95, 20);
+		dtChHasieraData.setBounds(250, 31, 95, 20);
 		contentPane.add(dtChHasieraData);
 		
 		JDateChooser dtChAmaieraData = new JDateChooser();
-		dtChAmaieraData.setBounds(416, 31, 95, 20);
+		dtChAmaieraData.setBounds(442, 31, 95, 20);
 		contentPane.add(dtChAmaieraData);
 		
 		Checkbox chbxPreziozOrdenatu = new Checkbox("Prezioz ordenatu");
@@ -135,33 +135,33 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.add(separator_1);
 		
 		JLabel lblOstatuMota = new JLabel("Ostatu mota: ");
-		lblOstatuMota.setBounds(30, 77, 67, 14);
+		lblOstatuMota.setBounds(30, 77, 102, 14);
 		contentPane.add(lblOstatuMota);
 		
 		JComboBox cbxOstatuMota = new JComboBox();
-		cbxOstatuMota.setBounds(100, 74, 102, 20);
+		cbxOstatuMota.setBounds(110, 77, 102, 20);
 		contentPane.add(cbxOstatuMota);
 		
 		JLabel lblHasieraData = new JLabel("Hasiera data:");
-		lblHasieraData.setBounds(171, 34, 71, 14);
+		lblHasieraData.setBounds(171, 34, 89, 14);
 		contentPane.add(lblHasieraData);
 		
 		JLabel lblAmaieraData = new JLabel("Amaiera data:");
-		lblAmaieraData.setBounds(345, 34, 71, 14);
+		lblAmaieraData.setBounds(355, 34, 90, 14);
 		contentPane.add(lblAmaieraData);
 		
 		JSpinner spnIzarKop = new JSpinner();
 		spnIzarKop.setModel(new SpinnerNumberModel(1, 1, 5, 1));
 		spnIzarKop.setEnabled(false);
-		spnIzarKop.setBounds(406, 77, 29, 20);
+		spnIzarKop.setBounds(416, 77, 29, 20);
 		contentPane.add(spnIzarKop);
 		
 		JLabel lblIzarKopurua = new JLabel("Izar kopurua:");
-		lblIzarKopurua.setBounds(341, 77, 75, 14);
+		lblIzarKopurua.setBounds(341, 77, 89, 14);
 		contentPane.add(lblIzarKopurua);
 		
 		JCheckBox chckbxParkina = new JCheckBox("Parkina");
-		chckbxParkina.setBounds(398, 114, 67, 23);
+		chckbxParkina.setBounds(398, 114, 97, 23);
 		contentPane.add(chckbxParkina);
 
 	}
