@@ -128,6 +128,11 @@ public class Koordinatzailea {
 		return kon.mandarhotel(herria);
 
 	}
+	
+	public boolean kontsultaBezeroa(String DNI, String passwd) {
+		Kontsultak kon = new Kontsultak();
+		return kon.bezeroaDago(DNI, passwd);
+	}
 
 	public void balidatuInsert(String zenbakiak, String letra, String Izena, String Abizena, String sexua,
 			String passwd1, String passwd2) {

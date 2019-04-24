@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controlador.Koordinatzailea;
+import controlador.Main;
 
 public class LoginPantaila extends JFrame {
 	private JPanel contentPane;
@@ -57,7 +58,7 @@ public class LoginPantaila extends JFrame {
 		JButton btnLogueatu = new JButton("ERREGISRTATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				micoordinador.mostrarPantailaErregistru();	
+				micoordinador.mostrarPantailaErregistru();
 			}
 		});
 		btnLogueatu.setFont(new Font("Source Code Pro Black", Font.BOLD, 15));
@@ -66,22 +67,27 @@ public class LoginPantaila extends JFrame {
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// botoiaren kodea
-				System.out.println("LOGIN BOTOIA");
-				//micoordinador.ordainketaPantaila();
-				//micoordinador.mostrarVentanaOrdainketa();
-				micoordinador.mostrarVentanaOrdainketa();
-				
-				// logindatuak();
-				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
-				/*if (youshouldnotpass == true) {
-					// micoordinador.erakutsinirelerroak();
+				// System.out.println("LOGIN BOTOIA");
 
+				logindatuak();
+				if (micoordinador.kontsultaBezeroa(Nan, pasahitza) == true) {
+					micoordinador.mostrarVentanaOrdainketa();
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez dago 'Erabiltzaile' hori.", "Mensaje Informativo",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
-				System.out.println(youshouldnotpass);*/
+
+				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
+				/*
+				 * if (youshouldnotpass == true) { // micoordinador.erakutsinirelerroak();
+				 * 
+				 * } System.out.println(youshouldnotpass);
+				 */
+
 			}
 		});
 	}
-	
+
 	/**
 	 * Eremuan jartzen diren datuak hartu eta bariableetan esertzen ditu.
 	 */
@@ -103,6 +109,7 @@ public class LoginPantaila extends JFrame {
 
 	/**
 	 * Return baten bide NaN-a bidaltzen du.
+	 * 
 	 * @return
 	 */
 	public String bidaliNan() {
