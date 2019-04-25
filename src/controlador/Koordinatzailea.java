@@ -1,4 +1,5 @@
 package controlador;
+
 //
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -10,6 +11,7 @@ import vista.*;
 
 public class Koordinatzailea {
 	// Atributuak:
+	private Kontsultak kon = new Kontsultak();
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
@@ -124,27 +126,26 @@ public class Koordinatzailea {
 	}
 
 	public ArrayList<Hotela> bidaliSelectHotelak(String herria) {
-		Kontsultak kon = new Kontsultak();
-		return kon.mandarhotel(herria);
+		return this.kon.mandarhotel(herria);
 
 	}
-	
+
 	public boolean kontsultaBezeroa(String DNI, String passwd) {
-		Kontsultak kon = new Kontsultak();
-		return kon.bezeroaDago(DNI, passwd);
+		return this.kon.bezeroaDago(DNI, passwd);
 	}
 
-	public void balidatuInsert(String zenbakiak, String letra, String Izena, String Abizena, String sexua,
+	public void balidatuInsert(String zenbakiak, String letra, String Izena, String Abizena, String BiAbizena,
 			String passwd1, String passwd2) {
 
+		Bezeroa beze = new Bezeroa();
 		int kontagailua = 0;
 		int kontagailua2 = 0;
 		Boolean NAN;
 		Boolean IZENA;
 		Boolean ABIZENA;
+		Boolean BiABIZENA;
 		Boolean PASAHITZAK;
-		Boolean SEXUA;
-		Boolean Txertatu;
+		Boolean Txertatu = false;
 		ArrayList<String> gordedatuak = new ArrayList();
 		ArrayList<String> pasahitzak = new ArrayList();
 		String Nan;
@@ -159,6 +160,8 @@ public class Koordinatzailea {
 		IZENA = balidatuIzena(Izena);
 		Abizena = PantailaErregistru.balidatuAbizena();
 		ABIZENA = balidatuAbizena(Abizena);
+		BiAbizena = PantailaErregistru.balidatuAbizenaBi();
+		BiABIZENA = balidatuAbizenaBi(Abizena);
 		System.out.println(ABIZENA);
 		pasahitzak = PantailaErregistru.balidatuPasahitza();
 		for (String p : pasahitzak) {
@@ -173,32 +176,28 @@ public class Koordinatzailea {
 		System.out.println(passwd1);
 		System.out.println(passwd2);
 		PASAHITZAK = balidatuPasahitzak(passwd1, passwd2);
-		sexua = PantailaErregistru.erakutsiSexua();
-		System.out.println(sexua);
-		SEXUA = balidatuSexua(sexua);
-		sexua = sexua.toUpperCase();
-		data = PantailaErregistru.ateradata();
-		System.out.println(data);
 
-		if (NAN == true && IZENA == true && ABIZENA == true && PASAHITZAK == true && SEXUA == true
-				&& data.length() != 0) {
-
+		if (NAN == true && IZENA == true && ABIZENA == true && PASAHITZAK == true) {
 			Nan = zenbakiak + letra;
-			PantailaErregistru.balidatuLogina("Bazaude datu basean");
-			PantailaErregistru.youshouldpass();
+			beze.setDni(Nan);
+			beze.setIzena(Izena);
+			beze.setLehenAbizena(Abizena);
+			beze.setBigarrenAbizena(BiAbizena);
+			beze.setPasahitza(passwd1);
+			Txertatu = kon.NANdago(Nan);
+			
+			if (Txertatu == false) {
+				PantailaErregistru.balidatuLogina("Bazaude datu basean");
+			}
+			else {
+				kon.insertBezero(beze);
+				PantailaErregistru.youshouldpass();
 
-			/*
-			 * Txertatu = Bezeroa.konprobatuDatuBasea(Nan); if (Txertatu == true) {
-			 * PantailaErregistru.balidatuLogina("Bazaude datu basean"); }
-			 * 
-			 * else { PantailaErregistru.youshouldpass();
-			 * 
-			 * 
-			 * // Bezeroa bezeroa = new Bezeroa(Nan,Izena,Abizena,data,sexua,passwd1);
-			 * //Bezeroa.txertatuBezeroa( bezeroa);
-			 * 
-			 * System.out.println("Te estas registrando"); //}
-			 */
+				// Bezeroa bezeroa = new Bezeroa(Nan,Izena,Abizena,data,sexua,passwd1);
+				// Bezeroa.txertatuBezeroa( bezeroa);
+
+				System.out.println("Te estas registrando....");
+			}
 
 		}
 
@@ -224,30 +223,6 @@ public class Koordinatzailea {
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	/**
-	 * Sexuaren eremua balidatzen du.
-	 * 
-	 * @param sexua
-	 * @return
-	 */
-	public Boolean balidatuSexua(String sexua) {
-		boolean erabakia = true;
-
-		sexua = sexua.toUpperCase();
-		String Gizona = "G";
-		String Emakumea = "E";
-		if (sexua.length() == 1 && sexua.equals(Gizona) || sexua.equals(Emakumea)) {
-			PantailaErregistru.balidatuSexua("ONDO");
-
-		} else {
-			PantailaErregistru.balidatuSexua("Letra errorea");
-			erabakia = false;
-
-		}
-
-		return erabakia;
 	}
 
 	/**
@@ -315,6 +290,41 @@ public class Koordinatzailea {
 		} catch (Exception e) {
 			erabakia = false;
 			PantailaErregistru.erakutsiErrorea4("Eremu hutsa");
+
+		}
+		return erabakia;
+
+	}
+
+	/**
+	 * Bigarren Abizena balidatzeko metodoa da.
+	 * 
+	 * @param Abizena
+	 * @return
+	 */
+	public Boolean balidatuAbizenaBi(String Abizena) {
+		Boolean erabakia = true;
+		try {
+			char lehena = Abizena.charAt(0);
+			if (Abizena.length() < 100) {
+				if (!Character.isUpperCase(lehena)) {
+					PantailaErregistru.erakutsiErrorea6("Lehengo letra mayuscula ");
+					erabakia = false;
+
+				} else {
+					PantailaErregistru.erakutsiErrorea6("ONDO");
+
+				}
+
+			} else {
+				PantailaErregistru.erakutsiErrorea6("Letra gehiegi");
+				erabakia = false;
+
+			}
+
+		} catch (Exception e) {
+			erabakia = false;
+			PantailaErregistru.erakutsiErrorea6("Eremu hutsa");
 
 		}
 		return erabakia;
@@ -417,4 +427,3 @@ public class Koordinatzailea {
 	}
 
 }
-

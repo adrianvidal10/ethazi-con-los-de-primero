@@ -42,15 +42,13 @@ public class ErregistruPantaila extends JFrame {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JLabel lblNewLabel_6;
-	private JLabel lblNewLabel_8;
 	private JButton btnLogin;
-	private JTextField textField_3;
-	private JLabel lblNewLabel_7;
-	private JDateChooser lehendata;
 	private String izena;
 	private String data;
 	private JLabel lblNewLabel_9;
 	private JLabel lblErregistratu;
+	private JTextField textField_3;
+	private JLabel lblBiAbizena;
 
 	/**
 	 * LOGUEATU Jframe-aren kodea da.
@@ -77,7 +75,7 @@ public class ErregistruPantaila extends JFrame {
 
 		JLabel lblIzena = new JLabel("Izena:");
 		lblIzena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblIzena.setBounds(88, 196, 42, 17);
+		lblIzena.setBounds(74, 195, 58, 17);
 		contentPane.add(lblIzena);
 
 		textField_1 = new JTextField();
@@ -90,22 +88,32 @@ public class ErregistruPantaila extends JFrame {
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		textField_2.setColumns(10);
-		textField_2.setBounds(141, 264, 254, 20);
+		textField_2.setBounds(141, 250, 254, 20);
 		contentPane.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(141, 310, 254, 20);
+		contentPane.add(textField_3);
+		textField_3.setColumns(10);
 
-		JLabel lblAbizena = new JLabel("Abizena:");
+		JLabel lblAbizena = new JLabel("Lehen Abizena:");
 		lblAbizena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblAbizena.setBounds(68, 264, 63, 20);
+		lblAbizena.setBounds(21, 251, 116, 20);
 		contentPane.add(lblAbizena);
+		
+		JLabel lblAbizenaBi = new JLabel("Bigarren Abizena:");
+		lblAbizenaBi.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
+		lblAbizenaBi.setBounds(10, 313, 136, 14);
+		contentPane.add(lblAbizenaBi);
 
 		JLabel lblNewLabel_1 = new JLabel("Pasahitza:");
 		lblNewLabel_1.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(61, 322, 81, 17);
+		lblNewLabel_1.setBounds(46, 367, 81, 17);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblPasahitza.setBounds(61, 370, 72, 17);
+		lblPasahitza.setBounds(46, 416, 81, 17);
 		contentPane.add(lblPasahitza);
 
 		btnLogin = new JButton("Login");
@@ -124,7 +132,7 @@ public class ErregistruPantaila extends JFrame {
 
 			}
 		});
-		btnLogin.setBounds(358, 426, 89, 23);
+		btnLogin.setBounds(398, 495, 89, 23);
 		contentPane.add(btnLogin);
 
 		JButton btnKonprobatuParametroak = new JButton("Konprobatu \r\n\r\n");
@@ -136,16 +144,8 @@ public class ErregistruPantaila extends JFrame {
 						passwordField_1.getText());
 			}
 		});
-		btnKonprobatuParametroak.setBounds(172, 426, 131, 23);
+		btnKonprobatuParametroak.setBounds(212, 495, 131, 23);
 		contentPane.add(btnKonprobatuParametroak);
-		lehendata = new JDateChooser();
-		lehendata.getCalendarButton().setBounds(97, 0, 21, 20);
-
-		// lehenengo data
-		lehendata.setBounds(399, 264, 118, 20);
-		lehendata.setDateFormatString("dd-MM-yyyy");
-		getContentPane().add(lehendata);
-		lehendata.setLayout(null);
 
 		JLabel lblLetra = new JLabel("Letra:");
 		lblLetra.setBounds(407, 130, 63, 17);
@@ -156,6 +156,10 @@ public class ErregistruPantaila extends JFrame {
 		textField_5.setColumns(10);
 		textField_5.setBounds(482, 128, 35, 20);
 		contentPane.add(textField_5);
+		
+		lblBiAbizena = new JLabel("");
+		lblBiAbizena.setBounds(141, 341, 254, 14);
+		contentPane.add(lblBiAbizena);
 
 		lblNewLabel_2 = new JLabel("");
 
@@ -167,47 +171,29 @@ public class ErregistruPantaila extends JFrame {
 		contentPane.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setBounds(141, 227, 254, 14);
+		lblNewLabel_4.setBounds(141, 225, 254, 14);
 		contentPane.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(141, 293, 190, 14);
+		lblNewLabel_5.setBounds(160, 281, 190, 14);
 		contentPane.add(lblNewLabel_5);
 
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Source Sans Pro Black", Font.BOLD, 13));
-		passwordField.setBounds(141, 320, 254, 20);
+		passwordField.setBounds(135, 366, 254, 20);
 		contentPane.add(passwordField);
 
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setFont(new Font("Source Sans Pro Black", Font.BOLD, 13));
-		passwordField_1.setBounds(141, 368, 254, 20);
+		passwordField_1.setBounds(135, 414, 254, 20);
 		contentPane.add(passwordField_1);
 
 		lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(141, 343, 254, 14);
+		lblNewLabel_6.setBounds(135, 389, 254, 14);
 		contentPane.add(lblNewLabel_6);
 
-		JLabel lblSexua = new JLabel("Sexua(G/E):");
-		lblSexua.setBounds(407, 197, 72, 14);
-		contentPane.add(lblSexua);
-
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Source Sans Pro Black", Font.ITALIC, 13));
-		textField_3.setBounds(491, 194, 21, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-
-		lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBounds(409, 227, 125, 20);
-		contentPane.add(lblNewLabel_7);
-
-		lblNewLabel_8 = new JLabel("");
-		lblNewLabel_8.setBounds(409, 297, 118, 14);
-		contentPane.add(lblNewLabel_8);
-
 		lblNewLabel_9 = new JLabel("");
-		lblNewLabel_9.setBounds(141, 401, 329, 14);
+		lblNewLabel_9.setBounds(124, 444, 329, 14);
 		contentPane.add(lblNewLabel_9);
 
 		lblErregistratu = new JLabel("ERREGISTRATU");
@@ -222,7 +208,7 @@ public class ErregistruPantaila extends JFrame {
 			}
 		});
 		btnAtzera.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnAtzera.setBounds(57, 428, 89, 23);
+		btnAtzera.setBounds(97, 497, 89, 23);
 		contentPane.add(btnAtzera);
 	}
 
@@ -294,6 +280,11 @@ public class ErregistruPantaila extends JFrame {
 		String abizena = textField_2.getText();
 		return abizena;
 	}
+	
+	public String balidatuAbizenaBi() {
+		String abizena = textField_3.getText();
+		return abizena;
+	}
 
 	/**
 	 * String bat hartuz label-an esertzen du.
@@ -302,6 +293,10 @@ public class ErregistruPantaila extends JFrame {
 	 */
 	public void erakutsiErrorea4(String katea) {
 		lblNewLabel_5.setText(katea);
+	}
+	
+	public void erakutsiErrorea6(String katea) {
+		lblBiAbizena.setText(katea);
 	}
 
 	/**
@@ -336,44 +331,6 @@ public class ErregistruPantaila extends JFrame {
 	 */
 	public void erakutsiBotoia() {
 		btnLogin.setEnabled(true);
-	}
-
-	/**
-	 * String bat hartuz label-an esertzen du.
-	 * 
-	 * @param katea
-	 */
-	public String erakutsiSexua() {
-		String sexua = "";
-		sexua = textField_3.getText();
-		return sexua;
-	}
-
-	/**
-	 * String bat hartuz label-an esertzen du.
-	 * 
-	 * @param katea
-	 */
-	public void balidatuSexua(String sexua) {
-		lblNewLabel_7.setText(sexua);
-	}
-
-	/**
-	 * Data hartu eta bidaltzen du return bezala.
-	 * 
-	 * @return
-	 */
-	public String ateradata() {
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			data = sdf.format(lehendata.getDate());
-			lblNewLabel_8.setText("Ondo");
-		} catch (Exception e) {
-			System.out.println("Ez duzu data sartu");
-			data = "";
-
-		}
-		return data;
 	}
 
 	/**

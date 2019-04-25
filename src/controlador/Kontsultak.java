@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import modelo.Bezeroa;
 import modelo.Hotela;
 import modelo.Konexioa;
 
@@ -54,8 +55,7 @@ public class Kontsultak {
 		String dni = "";
 		String passwd = "";
 		try {
-			resultado = conexion
-					.getQuery("SELECT * FROM bezeroa WHERE DNI = '" + DNI + "'");
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE DNI = '" + DNI + "'");
 			while (resultado.next()) {
 				dni = resultado.getString("DNI");
 				passwd = resultado.getString("pasahitza");
@@ -75,7 +75,39 @@ public class Kontsultak {
 
 		return emaitza;
 	}
+
+	public boolean NANdago(String dni) {
+		boolean emaitza = true;
+		String NAN = "";
+		try {
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE DNI = '" + dni + "'");
+			while (resultado.next()) {
+				NAN = resultado.getString("DNI");
+			}
+			if (NAN.equalsIgnoreCase(dni)) {
+				emaitza = false;
+			}
+		} catch (SQLException e) {
+			emaitza = true;
+		}
+		return emaitza;
+	}
+
+	public void insertBezero(Bezeroa beze) {
+		boolean insert = NANdago(beze.getDni());
+		try {
+			if (insert = true) {
+				conexion.setQuery("INSERT INTO bezeroa " + " (DNI, izena, abizena, biabizena, pasahitza)" + " VALUES ('"
+						+ beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena() + "','"
+						+ beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "')");
+			}
+		}catch(Exception e) {
+			e.getMessage();
+		}
 	
+
+	}
+
 	public static String getMD5(String input) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
