@@ -185,11 +185,10 @@ public class Koordinatzailea {
 			beze.setBigarrenAbizena(BiAbizena);
 			beze.setPasahitza(passwd1);
 			Txertatu = kon.NANdago(Nan);
-			
+
 			if (Txertatu == false) {
 				PantailaErregistru.balidatuLogina("Bazaude datu basean");
-			}
-			else {
+			} else {
 				kon.insertBezero(beze);
 				PantailaErregistru.youshouldpass();
 
@@ -424,6 +423,18 @@ public class Koordinatzailea {
 
 	public void erreserbarenPrezioa(String prezioa) {
 		PantailaOrdainketa.setPrezioa(prezioa);
+	}
+
+	public String promoKodeaSortu() {
+		//promo kodea 6 karaktere
+		String emaitza = "";
+		String[] gauzak = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+				"S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		for (int i=0; i<7; i++) {
+		int ramdom = (int) Math.round(Math.random() * 36);	
+		emaitza+=gauzak[ramdom];
+		}
+		return emaitza;
 	}
 
 }

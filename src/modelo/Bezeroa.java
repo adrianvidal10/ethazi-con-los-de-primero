@@ -17,7 +17,9 @@ public class Bezeroa {
 	private String LehenAbizena;
 	private String BigarrenAbizena;
 	private String pasahitza;
-
+	//Nick 
+	//Promo kodea
+	
 	public Bezeroa() {
 		
 	}
