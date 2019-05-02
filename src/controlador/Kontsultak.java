@@ -50,14 +50,14 @@ public class Kontsultak {
 		return this.hotelZerrenda;
 	}
 
-	public boolean bezeroaDago(String DNI, String pass) {
+	public boolean bezeroaDago(String nick, String pass) {
 		boolean emaitza = false;
-		String dni = "";
+		String name = "";
 		String passwd = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE DNI = '" + DNI + "'");
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE nick = '" + nick + "'");
 			while (resultado.next()) {
-				dni = resultado.getString("DNI");
+				name = resultado.getString("nick");
 				passwd = resultado.getString("pasahitza");
 			}
 		} catch (SQLException e) {
@@ -66,7 +66,7 @@ public class Kontsultak {
 		System.out.println(passwd);
 		System.out.println(getMD5(pass));
 		try {
-			if (dni.equalsIgnoreCase(DNI) && passwd.equalsIgnoreCase(getMD5(pass))) {
+			if (name.equalsIgnoreCase(nick) && passwd.equalsIgnoreCase(getMD5(pass))) {
 				emaitza = true;
 			}
 		} catch (Exception e) {
@@ -97,14 +97,14 @@ public class Kontsultak {
 		boolean insert = NANdago(beze.getDni());
 		try {
 			if (insert = true) {
-				conexion.setQuery("INSERT INTO bezeroa " + " (DNI, izena, abizena, biabizena, pasahitza)" + " VALUES ('"
-						+ beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena() + "','"
-						+ beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "')");
+				conexion.setQuery("INSERT INTO bezeroa " + " (DNI, izena, abizena, biabizena, pasahitza, nick, promo)"
+						+ " VALUES ('" + beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena()
+						+ "','" + beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "', '"
+						+ beze.getNick() + "','" + beze.getPromoa() + "')");
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.getMessage();
 		}
-	
 
 	}
 
@@ -122,6 +122,43 @@ public class Kontsultak {
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public boolean bilatuNick(String izena) {
+		boolean emaitza = true;
+		String datuak = "";
+		try {
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE nick = '" + izena + "'");
+			while (resultado.next()) {
+				datuak = resultado.getString("nick");
+			}
+			if (datuak.equals(izena) == true) {
+				emaitza = false;
+			}
+
+		} catch (SQLException e) {
+			emaitza = true;
+		}
+
+		return emaitza;
+	}
+
+	public boolean bilatuPromoa(String promo) {
+		boolean emaitza = true;
+		String datua = "";
+		try {
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE promo = '" + promo + "'");
+			while (resultado.next()) {
+				datua = resultado.getString("promo");
+			}
+			if (datua.equals(promo) == true) {
+				emaitza = false;
+			}
+
+		} catch (SQLException e) {
+			emaitza = true;
+		}
+		return emaitza;
 	}
 
 }

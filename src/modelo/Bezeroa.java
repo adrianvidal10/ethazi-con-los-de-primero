@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import controlador.Koordinatzailea;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -11,25 +13,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Bezeroa {
-
+	private Koordinatzailea micoordinador;
 	private String Dni;
 	private String Izena;
 	private String LehenAbizena;
 	private String BigarrenAbizena;
 	private String pasahitza;
-	//Nick 
-	//Promo kodea
-	
+	private String nick;
+	private String promoa;
+
 	public Bezeroa() {
 		
 	}
 	
-	public Bezeroa(String dni, String izena, String LehenAbizena, String BigarrenAbizena, String pasahitza) {
+	public Bezeroa(String dni, String izena, String LehenAbizena, String BigarrenAbizena, String pasahitza, String nick) {
 		this.Dni = dni;
 		this.Izena = izena;
 		this.LehenAbizena = LehenAbizena;
 		this.BigarrenAbizena = BigarrenAbizena;
 		this.pasahitza = pasahitza;
+		this.nick = nick;
 	}
 
 	public String getDni() {
@@ -72,7 +75,21 @@ public class Bezeroa {
 		this.pasahitza = pasahitza;
 	}
 
-	
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getPromoa() {
+		return promoa;
+	}
+
+	public void setPromoa(String promoa) {
+		this.promoa = promoa;
+	}
 	
 	/*
 	 * public static ArrayList<Bezeroa> ateraErabiltzaileak() {

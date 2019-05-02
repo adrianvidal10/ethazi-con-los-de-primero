@@ -49,6 +49,7 @@ public class ErregistruPantaila extends JFrame {
 	private JLabel lblErregistratu;
 	private JTextField textField_3;
 	private JLabel lblBiAbizena;
+	private JTextField textField_4;
 
 	/**
 	 * LOGUEATU Jframe-aren kodea da.
@@ -63,57 +64,62 @@ public class ErregistruPantaila extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Nan:");
 		lblNewLabel.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblNewLabel.setBounds(88, 128, 58, 20);
+		lblNewLabel.setBounds(78, 128, 58, 20);
 		contentPane.add(lblNewLabel);
 
 		textField = new JTextField();
 		textField.setFont(new Font("Source Sans Pro Black", Font.ITALIC, 13));
 
-		textField.setBounds(141, 128, 254, 20);
+		textField.setBounds(131, 128, 254, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblIzena = new JLabel("Izena:");
 		lblIzena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblIzena.setBounds(74, 195, 58, 17);
+		lblIzena.setBounds(64, 221, 58, 17);
 		contentPane.add(lblIzena);
 
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Source Sans Pro Black", Font.BOLD | Font.ITALIC, 13));
 		izena = textField_1.getText();
 		textField_1.setColumns(10);
-		textField_1.setBounds(141, 194, 254, 20);
+		textField_1.setBounds(131, 220, 254, 20);
 		contentPane.add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		textField_2.setColumns(10);
-		textField_2.setBounds(141, 250, 254, 20);
+		textField_2.setBounds(131, 276, 254, 20);
 		contentPane.add(textField_2);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(141, 310, 254, 20);
+		textField_3.setBounds(131, 336, 254, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 
 		JLabel lblAbizena = new JLabel("Lehen Abizena:");
 		lblAbizena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblAbizena.setBounds(21, 251, 116, 20);
+		lblAbizena.setBounds(11, 277, 116, 20);
 		contentPane.add(lblAbizena);
 		
 		JLabel lblAbizenaBi = new JLabel("Bigarren Abizena:");
 		lblAbizenaBi.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblAbizenaBi.setBounds(10, 313, 136, 14);
+		lblAbizenaBi.setBounds(10, 337, 136, 19);
 		contentPane.add(lblAbizenaBi);
 
 		JLabel lblNewLabel_1 = new JLabel("Pasahitza:");
 		lblNewLabel_1.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(46, 367, 81, 17);
+		lblNewLabel_1.setBounds(36, 393, 81, 17);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNickname = new JLabel("Nickname:");
+		lblNickname.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblNickname.setBounds(50, 185, 86, 14);
+		contentPane.add(lblNickname);
 
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
-		lblPasahitza.setBounds(46, 416, 81, 17);
+		lblPasahitza.setBounds(36, 442, 81, 17);
 		contentPane.add(lblPasahitza);
 
 		btnLogin = new JButton("Login");
@@ -141,59 +147,59 @@ public class ErregistruPantaila extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				micoordinador.balidatuInsert(textField.getText(), textField_5.getText(), textField_1.getText(),
 						textField_2.getText(), textField_3.getText(), passwordField.getText(),
-						passwordField_1.getText());
+						passwordField_1.getText(), textField_4.getText());
 			}
 		});
 		btnKonprobatuParametroak.setBounds(212, 495, 131, 23);
 		contentPane.add(btnKonprobatuParametroak);
 
 		JLabel lblLetra = new JLabel("Letra:");
-		lblLetra.setBounds(407, 130, 63, 17);
+		lblLetra.setBounds(397, 130, 63, 17);
 		contentPane.add(lblLetra);
 
 		textField_5 = new JTextField();
 		textField_5.setFont(new Font("Source Sans Pro Black", Font.ITALIC, 13));
 		textField_5.setColumns(10);
-		textField_5.setBounds(482, 128, 35, 20);
+		textField_5.setBounds(472, 128, 35, 20);
 		contentPane.add(textField_5);
 		
 		lblBiAbizena = new JLabel("");
-		lblBiAbizena.setBounds(141, 341, 254, 14);
+		lblBiAbizena.setBounds(131, 367, 254, 14);
 		contentPane.add(lblBiAbizena);
 
 		lblNewLabel_2 = new JLabel("");
 
-		lblNewLabel_2.setBounds(141, 153, 254, 28);
+		lblNewLabel_2.setBounds(131, 153, 254, 20);
 		contentPane.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(407, 153, 110, 14);
+		lblNewLabel_3.setBounds(397, 153, 110, 14);
 		contentPane.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setBounds(141, 225, 254, 14);
+		lblNewLabel_4.setBounds(131, 251, 254, 14);
 		contentPane.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(160, 281, 190, 14);
+		lblNewLabel_5.setBounds(150, 307, 190, 14);
 		contentPane.add(lblNewLabel_5);
 
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Source Sans Pro Black", Font.BOLD, 13));
-		passwordField.setBounds(135, 366, 254, 20);
+		passwordField.setBounds(125, 392, 254, 20);
 		contentPane.add(passwordField);
 
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setFont(new Font("Source Sans Pro Black", Font.BOLD, 13));
-		passwordField_1.setBounds(135, 414, 254, 20);
+		passwordField_1.setBounds(125, 440, 254, 20);
 		contentPane.add(passwordField_1);
 
 		lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(135, 389, 254, 14);
+		lblNewLabel_6.setBounds(125, 415, 254, 14);
 		contentPane.add(lblNewLabel_6);
 
 		lblNewLabel_9 = new JLabel("");
-		lblNewLabel_9.setBounds(124, 444, 329, 14);
+		lblNewLabel_9.setBounds(114, 470, 329, 14);
 		contentPane.add(lblNewLabel_9);
 
 		lblErregistratu = new JLabel("ERREGISTRATU");
@@ -210,6 +216,11 @@ public class ErregistruPantaila extends JFrame {
 		btnAtzera.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAtzera.setBounds(97, 497, 89, 23);
 		contentPane.add(btnAtzera);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(131, 184, 254, 20);
+		contentPane.add(textField_4);
+		textField_4.setColumns(10);
 	}
 
 	/**
@@ -351,6 +362,10 @@ public class ErregistruPantaila extends JFrame {
 		btnLogin.setEnabled(true);
 	}
 
+	public String getNick() {
+		return textField_4.getText();
+	}
+	
 	/**
 	 * String bat hartzen du eta katea MD5-ekin enkriptatzen du.
 	 * 

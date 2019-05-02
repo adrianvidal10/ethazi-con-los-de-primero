@@ -14,7 +14,7 @@ public class LoginPantaila extends JFrame {
 	private JTextField textField;
 	private boolean youshouldnotpass;
 	private String pasahitza;
-	private String Nan;
+	private String nick;
 
 	public LoginPantaila() {
 		getContentPane().setBackground(UIManager.getColor("Button.background"));
@@ -68,12 +68,11 @@ public class LoginPantaila extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// botoiaren kodea
 				// System.out.println("LOGIN BOTOIA");
-
 				logindatuak();
-				if (micoordinador.kontsultaBezeroa(Nan, pasahitza) == true) {
+				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
 					micoordinador.mostrarVentanaOrdainketa();
 				} else {
-					JOptionPane.showMessageDialog(null, "Ez dago 'Erabiltzaile' hori.", "Mensaje Informativo",
+					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 
@@ -93,9 +92,9 @@ public class LoginPantaila extends JFrame {
 	 */
 	private void logindatuak() {
 		pasahitza = new String(passwordField.getPassword());
-		Nan = new String(textField.getText());
+		nick = new String(textField.getText());
 		System.out.println("pasahitza: " + pasahitza);
-		System.out.println("erabiltzaile: " + Nan);
+		System.out.println("erabiltzaile: " + nick);
 	}
 
 	/**
@@ -112,8 +111,8 @@ public class LoginPantaila extends JFrame {
 	 * 
 	 * @return
 	 */
-	public String bidaliNan() {
-		return Nan;
+	public String bidaliNick() {
+		return nick;
 
 	}
 }

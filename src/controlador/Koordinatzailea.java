@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import modelo.*;
 import vista.*;
 
@@ -65,6 +67,8 @@ public class Koordinatzailea {
 	public void mostrarVentanaOrdainketa() {
 		// VENTANA PRINTZIPALA.setVisible(false);
 		PantailaErregistru.setVisible(false);
+		PantailaDatuakErakutsi.setVisible(false);
+		PantailaLogin.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
 	}
 
@@ -87,6 +91,9 @@ public class Koordinatzailea {
 	 */
 	public void mostrarPantailaDatuakErakutsi() {
 		// VENTANA PRINTZIPALA.setVisible(false);
+		PantailaErregistru.setVisible(false);
+		PantailaDatuakErakutsi.setVisible(false);
+		PantailaLogin.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(true);
 		PantailaOrdainketa.dispose();
 	}
@@ -103,6 +110,7 @@ public class Koordinatzailea {
 	}
 
 	public void mostrarPantailaErregistru() {
+		PantailaLogin.setVisible(false);
 		this.PantailaErregistru.setVisible(true);
 	}
 
@@ -130,12 +138,12 @@ public class Koordinatzailea {
 
 	}
 
-	public boolean kontsultaBezeroa(String DNI, String passwd) {
-		return this.kon.bezeroaDago(DNI, passwd);
+	public boolean kontsultaBezeroa(String nick, String passwd) {
+		return this.kon.bezeroaDago(nick, passwd);
 	}
 
 	public void balidatuInsert(String zenbakiak, String letra, String Izena, String Abizena, String BiAbizena,
-			String passwd1, String passwd2) {
+			String passwd1, String passwd2, String nick) {
 
 		Bezeroa beze = new Bezeroa();
 		int kontagailua = 0;
@@ -177,27 +185,32 @@ public class Koordinatzailea {
 		System.out.println(passwd2);
 		PASAHITZAK = balidatuPasahitzak(passwd1, passwd2);
 
-		if (NAN == true && IZENA == true && ABIZENA == true && PASAHITZAK == true) {
-			Nan = zenbakiak + letra;
-			beze.setDni(Nan);
-			beze.setIzena(Izena);
-			beze.setLehenAbizena(Abizena);
-			beze.setBigarrenAbizena(BiAbizena);
-			beze.setPasahitza(passwd1);
-			Txertatu = kon.NANdago(Nan);
+		if (kon.bilatuNick(nick) == true) {
+			if (NAN == true && IZENA == true && ABIZENA == true && PASAHITZAK == true) {
+				Nan = zenbakiak + letra;
+				beze.setDni(Nan);
+				beze.setIzena(Izena);
+				beze.setLehenAbizena(Abizena);
+				beze.setBigarrenAbizena(BiAbizena);
+				beze.setPasahitza(passwd1);
+				beze.setNick(nick);
+				beze.setPromoa(promoKodeaSortu());
+				Txertatu = kon.NANdago(Nan);
 
-			if (Txertatu == false) {
-				PantailaErregistru.balidatuLogina("Bazaude datu basean");
-			} else {
-				kon.insertBezero(beze);
-				PantailaErregistru.youshouldpass();
+				if (Txertatu == false) {
+					PantailaErregistru.balidatuLogina("Bazaude datu basean");
+				} else {
+					kon.insertBezero(beze);
+					PantailaErregistru.youshouldpass();
 
-				// Bezeroa bezeroa = new Bezeroa(Nan,Izena,Abizena,data,sexua,passwd1);
-				// Bezeroa.txertatuBezeroa( bezeroa);
+					System.out.println("Te estas registrando....");
+				}
 
-				System.out.println("Te estas registrando....");
 			}
 
+		} else {
+			JOptionPane.showMessageDialog(null, "'Erabiltzaile' hori dago, erabili beste bat.", "Mensaje Informativo",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}
@@ -426,15 +439,24 @@ public class Koordinatzailea {
 	}
 
 	public String promoKodeaSortu() {
-		//promo kodea 6 karaktere
+		// promo kodea 6 karaktere
 		String emaitza = "";
+		String znb="";
 		String[] gauzak = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
 				"S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		for (int i=0; i<7; i++) {
-		int ramdom = (int) Math.round(Math.random() * 36);	
-		emaitza+=gauzak[ramdom];
-		}
+		do {
+			for (int i = 0; i < 6; i++) {
+				int ramdom = (int) Math.round(Math.random() * 36);
+				znb += gauzak[ramdom];
+			}
+		} while (kon.bilatuPromoa(emaitza) == true);
+
+		emaitza=znb;
 		return emaitza;
+	}
+
+	public boolean bilatuNick(String nick) {
+		return kon.bilatuNick(nick);
 	}
 
 }
