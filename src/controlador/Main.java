@@ -36,12 +36,11 @@ public class Main {
 		micoordinador.setDatuakErakutsi(PantailaDatuakErakutsi);
 		micoordinador.setPantailaErregistru(PantailaErregistru);
 		PantailaDatuakErakutsi.setVisible(true);
-	
 	}
 	
 	
 	
-	/*//Logineko pantailako datuak kudeatzen duen metodoa da hau
+	/*Logineko pantailako datuak kudeatzen duen metodoa da hau
 	public static boolean ateraErabiltzailea(String nan,String pasahitza) {
 		boolean erabakia=false;
 		
