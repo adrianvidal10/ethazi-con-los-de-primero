@@ -161,7 +161,7 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.add(lblIzarKopurua);
 		
 		JCheckBox chckbxParkina = new JCheckBox("Parkina");
-		chckbxParkina.setBounds(398, 114, 67, 23);
+		chckbxParkina.setBounds(398, 114, 97, 23);
 		contentPane.add(chckbxParkina);
 
 	}

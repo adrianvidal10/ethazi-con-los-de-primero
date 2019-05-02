@@ -161,4 +161,22 @@ public class Kontsultak {
 		return emaitza;
 	}
 
+	public boolean dagoPromo(String promo) {
+		boolean emaitza = false;
+		String datua = "";
+		try {
+			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE promo = '" + promo + "'");
+			while (resultado.next()) {
+				datua = resultado.getString("promo");
+			}
+			if (datua.equals(promo) == true) {
+				emaitza = true;
+			}
+
+		} catch (SQLException e) {
+			emaitza = false;
+		}
+		return emaitza;
+	}
+
 }
