@@ -19,6 +19,9 @@ public class Ostatua {
 	protected boolean gimnasioa;
 	protected String ostMota;
 	
+	public Ostatua() {
+	}
+	
 	public Ostatua(int kod, String izena, String herria, double tarifa, int ostGelaKode, int erreserbaKopurua,
 			int ostAltzariKod, String gosaria, boolean wifi, boolean igerileku, boolean spa, boolean parkin,
 			boolean aire_girotua, boolean jatetxe, boolean taberna, boolean gimnasioa, String ostMota) {
