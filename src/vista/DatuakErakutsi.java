@@ -48,14 +48,20 @@ import javax.swing.JCheckBox;
 public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
-	private JButton btnBilatu, btnAtzera;
-	private JLabel lblHerria;
+	private JButton btnBilatu, btnAtzera, btnOrdainketa;
+	private JLabel lblHerria, lblOstatuMota, lblHasieraData, lblAmaieraData, lblIzarKopurua;
 	static String herriaBilatu;
 	private JPanel contentPane, panel;
 	private JTextField textField;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	JDateChooser dtChHasieraData, dtChAmaieraData;
+	JCheckBox chbxPreziozOrdenatu, chckbxParkina, chckbxwifi, chckbxSpa, chckbxIgerilekua, chckbxAireGirotua,
+			chckbxJatetxe, chckbxTaberna, chckbxGimnasioa;
+	JSeparator separator, separator_1, separator_2;
+	JComboBox cbxOstatuMota;
+	JSpinner spnIzarKop;
 
 	/**
 	 * Create the panel.
@@ -95,10 +101,10 @@ public class DatuakErakutsi extends JFrame {
 
 			}
 		});
-		btnBilatu.setBounds(406, 158, 89, 23);
+		btnBilatu.setBounds(422, 140, 89, 23);
 		getContentPane().add(btnBilatu);
 
-		JButton btnOrdainketa = new JButton("Ordainketa");
+		btnOrdainketa = new JButton("Ordainketa");
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// ordainketa
@@ -106,63 +112,101 @@ public class DatuakErakutsi extends JFrame {
 			}
 
 		});
-		btnOrdainketa.setBounds(426, 387, 102, 23);
+		btnOrdainketa.setBounds(429, 398, 102, 23);
 		contentPane.add(btnOrdainketa);
 
 		panel = new JPanel();
-		panel.setBounds(31, 192, 514, 184);
+		panel.setBounds(20, 202, 514, 184);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
-		JDateChooser dtChHasieraData = new JDateChooser();
+
+		dtChHasieraData = new JDateChooser();
 		dtChHasieraData.setBounds(240, 31, 95, 20);
 		contentPane.add(dtChHasieraData);
-		
-		JDateChooser dtChAmaieraData = new JDateChooser();
+
+		dtChAmaieraData = new JDateChooser();
 		dtChAmaieraData.setBounds(416, 31, 95, 20);
 		contentPane.add(dtChAmaieraData);
-		
-		Checkbox chbxPreziozOrdenatu = new Checkbox("Prezioz ordenatu");
-		chbxPreziozOrdenatu.setBounds(218, 77, 111, 22);
+
+		chbxPreziozOrdenatu = new JCheckBox("Prezioz ordenatu");
+		chbxPreziozOrdenatu.setBounds(240, 70, 111, 29);
 		contentPane.add(chbxPreziozOrdenatu);
-		
-		JSeparator separator = new JSeparator();
+
+		separator = new JSeparator();
 		separator.setBounds(20, 62, 508, 2);
 		contentPane.add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
+
+		separator_1 = new JSeparator();
 		separator_1.setBounds(20, 105, 508, 2);
 		contentPane.add(separator_1);
-		
-		JLabel lblOstatuMota = new JLabel("Ostatu mota: ");
+
+		lblOstatuMota = new JLabel("Ostatu mota: ");
 		lblOstatuMota.setBounds(30, 77, 67, 14);
 		contentPane.add(lblOstatuMota);
-		
-		JComboBox cbxOstatuMota = new JComboBox();
-		cbxOstatuMota.setBounds(100, 74, 102, 20);
+
+		cbxOstatuMota = new JComboBox();
+		//cbxOstatuMota.addItem();
+		cbxOstatuMota.setBounds(100, 74, 112, 20);
 		contentPane.add(cbxOstatuMota);
-		
-		JLabel lblHasieraData = new JLabel("Hasiera data:");
+
+		lblHasieraData = new JLabel("Hasiera data:");
 		lblHasieraData.setBounds(171, 34, 71, 14);
 		contentPane.add(lblHasieraData);
-		
-		JLabel lblAmaieraData = new JLabel("Amaiera data:");
+
+		lblAmaieraData = new JLabel("Amaiera data:");
 		lblAmaieraData.setBounds(345, 34, 71, 14);
 		contentPane.add(lblAmaieraData);
-		
-		JSpinner spnIzarKop = new JSpinner();
+
+
+		//hauek soilik erabilgarriak hotelak bilatzerakoan
+		spnIzarKop = new JSpinner();
 		spnIzarKop.setModel(new SpinnerNumberModel(1, 1, 5, 1));
 		spnIzarKop.setEnabled(false);
-		spnIzarKop.setBounds(406, 77, 29, 20);
+		spnIzarKop.setBounds(450, 70, 29, 29);
 		contentPane.add(spnIzarKop);
-		
-		JLabel lblIzarKopurua = new JLabel("Izar kopurua:");
-		lblIzarKopurua.setBounds(341, 77, 75, 14);
+
+		lblIzarKopurua = new JLabel("Izar kopurua:");
+		lblIzarKopurua.setBounds(376, 77, 75, 14);
 		contentPane.add(lblIzarKopurua);
+
 		
-		JCheckBox chckbxParkina = new JCheckBox("Parkina");
-		chckbxParkina.setBounds(398, 114, 67, 23);
+		//hauek soilik erabilgarriak apartamentuak bilatzerakoan
+		chckbxParkina = new JCheckBox("Parkina");
+		chckbxParkina.setEnabled(false);
+		chckbxParkina.setBounds(309, 140, 67, 23);
 		contentPane.add(chckbxParkina);
+
+		chckbxwifi = new JCheckBox("Wifi");
+		chckbxwifi.setBounds(48, 114, 65, 23);
+		contentPane.add(chckbxwifi);
+
+		chckbxSpa = new JCheckBox("Spa");
+		chckbxSpa.setBounds(48, 140, 65, 23);
+		contentPane.add(chckbxSpa);
+
+		chckbxIgerilekua = new JCheckBox("Igerilekua");
+		chckbxIgerilekua.setBounds(115, 114, 97, 23);
+		contentPane.add(chckbxIgerilekua);
+
+		chckbxAireGirotua = new JCheckBox("Aire girotua");
+		chckbxAireGirotua.setBounds(115, 140, 97, 23);
+		contentPane.add(chckbxAireGirotua);
+
+		chckbxJatetxe = new JCheckBox("Jatetxe");
+		chckbxJatetxe.setBounds(218, 114, 89, 23);
+		contentPane.add(chckbxJatetxe);
+
+		chckbxTaberna = new JCheckBox("Taberna");
+		chckbxTaberna.setBounds(218, 140, 97, 23);
+		contentPane.add(chckbxTaberna);
+
+		chckbxGimnasioa = new JCheckBox("Gimnasioa");
+		chckbxGimnasioa.setBounds(309, 114, 97, 23);
+		contentPane.add(chckbxGimnasioa);
+
+		separator_2 = new JSeparator();
+		separator_2.setBounds(20, 174, 508, 2);
+		contentPane.add(separator_2);
 
 	}
 

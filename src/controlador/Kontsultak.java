@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import modelo.Hotela;
 import modelo.Konexioa;
+import vista.DatuakErakutsi;
 
 public class Kontsultak {
 	private Konexioa conexion = new Konexioa();
@@ -15,6 +16,7 @@ public class Kontsultak {
 	private int kodigoa, izarrak;
 	private double prezioa;
 	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
+	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
 	public void selectHotelak(String herri) {
 		String testua;
@@ -44,6 +46,29 @@ public class Kontsultak {
 	public ArrayList<Hotela> mandarhotel(String herri) {
 		selectHotelak(herri);
 		return this.hotelZerrenda;
+	}
+
+	public ArrayList<String> selectOstatuMota() {
+
+		// Bilaketa orriko comboboxa ostatu mota desberdinez beteko duen metodoa
+
+		
+		resultado = conexion.getQuery("SELECT DISTINCT OstMota FROM ostatua ORDER BY ASC");
+
+		try {
+			while (resultado.next()) {
+
+				ostMotaZerrenda.add(resultado.toString());
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ostMotaZerrenda;
+
 	}
 
 }

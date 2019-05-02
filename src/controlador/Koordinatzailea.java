@@ -10,6 +10,7 @@ import vista.*;
 
 public class Koordinatzailea {
 	// Atributuak:
+	private Kontsultak kon = new Kontsultak();
 	private LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
@@ -411,5 +412,8 @@ public class Koordinatzailea {
 		PantailaOrdainketa.setPrezioa(prezioa);
 	}
 
+	
+	
+	
 }
 
