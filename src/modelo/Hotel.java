@@ -21,7 +21,7 @@ public class Hotel extends Ostatua {
 	}
 
 	public Hotel() {
-
+//aaa
 	}
 
 }
