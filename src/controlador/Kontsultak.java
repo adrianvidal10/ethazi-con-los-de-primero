@@ -52,21 +52,19 @@ public class Kontsultak {
 
 		// Bilaketa orriko comboboxa ostatu mota desberdinez beteko duen metodoa
 
-		
 		resultado = conexion.getQuery("SELECT DISTINCT OstMota FROM ostatua ORDER BY ASC");
 
 		try {
 			while (resultado.next()) {
 
 				ostMotaZerrenda.add(resultado.toString());
-				
+
 			}
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return ostMotaZerrenda;
 
 	}
