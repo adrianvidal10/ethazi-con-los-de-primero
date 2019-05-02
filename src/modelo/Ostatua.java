@@ -180,9 +180,6 @@ public class Ostatua {
 		this.ostMota = ostMota;
 	}
 
-	public Ostatua() {
-		
-	}
 	
 	
 	
