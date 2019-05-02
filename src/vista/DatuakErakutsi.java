@@ -170,10 +170,15 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.add(lblIzarKopurua);
 
 		
+
 		//hauek soilik erabilgarriak apartamentuak bilatzerakoan
 		chckbxParkina = new JCheckBox("Parkina");
 		chckbxParkina.setEnabled(false);
 		chckbxParkina.setBounds(309, 140, 67, 23);
+
+		JCheckBox chckbxParkina = new JCheckBox("Parkina");
+		chckbxParkina.setBounds(309, 140, 97, 23);
+
 		contentPane.add(chckbxParkina);
 
 		chckbxwifi = new JCheckBox("Wifi");

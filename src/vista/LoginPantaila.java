@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controlador.Koordinatzailea;
+import controlador.Main;
 
 public class LoginPantaila extends JFrame {
 	private JPanel contentPane;
@@ -13,7 +14,7 @@ public class LoginPantaila extends JFrame {
 	private JTextField textField;
 	private boolean youshouldnotpass;
 	private String pasahitza;
-	private String Nan;
+	private String nick;
 
 	public LoginPantaila() {
 		getContentPane().setBackground(UIManager.getColor("Button.background"));
@@ -57,7 +58,7 @@ public class LoginPantaila extends JFrame {
 		JButton btnLogueatu = new JButton("ERREGISRTATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				micoordinador.mostrarPantailaErregistru();	
+				micoordinador.mostrarPantailaErregistru();
 			}
 		});
 		btnLogueatu.setFont(new Font("Source Code Pro Black", Font.BOLD, 15));
@@ -66,30 +67,34 @@ public class LoginPantaila extends JFrame {
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// botoiaren kodea
-				System.out.println("LOGIN BOTOIA");
-				//micoordinador.ordainketaPantaila();
-				//micoordinador.mostrarVentanaOrdainketa();
-				micoordinador.mostrarVentanaOrdainketa();
-				
-				// logindatuak();
-				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
-				/*if (youshouldnotpass == true) {
-					// micoordinador.erakutsinirelerroak();
-
+				// System.out.println("LOGIN BOTOIA");
+				logindatuak();
+				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
+					micoordinador.mostrarVentanaOrdainketa();
+				} else {
+					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
-				System.out.println(youshouldnotpass);*/
+
+				// youshouldnotpass = Main.ateraErabiltzailea(Nan, pasahitza);
+				/*
+				 * if (youshouldnotpass == true) { // micoordinador.erakutsinirelerroak();
+				 * 
+				 * } System.out.println(youshouldnotpass);
+				 */
+
 			}
 		});
 	}
-	
+
 	/**
 	 * Eremuan jartzen diren datuak hartu eta bariableetan esertzen ditu.
 	 */
 	private void logindatuak() {
 		pasahitza = new String(passwordField.getPassword());
-		Nan = new String(textField.getText());
+		nick = new String(textField.getText());
 		System.out.println("pasahitza: " + pasahitza);
-		System.out.println("erabiltzaile: " + Nan);
+		System.out.println("erabiltzaile: " + nick);
 	}
 
 	/**
@@ -103,10 +108,11 @@ public class LoginPantaila extends JFrame {
 
 	/**
 	 * Return baten bide NaN-a bidaltzen du.
+	 * 
 	 * @return
 	 */
-	public String bidaliNan() {
-		return Nan;
+	public String bidaliNick() {
+		return nick;
 
 	}
 }
