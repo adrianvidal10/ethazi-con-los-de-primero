@@ -176,6 +176,10 @@ public class Ostatua {
 	public void setOstMota(String ostMota) {
 		this.ostMota = ostMota;
 	}
+
+	public Ostatua() {
+		
+	}
 	
 	
 	
