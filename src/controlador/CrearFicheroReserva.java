@@ -9,11 +9,11 @@ public class CrearFicheroReserva {
 	
 	public static void sortuFitxeroa() {
 		String numeroReserva = "";
-		File carpeta = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva");
+		File carpeta = new File("C:/Users/mañana/git/aaaaa/ficherosReserva");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
-			File fichero = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva0001.txt");
-			rellenarFichero();
+			File fichero = new File("C:/Users/mañana/git/aaaaa/ficherosReserva//reserva0001.txt");
+			rellenarFichero(numeroReserva);
 			try {
 				if (fichero.createNewFile())
 					System.out.println("El fichero se ha creado correctamente");
@@ -33,8 +33,8 @@ public class CrearFicheroReserva {
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
 			File fichero = new File(
-					"C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
-			rellenarFichero();
+					"C:/Users/mañana/git/aaaaa/ficherosReserva//reserva" + numeroReserva + ".txt");
+			rellenarFichero(numeroReserva);
 			try {
 
 				if (fichero.createNewFile())
@@ -48,12 +48,12 @@ public class CrearFicheroReserva {
 		}
 	}
 
-	private static void rellenarFichero() {
+	private static void rellenarFichero(String numeroReserva) {
 		   FileWriter fichero = null;
 	        PrintWriter pw = null;
 	        try
 	        {
-	            fichero = new FileWriter("c:/prueba.txt");
+	            fichero = new FileWriter("C:/Users/mañana/git/aaaaa/ficherosReserva//reserva" + numeroReserva + ".txt");
 	            pw = new PrintWriter(fichero);
 
 	           pw.print("             BIDAION             /n"
