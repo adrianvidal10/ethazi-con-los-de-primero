@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -278,7 +280,30 @@ public class Ordainketa extends JFrame {
 		btnAurrera = new JButton("Aurrera");
 		btnAurrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controlador.CrearFicheroReserva.sortuFitxeroa();
+				try {
+					//
+					//JFileChooser saiakera
+					
+					JFileChooser fileChooser = new JFileChooser();
+					//fileChooser.setCurrentDirectory(new java.io.File("."));
+					fileChooser.setDialogTitle("Aukeratu fitxeroaren helmuga");
+					fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					fileChooser.setAcceptAllFileFilterUsed(false);
+					
+					   if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+						      System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
+						      System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
+						    } else {
+						      System.out.println("No Selection ");
+						    }
+					
+					//
+					//
+					controlador.CrearFicheroReserva.sortuFitxeroa();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo",
 						JOptionPane.INFORMATION_MESSAGE);
 

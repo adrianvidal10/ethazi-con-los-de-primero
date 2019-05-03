@@ -7,21 +7,13 @@ import java.io.PrintWriter;
 //A
 public class CrearFicheroReserva {
 	
-	public static void sortuFitxeroa() {
-		String numeroReserva = "";
-		File carpeta = new File("C:/Users/mañana/git/aaaaa/ficherosReserva");
+	public static void sortuFitxeroa() throws IOException {
+		String numeroReserva = "0001";
+		File carpeta = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
-			File fichero = new File("C:/Users/mañana/git/aaaaa/ficherosReserva//reserva0001.txt");
-			rellenarFichero(numeroReserva);
-			try {
-				if (fichero.createNewFile())
-					System.out.println("El fichero se ha creado correctamente");
-				else
-					System.out.println("No ha podido ser creado el fichero");
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
+			FileWriter fichero = new FileWriter("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva0001.txt");
+			rellenarFichero(numeroReserva, fichero);
 			return;
 		} else {
 			for (int i = 0; i < listado.length; i++) {
@@ -32,42 +24,34 @@ public class CrearFicheroReserva {
 			int numeroEntero = Integer.parseInt(numeroReserva);
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
-			File fichero = new File(
-					"C:/Users/mañana/git/aaaaa/ficherosReserva//reserva" + numeroReserva + ".txt");
-			rellenarFichero(numeroReserva);
-			try {
-
-				if (fichero.createNewFile())
-					System.out.println("El fichero se ha creado correctamente");
-				else
-					System.out.println("No ha podido ser creado el fichero");
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
+			FileWriter fichero = new FileWriter(
+					"C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
+			rellenarFichero(numeroReserva, fichero);
 			return;
 		}
 	}
 
-	private static void rellenarFichero(String numeroReserva) {
-		   FileWriter fichero = null;
+	private static void rellenarFichero(String numeroReserva, FileWriter fichero) {
 	        PrintWriter pw = null;
 	        try
 	        {
-	            fichero = new FileWriter("C:/Users/mañana/git/aaaaa/ficherosReserva//reserva" + numeroReserva + ".txt");
+	            fichero = new FileWriter("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
 	            pw = new PrintWriter(fichero);
 
-	           pw.print("             BIDAION             /n"
-	           		+ "------------------------------------- /n"
-	           		+ "Hotel:                             x /n"
-	           		+ "Nº habitaciones:                   x /n"
-	           		+ "Entrada                            x /n"
-	           		+ "Amaiera                            x /n"
-	           		+ "------------------------------------- /n"
-	           		+ "Izena                              x /n"
-	           		+ "Abizena                            x /n"
-	           		+ "NAN                                x /n"
-	           		+ "-------------------------------------"
-	           		+ "Prezioa + ordaindu                 x /n");
+	           pw.print("----------"
+	        		+ "    BIDAION     "
+	           		+ "---------- \r\n"
+	           		+ "Hotel:                             x \r\n"
+	           		+ "Nº habitaciones:                   x \r\n"
+	           		+ "Entrada                            x \r\n"
+	           		+ "Amaiera                            x \r\n"
+	           		+ "------------------------------------- \r\n"
+	           		+ "Izena                              x \r\n"
+	           		+ "Abizena                            x \r\n"
+	           		+ "NAN                                x \r\n"
+	           		+ "------------------------------------- \r\n"
+	           		+ "Prezioa                            x \r\n"
+	           		+ "Ordainketa                         x \r\n");
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
@@ -79,6 +63,5 @@ public class CrearFicheroReserva {
 	              e2.printStackTrace();
 	           }
 	        }
-		
 	}
 }
