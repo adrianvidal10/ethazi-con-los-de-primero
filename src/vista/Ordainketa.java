@@ -180,13 +180,13 @@ public class Ordainketa extends JFrame {
 		txtpnDiruTotala.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 11));
 		txtpnDiruTotala.setBackground(SystemColor.scrollbar);
 		txtpnDiruTotala.setText("Diru totala:");
-		txtpnDiruTotala.setBounds(10, 37, 59, 20);
+		txtpnDiruTotala.setBounds(10, 37, 59, 35);
 		getContentPane().add(txtpnDiruTotala);
 
 		JTextPane txtpnbezarekin = new JTextPane();
 		txtpnbezarekin.setBackground(SystemColor.scrollbar);
 		txtpnbezarekin.setText("(BEZ-arekin)");
-		txtpnbezarekin.setBounds(10, 52, 66, 20);
+		txtpnbezarekin.setBounds(10, 69, 66, 23);
 		getContentPane().add(txtpnbezarekin);
 
 		JTextPane txtpnZureDirua = new JTextPane();
