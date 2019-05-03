@@ -85,7 +85,7 @@ public class Kontsultak {
 		String name = "";
 		String passwd = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE nick = '" + nick + "'");
+			resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE nick = '" + nick + "'");
 			while (resultado.next()) {
 				name = resultado.getString("nick");
 				passwd = resultado.getString("pasahitza");
@@ -110,9 +110,9 @@ public class Kontsultak {
 		boolean emaitza = true;
 		String NAN = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE DNI = '" + dni + "'");
+			resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE nan = '" + dni + "'");
 			while (resultado.next()) {
-				NAN = resultado.getString("DNI");
+				NAN = resultado.getString("nan");
 			}
 			if (NAN.equalsIgnoreCase(dni)) {
 				emaitza = false;
@@ -127,7 +127,7 @@ public class Kontsultak {
 		boolean insert = NANdago(beze.getDni());
 		try {
 			if (insert = true) {
-				conexion.setQuery("INSERT INTO bezeroa " + " (DNI, izena, abizena, biabizena, pasahitza, nick, promo)"
+				conexion.setQuery("INSERT INTO erabiltzaileak " + " (nan, izena, abizenaA, abizenaB, pasahitza, nick, promoKodigoa)"
 						+ " VALUES ('" + beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena()
 						+ "','" + beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "', '"
 						+ beze.getNick() + "','" + beze.getPromoa() + "')");
@@ -158,7 +158,7 @@ public class Kontsultak {
 		boolean emaitza = true;
 		String datuak = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE nick = '" + izena + "'");
+			resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE nick = '" + izena + "'");
 			while (resultado.next()) {
 				datuak = resultado.getString("nick");
 			}
@@ -177,9 +177,9 @@ public class Kontsultak {
 		boolean emaitza = true;
 		String datua = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE promo = '" + promo + "'");
+			resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE promoKodigoa = '" + promo + "'");
 			while (resultado.next()) {
-				datua = resultado.getString("promo");
+				datua = resultado.getString("promoKodigoa");
 			}
 			if (datua.equals(promo) == true) {
 				emaitza = false;
@@ -195,9 +195,9 @@ public class Kontsultak {
 		boolean emaitza = false;
 		String datua = "";
 		try {
-			resultado = conexion.getQuery("SELECT * FROM bezeroa WHERE promo = '" + promo + "'");
+			resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE promoKodigoa = '" + promo + "'");
 			while (resultado.next()) {
-				datua = resultado.getString("promo");
+				datua = resultado.getString("promoKodigoa");
 			}
 			if (datua.equals(promo) == true) {
 				emaitza = true;
