@@ -262,12 +262,14 @@ public class Ordainketa extends JFrame {
 		ordaindu_Botoia.setEnabled(false);
 
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField.setBounds(79, 37, 100, 35);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_1.setColumns(10);
 		textField_1.setBounds(304, 37, 100, 35);
