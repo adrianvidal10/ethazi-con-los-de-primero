@@ -14,7 +14,7 @@ public class CrearFicheroReserva {
 		File carpeta = new File(fileChooser.getSelectedFile(), "");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
-			FileWriter fichero = new FileWriter(fileChooser.getSelectedFile()+ "\\" + "erreserba0001.txt");
+			FileWriter fichero = new FileWriter(fileChooser.getSelectedFile()+ "\\" + "reserva0001.txt");
 			rellenarFichero(numeroReserva, fichero, fileChooser);
 			return;
 		} else {
@@ -27,7 +27,7 @@ public class CrearFicheroReserva {
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
 			FileWriter fichero = new FileWriter(
-					fileChooser.getSelectedFile() +"\\erreserba" + numeroReserva + ".txt");
+					fileChooser.getSelectedFile() +"\\reserva" + numeroReserva + ".txt");
 			rellenarFichero(numeroReserva, fichero, fileChooser);
 			return;
 		}
@@ -37,7 +37,7 @@ public class CrearFicheroReserva {
 	        PrintWriter pw = null;
 	        try
 	        {
-	            fichero = new FileWriter(fileChooser.getSelectedFile() + "\\erreserba" +numeroReserva + ".txt");
+	            fichero = new FileWriter(fileChooser.getSelectedFile() + "\\reserva" +numeroReserva + ".txt");
 	            pw = new PrintWriter(fichero);
 
 	           pw.print("----------"
