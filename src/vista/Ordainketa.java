@@ -299,7 +299,7 @@ public class Ordainketa extends JFrame {
 					
 					//
 					//
-					controlador.CrearFicheroReserva.sortuFitxeroa();
+					controlador.CrearFicheroReserva.sortuFitxeroa(fileChooser);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

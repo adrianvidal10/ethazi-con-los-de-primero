@@ -5,15 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.swing.JFileChooser;
+
 public class CrearFicheroReserva {
 	
-	public static void sortuFitxeroa() throws IOException {
+	public static void sortuFitxeroa(JFileChooser fileChooser) throws IOException {
 		String numeroReserva = "0001";
-		File carpeta = new File("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva");
+		File carpeta = new File(fileChooser.getSelectedFile(), "");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
-			FileWriter fichero = new FileWriter("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva0001.txt");
-			rellenarFichero(numeroReserva, fichero);
+			FileWriter fichero = new FileWriter(fileChooser.getSelectedFile()+ "\\" + "erreserba0001.txt");
+			rellenarFichero(numeroReserva, fichero, fileChooser);
 			return;
 		} else {
 			for (int i = 0; i < listado.length; i++) {
@@ -25,17 +27,17 @@ public class CrearFicheroReserva {
 			numeroEntero = numeroEntero + 1;
 			numeroReserva = String.format("%04d", numeroEntero);
 			FileWriter fichero = new FileWriter(
-					"C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
-			rellenarFichero(numeroReserva, fichero);
+					fileChooser.getSelectedFile() +"\\erreserba" + numeroReserva + ".txt");
+			rellenarFichero(numeroReserva, fichero, fileChooser);
 			return;
 		}
 	}
 
-	private static void rellenarFichero(String numeroReserva, FileWriter fichero) {
+	private static void rellenarFichero(String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
 	        PrintWriter pw = null;
 	        try
 	        {
-	            fichero = new FileWriter("C:\\Users\\mañana.ORD30\\git\\ethazi-con-los-de-primero\\ficherosReserva\\reserva" + numeroReserva + ".txt");
+	            fichero = new FileWriter(fileChooser.getSelectedFile() + "\\erreserba" +numeroReserva + ".txt");
 	            pw = new PrintWriter(fichero);
 
 	           pw.print("----------"

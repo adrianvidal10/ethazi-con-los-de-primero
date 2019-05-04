@@ -4,12 +4,7 @@ public class Apartamentua extends Hotel {
 
 	private int solairua;
 
-	public int getSolairua() {
-		return solairua;
-	}
-
-	public void setSolairua(int solairua) {
-		this.solairua = solairua;
+	public Apartamentua() {
 	}
 
 	public Apartamentua(int kod, String izena, String herria, double tarifa, int ostGelaKode, int erreserbaKopurua,
@@ -20,8 +15,13 @@ public class Apartamentua extends Hotel {
 				parkin, aire_girotua, jatetxe, taberna, gimnasioa, ostMota, izarrak);
 		this.solairua = solairua;
 	}
+	
+	public int getSolairua() {
+		return solairua;
+	}
 
-	public Apartamentua() {
+	public void setSolairua(int solairua) {
+		this.solairua = solairua;
 	}
 
 }
