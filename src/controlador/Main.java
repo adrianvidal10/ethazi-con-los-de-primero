@@ -37,9 +37,7 @@ public class Main {
 		micoordinador.setPantailaErregistru(PantailaErregistru);
 		PantailaDatuakErakutsi.setVisible(true);
 	}
-	
-	
-	
+			
 	/*Logineko pantailako datuak kudeatzen duen metodoa da hau
 	public static boolean ateraErabiltzailea(String nan,String pasahitza) {
 		boolean erabakia=false;

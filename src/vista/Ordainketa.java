@@ -304,9 +304,6 @@ public class Ordainketa extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null, "Faktura sortuta", "Mensaje Informativo",
-						JOptionPane.INFORMATION_MESSAGE);
-
 			}
 		});
 		btnAurrera.setEnabled(false);
