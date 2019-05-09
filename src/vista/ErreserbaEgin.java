@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.xml.ws.soap.Addressing;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -28,6 +29,9 @@ import java.time.LocalDate;
 import java.time.chrono.MinguoChronology;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class ErreserbaEgin extends JFrame {
 
@@ -36,19 +40,29 @@ public class ErreserbaEgin extends JFrame {
 	private double prezioa;
 	private int tarifa;
 	JDateChooser dateChooser, dateChooser_1;
-	//Date erreserbaHasiera, erreserbaAmaiera;
+	// Date erreserbaHasiera, erreserbaAmaiera;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
 	JLabel lblHasieraData, lblAmaieraData, lblErreserbaEgin, lblOstatuarenIzena, lblPrezioTotala, lblOheMota,
-			lblOstatuarenIzenaErakutsi, lblGelaMota, lblPrezioTotErakutsi;
+			lblOstatuarenIzenaErakutsi, lblGelaKant, lblPrezioTotErakutsi;
 
 	JButton btnAtzera, btnOrdainketaBurutu, btnBalidatu;
-	JComboBox cbxOheMota, cbxGelaMota;
 
 	Date gaur = new Date();
-	Date erreserbaHasiera  = new Date();
-	Date  erreserbaAmaiera  = new Date() ;
+	Date erreserbaHasiera = new Date();
+	Date erreserbaAmaiera = new Date();
 	private JLabel lblDisponibilidad;
+	private JSpinner spinnerGelaKant;
+	private JRadioButton rbs3;
+	private JRadioButton rbs1;
+	private JRadioButton rbs2;
+	private JRadioButton rbb1;
+	private JRadioButton rbb2;
+	private JRadioButton rbb3;
+	private JRadioButton rbu1;
+	private JRadioButton rbu2;
+	private JRadioButton rbu3;
+	ButtonGroup lehenTaldea, bigarrenTaldea, hirugarrenTaldea;
 
 	/**
 	 * Launch the application.
@@ -71,7 +85,7 @@ public class ErreserbaEgin extends JFrame {
 	 */
 	public ErreserbaEgin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 468, 396);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,25 +104,17 @@ public class ErreserbaEgin extends JFrame {
 		lblOstatuarenIzena.setBounds(25, 80, 47, 14);
 		contentPane.add(lblOstatuarenIzena);
 
-		lblOheMota = new JLabel("Ohe mota:");
-		lblOheMota.setBounds(25, 158, 65, 14);
+		lblOheMota = new JLabel("Ohe mota(k):");
+		lblOheMota.setBounds(25, 173, 80, 14);
 		contentPane.add(lblOheMota);
 
 		lblOstatuarenIzenaErakutsi = new JLabel("New label");
-		lblOstatuarenIzenaErakutsi.setBounds(67, 80, 111, 14);
+		lblOstatuarenIzenaErakutsi.setBounds(67, 80, 142, 14);
 		contentPane.add(lblOstatuarenIzenaErakutsi);
 
-		lblGelaMota = new JLabel("Gela mota:");
-		lblGelaMota.setBounds(25, 122, 65, 14);
-		contentPane.add(lblGelaMota);
-
-		cbxGelaMota = new JComboBox();
-		cbxGelaMota.setBounds(100, 155, 92, 20);
-		contentPane.add(cbxGelaMota);
-
-		cbxOheMota = new JComboBox();
-		cbxOheMota.setBounds(100, 119, 92, 20);
-		contentPane.add(cbxOheMota);
+		lblGelaKant = new JLabel("Gela kantitatea:");
+		lblGelaKant.setBounds(25, 122, 92, 14);
+		contentPane.add(lblGelaKant);
 
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
@@ -116,17 +122,12 @@ public class ErreserbaEgin extends JFrame {
 				micoordinador.mostrarVentanaOrdainketa();
 			}
 		});
-		btnOrdainketaBurutu.setBounds(276, 224, 132, 23);
+		btnOrdainketaBurutu.setBounds(276, 324, 132, 23);
 		contentPane.add(btnOrdainketaBurutu);
 
 		lblPrezioTotala = new JLabel("Prezio totala:");
-		lblPrezioTotala.setBounds(28, 228, 92, 14);
+		lblPrezioTotala.setBounds(25, 328, 92, 14);
 		contentPane.add(lblPrezioTotala);
-		
-		
-		lblPrezioTotErakutsi = new JLabel("");
-		lblPrezioTotErakutsi.setBounds(119, 228, 73, 14);
-		contentPane.add(lblPrezioTotErakutsi);
 
 		dateChooser = new JDateChooser();
 		dateChooser.setMinSelectableDate(gaur);
@@ -134,36 +135,32 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		
 
-		 dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
+		dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ai ke pasar elñ presioaaaaaa
+				// ai ke pasar elñ presioaaaaaa
 				erreserbaHasiera = dateChooser.getDate();
 				dateChooser_1.setMinSelectableDate(erreserbaHasiera);
-				
+
 			}
 
-		}); 
-		
+		});
+
 		erreserbaAmaiera = dateChooser_1.getDate();
-		
-	
-		
+
 		dateChooser_1.setBounds(301, 122, 105, 20);
 		contentPane.add(dateChooser_1);
-		
 
 		lblHasieraData = new JLabel("Hasiera data:");
 		lblHasieraData.setBounds(219, 80, 82, 14);
 		contentPane.add(lblHasieraData);
 
 		lblAmaieraData = new JLabel("Amaiera data:");
-		lblAmaieraData.setBounds(219, 122, 75, 14);
+		lblAmaieraData.setBounds(212, 122, 82, 14);
 		contentPane.add(lblAmaieraData);
 
 		lblDisponibilidad = new JLabel("New label");
-		lblDisponibilidad.setBounds(219, 188, 165, 14);
+		lblDisponibilidad.setBounds(286, 299, 132, 14);
 
 		int cont = 1;
 
@@ -186,62 +183,160 @@ public class ErreserbaEgin extends JFrame {
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-			
-				
+
 				setPrezioa(25.50);
 				boolean jarraitu = comprobatuDataHutsik();
-				if (jarraitu==false){
+				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
-				}
-				else{
-					
+				} else {
+
 					try {
-						
+
 						erreserbaHasiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser.getDate()));
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
-						
+
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
-					
-				
-					//erreserbaAmaiera = dateChooser_1.getDate();
+
+					// erreserbaAmaiera = dateChooser_1.getDate();
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
-					//setTarifa(tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
+					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
+					// erreserbaAmaiera));
 					double dirua = tarifaKalkulatu(prezioa, tarifa);
-					
+
 					lblPrezioTotErakutsi.setText(Double.toString(dirua));
-				}			
+				}
 			}
 		});
-		btnBalidatu.setBounds(335, 154, 73, 23);
+		btnBalidatu.setBounds(311, 154, 97, 23);
 		contentPane.add(btnBalidatu);
+
+		spinnerGelaKant = new JSpinner();
+		spinnerGelaKant.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+
+				int balorea = (int) spinnerGelaKant.getValue();
+
+				switch (balorea) {
+
+				case 1:
+
+					rbs2.setEnabled(false);
+					rbb2.setEnabled(false);
+					rbu2.setEnabled(false);
+					
+					break;
+
+				case 2:
+					rbs2.setEnabled(true);
+					rbb2.setEnabled(true);
+					rbu2.setEnabled(true);
+					rbs2.setSelected(true);
+
+					rbs3.setEnabled(false);
+					rbb3.setEnabled(false);
+					rbu3.setEnabled(false);
+
+					break;
+
+				case 3:
+
+					rbs3.setEnabled(true);
+					rbb3.setEnabled(true);
+					rbu3.setEnabled(true);
+					rbs3.setSelected(true);
+
+				}
+
+			}
+		});
+		spinnerGelaKant.setModel(new SpinnerNumberModel(1, 1, 3, 1));
+		spinnerGelaKant.setBounds(127, 119, 37, 20);
+		contentPane.add(spinnerGelaKant);
+
+		rbs3 = new JRadioButton("Sinplea");
+		rbs3.setEnabled(false);
+		rbs3.setBounds(27, 244, 80, 23);
+		contentPane.add(rbs3);
+
+		rbs1 = new JRadioButton("Sinplea");
+		rbs1.setSelected(true);
+		rbs1.setBounds(27, 193, 80, 23);
+		contentPane.add(rbs1);
+
+		rbs2 = new JRadioButton("Sinplea");
+		rbs2.setEnabled(false);
+		rbs2.setBounds(27, 218, 80, 23);
+		contentPane.add(rbs2);
+
+		rbb1 = new JRadioButton("Bikoitza");
+		rbb1.setBounds(109, 193, 86, 23);
+		contentPane.add(rbb1);
+
+		rbb2 = new JRadioButton("Bikoitza");
+		rbb2.setEnabled(false);
+		rbb2.setBounds(109, 218, 86, 23);
+		contentPane.add(rbb2);
+
+		rbb3 = new JRadioButton("Bikoitza");
+		rbb3.setEnabled(false);
+		rbb3.setBounds(109, 244, 86, 23);
+		contentPane.add(rbb3);
+
+		rbu1 = new JRadioButton("Umeentzat");
+		rbu1.setBounds(191, 193, 96, 23);
+		contentPane.add(rbu1);
+
+		rbu2 = new JRadioButton("Umeentzat");
+		rbu2.setEnabled(false);
+		rbu2.setBounds(191, 218, 96, 23);
+		contentPane.add(rbu2);
+
+		rbu3 = new JRadioButton("Umeentzat");
+		rbu3.setEnabled(false);
+		rbu3.setBounds(191, 244, 96, 23);
+		contentPane.add(rbu3);
+
+		lehenTaldea = new ButtonGroup();
+		lehenTaldea.add(rbs1);
+		lehenTaldea.add(rbb1);
+		lehenTaldea.add(rbu1);
+
+		bigarrenTaldea = new ButtonGroup();
+		bigarrenTaldea.add(rbs2);
+		bigarrenTaldea.add(rbb2);
+		bigarrenTaldea.add(rbu2);
+
+		hirugarrenTaldea = new ButtonGroup();
+		hirugarrenTaldea.add(rbs3);
+		hirugarrenTaldea.add(rbb3);
+		hirugarrenTaldea.add(rbu3);
 
 	}
 
-	/*public int tarifaMotaBidali(Date data1, Date data2) {
-		return micoordinador.tarifaMotaBidali(data1, data2);
-	}*/
-	
-	public double tarifaKalkulatu (double prezioa, int tarifa){
+	/*
+	 * public int tarifaMotaBidali(Date data1, Date data2) { return
+	 * micoordinador.tarifaMotaBidali(data1, data2); }
+	 */
+
+	public double tarifaKalkulatu(double prezioa, int tarifa) {
 		double emaitza = 0;
-		if (tarifa == 0){
+		if (tarifa == 0) {
 			emaitza = prezioa;
+		} else {
+			emaitza = prezioa * (tarifa / 100);
 		}
-		else{
-			emaitza = prezioa*(tarifa/100);
-		}
-		
+
 		return emaitza;
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
 		this.micoordinador = micoordinador;
 	}
-	
+
 	public double getPrezioa() {
 		return prezioa;
 	}
@@ -257,16 +352,15 @@ public class ErreserbaEgin extends JFrame {
 	public void setTarifa(int tarifa) {
 		this.tarifa = tarifa;
 	}
-	
-	public boolean comprobatuDataHutsik(){
+
+	public boolean comprobatuDataHutsik() {
 		boolean emaitza = false;
 		if (erreserbaAmaiera != null) {
-			btnBalidatu.setEnabled(true);	
-		}
-		else{
+			btnBalidatu.setEnabled(true);
+		} else {
 			emaitza = true;
 		}
-		
+
 		return emaitza;
 	}
 }
