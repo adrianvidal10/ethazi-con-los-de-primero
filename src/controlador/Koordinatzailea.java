@@ -4,7 +4,10 @@ package controlador;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +21,8 @@ public class Koordinatzailea {
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
 	private ErregistruPantaila PantailaErregistru;
-
+	private ErreserbaEgin PantailaErreserbaEgin;
+	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**
@@ -69,6 +73,7 @@ public class Koordinatzailea {
 		PantailaErregistru.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(false);
 		PantailaLogin.setVisible(false);
+		PantailaErreserbaEgin.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
 	}
 
@@ -98,11 +103,19 @@ public class Koordinatzailea {
 		PantailaOrdainketa.dispose();
 	}
 
+	public void setDatuakErakutsi(ErreserbaEgin PantailaErreserbaEgin) {
+		this.PantailaErreserbaEgin = PantailaErreserbaEgin;
+	}
+	
 	/*
 	 * Erregistru Pantaila.
 	 */
 	public void setPantailaErregistru(ErregistruPantaila Erregistru) {
 		this.PantailaErregistru = Erregistru;
+	}
+	
+	public void setPantailaErregistru(ErreserbaEgin PantailaErreserbaEgin) {
+		this.PantailaErreserbaEgin = PantailaErreserbaEgin;
 	}
 
 	public ErregistruPantaila PantailaErregistru() {
@@ -114,6 +127,13 @@ public class Koordinatzailea {
 		this.PantailaErregistru.setVisible(true);
 	}
 
+	public void mostrarErreserbaEgin() {
+		PantailaLogin.setVisible(false);
+		PantailaErregistru.setVisible(false);
+		PantailaDatuakErakutsi.setVisible(false);
+		PantailaErreserbaEgin.setVisible(true);
+	}
+	
 	public void logueatzekoBotoiak() {
 		PantailaErregistru.setVisible(false);
 		PantailaLogin.setVisible(true);
@@ -459,5 +479,39 @@ public class Koordinatzailea {
 	public boolean bilatuNick(String nick) {
 		return kon.bilatuNick(nick);
 	}
+	
+	
+	//ERRESERBA EGIN BALIDAPENAK
+	
+	public int tarifaMotaBidali(Date erreserbaHasiera, Date erreserbaAmaiera) {
+		int tarifa=0;
+		java.util.List<Date> dataLista;
+		boolean oporraldiaDa, udaOporrakDira;
+		
+		System.out.println(erreserbaHasiera);
+		dataLista = Kontsultak.getErreserbarenDataGuztiak(erreserbaHasiera, erreserbaAmaiera);
+		oporraldiaDa = kon.oporraldiaDa(erreserbaHasiera, erreserbaAmaiera, dataLista);
+		udaOporrakDira = kon.udaOporrakDira(erreserbaHasiera, erreserbaAmaiera, dataLista);
+		
+		if (udaOporrakDira==true && oporraldiaDa==true){
+			tarifa = 50;
+		}
+		else if (udaOporrakDira==true){
+			tarifa = 50;
+		}
+		else if (oporraldiaDa==true){
+			tarifa = 25;
+		} else {
+			tarifa = 0;
+		}
+			
+		//metodo honek dataren arabera tarifa desberdin bat bidaltzen dizu
+		
+		//PantailaErreserba.
+		
+		return tarifa;
+	}
+	
+	
 
 }

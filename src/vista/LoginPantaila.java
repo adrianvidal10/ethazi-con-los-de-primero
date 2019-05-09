@@ -70,7 +70,7 @@ public class LoginPantaila extends JFrame {
 				// System.out.println("LOGIN BOTOIA");
 				logindatuak();
 				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
-					micoordinador.mostrarVentanaOrdainketa();
+					micoordinador.mostrarErreserbaEgin();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);

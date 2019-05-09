@@ -2,7 +2,11 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import modelo.Hotela;
 import modelo.Konexioa;
@@ -47,8 +51,6 @@ public class Kontsultak {
 
 		return ostMotaZerrenda;
 	}
-		
-	
 
 	public void selectHotelak(String herri) {
 		String testua;
@@ -127,10 +129,11 @@ public class Kontsultak {
 		boolean insert = NANdago(beze.getDni());
 		try {
 			if (insert = true) {
-				conexion.setQuery("INSERT INTO erabiltzaileak " + " (nan, izena, abizenaA, abizenaB, pasahitza, nick, promoKodigoa)"
-						+ " VALUES ('" + beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena()
-						+ "','" + beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "', '"
-						+ beze.getNick() + "','" + beze.getPromoa() + "')");
+				conexion.setQuery("INSERT INTO erabiltzaileak "
+						+ " (nan, izena, abizenaA, abizenaB, pasahitza, nick, promoKodigoa)" + " VALUES ('"
+						+ beze.getDni() + "'," + "'" + beze.getIzena() + "','" + beze.getLehenAbizena() + "','"
+						+ beze.getBigarrenAbizena() + "','" + getMD5(beze.getPasahitza()) + "', '" + beze.getNick()
+						+ "','" + beze.getPromoa() + "')");
 			}
 		} catch (Exception e) {
 			e.getMessage();
@@ -208,6 +211,143 @@ public class Kontsultak {
 		}
 		return emaitza;
 
+	}
+
+	public boolean oporraldiaDa(Date erreserba1, Date erreserba2, java.util.List<Date> listaEntreFechas) {
+
+		boolean emaitza = false;
+		// String data1, data2;
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		// SimpleDateFormat sdf = new SimpleDateFormat("E yyyy-MM-dd");
+
+		// data1 = df.format(erreserba1);
+		// data2 = df.format(erreserba2);
+
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(erreserba1);
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(erreserba2);
+
+		// java.util.List<Date> listaEntreFechas =
+		// Kontsultak.getErreserbarenDataGuztiak(c1.getTime(), c2.getTime());
+
+		try {
+			// jaiegun guztiak hartzen ditugu
+			resultado = conexion.getQuery("SELECT * FROM jaiegunak");
+			// banan banan konparatuko ditugu
+			while (resultado.next()) {
+
+				// erreserba daten harteko egunetan konprobatuko dugu ea
+				// oporraldia den
+				for (Date date : listaEntreFechas) {
+
+					if (resultado.toString() == df.format(date)) {
+						return true;
+					}
+				}
+			}
+
+		} catch (SQLException e) {
+			emaitza = false;
+		}
+		return emaitza;
+
+	}
+
+	public boolean udaOporrakDira(Date erreserba1, Date erreserba2, java.util.List<Date> listaEntreFechas) {
+
+		boolean emaitza = false;
+
+		// String data1hilabetea, data2hilabetea;
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+		// data1hilabetea = df.format(erreserba1);
+		// data2hilabetea = df.format(erreserba2);
+
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(erreserba1);
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(erreserba2);
+
+		// java.util.List<Date> listaEntreFechas =
+		// Kontsultak.getErreserbarenDataGuztiak(c1.getTime(), c2.getTime());
+
+		for (Date date : listaEntreFechas) {
+
+			// substring honek dataren stringetik hilabetea hartzen du eta
+			// intera
+			// bilakatzen du
+
+			String hilea = date.toString().substring(4, 7);
+
+			switch (hilea) {
+			case "Jan":
+				emaitza = false;
+				break;
+			case "Feb":
+				emaitza = false;
+				break;
+			case "Mar":
+				emaitza = false;
+				break;
+			case "Apr":
+				emaitza = false;
+				break;
+			case "May":
+				emaitza = false;
+				break;
+			case "Jun":
+				emaitza = false;
+				break;
+			case "Oct":
+				emaitza = false;
+				break;
+			case "Nov":
+				emaitza = false;
+				break;
+			case "Dec":
+				emaitza = false;
+				break;
+			case "Jul":
+				emaitza = true;
+				break;
+			case "Aug":
+				emaitza = true;
+				break;
+			case "Sep":
+				emaitza = true;
+				break;
+			default:
+				emaitza = false;
+				break;
+			}
+
+		}
+
+		return emaitza;
+
+	}
+
+	public static java.util.List<Date> getErreserbarenDataGuztiak(Date hasData, Date amaData) {
+
+		// calendar bihurtuko ditugu datak haien harteko operazioak errezagoak
+		// izan daitezen
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(hasData);
+		System.out.println(c1.toString());
+		Calendar c2 = Calendar.getInstance();
+		c2.setTime(amaData);
+
+		// datak gordeta egongo diren lista
+		java.util.List<Date> listaFechas = new java.util.ArrayList<Date>();
+
+		// bi daten artean ibiliko den buklea, pausu bakoitzean egun bat
+		// gehituko zaio
+		while (!c1.after(c2)) {
+			listaFechas.add(c1.getTime());
+			c1.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		return listaFechas;
 	}
 
 }
