@@ -32,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JCheckBox;
 
 public class ErreserbaEgin extends JFrame {
 
@@ -315,6 +316,19 @@ public class ErreserbaEgin extends JFrame {
 		hirugarrenTaldea.add(rbs3);
 		hirugarrenTaldea.add(rbb3);
 		hirugarrenTaldea.add(rbu3);
+		
+		JLabel lblNewLabel = new JLabel("Zure kodigoa:");
+		lblNewLabel.setBounds(321, 197, 92, 23);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(331, 222, 77, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
+		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
+		contentPane.add(chckbxErabiliNahi);
 
 	}
 
