@@ -11,7 +11,8 @@ public class Main {
 	private DatuakErakutsi PantailaDatuakErakutsi;
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
-;
+	private LegediaPantaila PantailaLegedia;
+
 	public static void main(String[] args) {
 		//Modelo.BD konek = new Modelo.BD();
 		Main miprincipal = new Main();
@@ -26,6 +27,7 @@ public class Main {
 		PantailaDatuakErakutsi  = new DatuakErakutsi();
 		PantailaErregistru  = new ErregistruPantaila();
 		PantailaErreserbaEgin  = new ErreserbaEgin();
+		PantailaLegedia  = new LegediaPantaila();
 		micoordinador= new Koordinatzailea();
 		
 		/*Se establecen las relaciones entre clases*/
@@ -34,12 +36,14 @@ public class Main {
 		PantailaDatuakErakutsi.setcoordinador(micoordinador);
 		PantailaErregistru.setcoordinador(micoordinador);
 		PantailaErreserbaEgin.setcoordinador(micoordinador);
+		PantailaLegedia.setcoordinador(micoordinador);
 		/*Se establecen relaciones con la clase coordinador*/
 		micoordinador.setMiVentanaRegistro(PantailaLogin);
 		micoordinador.setordainketa(PantailaOrdainketa);
 		micoordinador.setDatuakErakutsi(PantailaDatuakErakutsi);
 		micoordinador.setPantailaErregistru(PantailaErregistru);
-		micoordinador.setPantailaErregistru(PantailaErreserbaEgin);
+		micoordinador.setPantailaErreserba(PantailaErreserbaEgin);
+		micoordinador.setPantailaLegedia(PantailaLegedia);
 		PantailaDatuakErakutsi.setVisible(true);
 	}
 			

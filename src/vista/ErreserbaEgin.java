@@ -119,7 +119,7 @@ public class ErreserbaEgin extends JFrame {
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				micoordinador.mostrarVentanaOrdainketa();
+				micoordinador.mostrarVentanaLegedia();
 			}
 		});
 		btnOrdainketaBurutu.setBounds(276, 324, 132, 23);
@@ -206,6 +206,7 @@ public class ErreserbaEgin extends JFrame {
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
 					// erreserbaAmaiera));
 					double dirua = tarifaKalkulatu(prezioa, tarifa);
+					System.out.println(dirua);
 
 					lblPrezioTotErakutsi.setText(Double.toString(dirua));
 				}

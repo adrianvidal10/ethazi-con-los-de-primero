@@ -22,6 +22,7 @@ public class Koordinatzailea {
 	private DatuakErakutsi PantailaDatuakErakutsi;
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
+	private LegediaPantaila PantailaLegedia;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 	// Bistaratzeko pantailak:
 	// LOGIN:
@@ -74,7 +75,18 @@ public class Koordinatzailea {
 		PantailaDatuakErakutsi.setVisible(false);
 		PantailaLogin.setVisible(false);
 		PantailaErreserbaEgin.setVisible(false);
+		PantailaLegedia.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
+	}
+	
+	public void mostrarVentanaLegedia() {
+		// VENTANA PRINTZIPALA.setVisible(false);
+		PantailaErregistru.setVisible(false);
+		PantailaDatuakErakutsi.setVisible(false);
+		PantailaLogin.setVisible(false);
+		PantailaErreserbaEgin.setVisible(false);
+		PantailaOrdainketa.setVisible(false);
+		PantailaLegedia.setVisible(true);
 	}
 
 	public DatuakErakutsi getDatuakErakutsi() {
@@ -114,10 +126,14 @@ public class Koordinatzailea {
 		this.PantailaErregistru = Erregistru;
 	}
 	
-	public void setPantailaErregistru(ErreserbaEgin PantailaErreserbaEgin) {
+	public void setPantailaErreserba(ErreserbaEgin PantailaErreserbaEgin) {
 		this.PantailaErreserbaEgin = PantailaErreserbaEgin;
 	}
 
+	public void setPantailaLegedia(LegediaPantaila PantailaLegedia) {
+		this.PantailaLegedia = PantailaLegedia;
+	}
+	
 	public ErregistruPantaila PantailaErregistru() {
 		return PantailaErregistru;
 	}
@@ -511,6 +527,8 @@ public class Koordinatzailea {
 		
 		return tarifa;
 	}
+	
+	
 	
 	
 

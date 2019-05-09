@@ -350,4 +350,20 @@ public class Kontsultak {
 		return listaFechas;
 	}
 
+	public void insertErreserba() {
+		boolean insert = true;// NANdago(beze.getDni());
+
+		try {
+			if (insert = true) {
+				conexion.setQuery("INSERT INTO erreserbak "
+						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant)"
+						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'"
+						+ "'ostatuKod'" + "'errNick'" + "'gelaKant'");
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+	}
+
 }
