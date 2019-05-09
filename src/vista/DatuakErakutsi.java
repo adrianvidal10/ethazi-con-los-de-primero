@@ -147,6 +147,7 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota = new JComboBox();
 		//cbxOstatuMota.addItem();
 		cbxOstatuMota.setBounds(100, 74, 112, 20);
+		sartuKomboOstMota();
 		contentPane.add(cbxOstatuMota);
 
 		lblHasieraData = new JLabel("Hasiera data:");
@@ -255,6 +256,13 @@ public class DatuakErakutsi extends JFrame {
 		return columnas;
 	}
 
+	private void sartuKomboOstMota() {
+		cbxOstatuMota.addItem("---Guztiak---");
+		cbxOstatuMota.addItem("Hotela");
+		cbxOstatuMota.addItem("Extea");
+		cbxOstatuMota.addItem("Apartamentua");
+	}
+	
 	private List<String[]> loadtable(ArrayList<Hotela> hotelZerrenda) {
 		List<String[]> filas = new ArrayList<String[]>();
 		Hotela hotel = new Hotela();
