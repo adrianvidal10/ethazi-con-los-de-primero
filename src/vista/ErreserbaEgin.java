@@ -93,6 +93,13 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.setLayout(null);
 
 		btnAtzera = new JButton("Atzera");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				micoordinador.mostrarPantailaDatuakErakutsi();
+
+			}
+		});
 		btnAtzera.setBounds(10, 11, 80, 23);
 		contentPane.add(btnAtzera);
 
@@ -180,6 +187,8 @@ public class ErreserbaEgin extends JFrame {
 
 		contentPane.add(lblDisponibilidad);
 		lblPrezioTotErakutsi = new JLabel("");
+		lblPrezioTotErakutsi.setSize(88, 14);
+		lblPrezioTotErakutsi.setLocation(107, 333);
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
@@ -209,7 +218,7 @@ public class ErreserbaEgin extends JFrame {
 					double dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
 
-					lblPrezioTotErakutsi.setText(Double.toString(dirua));
+					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
 				}
 			}
 		});
@@ -229,7 +238,7 @@ public class ErreserbaEgin extends JFrame {
 					rbs2.setEnabled(false);
 					rbb2.setEnabled(false);
 					rbu2.setEnabled(false);
-					
+
 					break;
 
 				case 2:
@@ -316,16 +325,16 @@ public class ErreserbaEgin extends JFrame {
 		hirugarrenTaldea.add(rbs3);
 		hirugarrenTaldea.add(rbb3);
 		hirugarrenTaldea.add(rbu3);
-		
+
 		JLabel lblNewLabel = new JLabel("Zure kodigoa:");
 		lblNewLabel.setBounds(321, 197, 92, 23);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(331, 222, 77, 14);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
 		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
 		contentPane.add(chckbxErabiliNahi);
@@ -338,11 +347,21 @@ public class ErreserbaEgin extends JFrame {
 	 */
 
 	public double tarifaKalkulatu(double prezioa, int tarifa) {
-		double emaitza = 0;
+		double emaitza;
+		double temp = 0;
+		System.out.println(temp);
+		System.out.println(tarifa);
+		System.out.println(prezioa);
+		double temptarifa= tarifa;
+		 temp = temptarifa/100;
+		System.out.println("-");
+		System.out.println(temp);
+		System.out.println(tarifa);
 		if (tarifa == 0) {
 			emaitza = prezioa;
 		} else {
-			emaitza = prezioa * (tarifa / 100);
+			emaitza = prezioa * temp;
+			emaitza += prezioa;
 		}
 
 		return emaitza;

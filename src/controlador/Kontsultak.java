@@ -351,12 +351,12 @@ public class Kontsultak {
 	}
 
 	public void insertErreserba() {
-		boolean insert = true;// NANdago(beze.getDni());
+		boolean insert = true;
 
 		try {
 			if (insert = true) {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant)"
+						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant, oheLista)"
 						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'"
 						+ "'ostatuKod'" + "'errNick'" + "'gelaKant'");
 			}

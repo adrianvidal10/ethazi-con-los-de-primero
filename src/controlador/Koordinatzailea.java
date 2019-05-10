@@ -113,6 +113,7 @@ public class Koordinatzailea {
 		PantailaLogin.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(true);
 		PantailaOrdainketa.dispose();
+		PantailaErreserbaEgin.setVisible(false);
 	}
 
 	public void setDatuakErakutsi(ErreserbaEgin PantailaErreserbaEgin) {
@@ -528,8 +529,4 @@ public class Koordinatzailea {
 		return tarifa;
 	}
 	
-	
-	
-	
-
 }

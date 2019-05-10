@@ -55,7 +55,7 @@ public class LoginPantaila extends JFrame {
 		btnSartu.setBounds(83, 282, 176, 32);
 		getContentPane().add(btnSartu);
 
-		JButton btnLogueatu = new JButton("ERREGISRTATU");
+		JButton btnLogueatu = new JButton("ERREGISTRATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				micoordinador.mostrarPantailaErregistru();
