@@ -11,6 +11,7 @@ import javax.swing.table.TableModel;
 import controlador.Kontsultak;
 import controlador.Koordinatzailea;
 import modelo.Hotela;
+import modelo.Ostatua;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -92,9 +93,21 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
-					hotelZerrenda = micoordinador.bidaliSelectHotelak(getherriaBilatu());
-					taulaBete(hotelZerrenda);
+					ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
+					String herria="";
+					String ostatumota="";
+					try {
+						herria = txbxHerria.getText();
+					}catch (Exception e) {
+						herria="";
+					}
+					try {
+						ostatumota = (String) cbxOstatuMota.getSelectedItem();
+					}catch (Exception e) {
+						ostatumota="";
+					}
+					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
+					//taulaBete(ostatuZerrenda);
 				} catch (Exception e) {
 					System.out.println("Ez dago hotelik herri honetan.");
 				}
@@ -278,7 +291,7 @@ public class DatuakErakutsi extends JFrame {
 		this.micoordinador = micoordinador;
 	}
 
-	public static String getherriaBilatu() {
+	public static String hartuDatuak() {
 		return txbxHerria.getText();
 	}
 }
