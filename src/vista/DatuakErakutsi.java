@@ -109,7 +109,7 @@ public class DatuakErakutsi extends JFrame {
 					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
 					//taulaBete(ostatuZerrenda);
 				} catch (Exception e) {
-					System.out.println("Ez dago hotelik herri honetan.");
+					System.out.println("Txarto daude datuak sartuta.");
 				}
 
 			}
@@ -229,7 +229,7 @@ public class DatuakErakutsi extends JFrame {
 
 	}
 
-	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
+	private void taulaBete(ArrayList<Ostatua> hotelZerrenda) {
 
 		List<String[]> filas = loadtable(hotelZerrenda);
 
@@ -276,13 +276,13 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota.addItem("Apartamentua");
 	}
 	
-	private List<String[]> loadtable(ArrayList<Hotela> hotelZerrenda) {
+	private List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
 		List<String[]> filas = new ArrayList<String[]>();
-		Hotela hotel = new Hotela();
+		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
 			hotel = hotelZerrenda.get(i);
-			filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
-					String.valueOf(hotel.getPrezioa()) });
+			/*filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
+					String.valueOf(hotel.getPrezioa()) });*/
 		}
 		return filas;
 	}
