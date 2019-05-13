@@ -10,6 +10,7 @@ import java.util.Date;
 
 import modelo.Hotela;
 import modelo.Konexioa;
+import modelo.Ostatua;
 import vista.DatuakErakutsi;
 
 import java.math.BigInteger;
@@ -33,54 +34,54 @@ public class Kontsultak {
 	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
 	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
-	public ArrayList<String> selectOstatuMota() {
+	Ostatua ostatua = new Ostatua();
+	private ArrayList<Ostatua> zerrendaOstatua = new ArrayList<Ostatua>();
+	//private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
-		// Bilaketa orriko comboboxa ostatu mota desberdinez beteko duen metodoa
-
-		resultado = conexion.getQuery("SELECT DISTINCT OstMota FROM ostatua ORDER BY ASC");
-
+	public void selectOstatuak(String herri, String ostMota) {
+		String where = "WHERE";
+		String sHerria = " AND herria = '";
+		String sKodOst = " AND ostMota = '";
+		if (herri.equalsIgnoreCase("")==true) {
+			sHerria = "";
+		}else {
+			sHerria += herri;
+			sHerria += "'";
+		}
+		if (ostMota.equalsIgnoreCase("")==true) {
+			sKodOst = "";
+		}else {
+			sKodOst += ostMota;
+			sKodOst += "'";
+		}
+		if (ostMota.equalsIgnoreCase("")==true && sHerria.equalsIgnoreCase("")==true) {
+			where = "";
+		}
+		resultado = conexion.getQuery("SELECT * FROM ostatua "+ where + sHerria + sKodOst);
 		try {
 			while (resultado.next()) {
-
-				ostMotaZerrenda.add(resultado.toString());
-
+				String izena = resultado.getString("izena");
+				ostatua.setIzena(izena);
+				String herria = resultado.getString("herria");
+				ostatua.setHerria(herria);
+				double tarifa = resultado.getDouble("tarifa");
+				ostatua.setTarifa(tarifa);
+				String gosaria = resultado.getString("gosaria");
+				ostatua.setGosaria(gosaria);
+				String ostatumota = resultado.getString("ostMota");
+				ostatua.setOstMota(ostatumota);
+				
+				zerrendaOstatua.add(ostatua);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return ostMotaZerrenda;
 	}
 
-	public void selectHotelak(String herri) {
-		String testua;
-
-		resultado = conexion.getQuery("SELECT * FROM hotel WHERE herria = '" + herri + "'");
-		try {
-			while (resultado.next()) {
-				Hotela h = new Hotela();
-				kodigoa = resultado.getInt("kodigoa");
-				h.setKodigoa(kodigoa);
-				izena = resultado.getString("izena");
-				h.setIzena(izena);
-				herria = resultado.getString("herria");
-				h.setHerria(herria);
-				izarrak = resultado.getInt("izarrak");
-				h.setIzarrak(izarrak);
-				prezioa = resultado.getDouble("prezioa");
-				h.setPrezioa(prezioa);
-				hotelZerrenda.add(h);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public ArrayList<Hotela> mandarhotel(String herri) {
-		selectHotelak(herri);
-		return this.hotelZerrenda;
+	public ArrayList<Ostatua> bidaliOstatua(String herri, String ostMota) {
+		selectOstatuak(herri, ostMota);
+		return this.zerrendaOstatua;
 	}
 
 	public boolean bezeroaDago(String nick, String pass) {

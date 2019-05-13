@@ -11,6 +11,7 @@ import javax.swing.table.TableModel;
 import controlador.Kontsultak;
 import controlador.Koordinatzailea;
 import modelo.Hotela;
+import modelo.Ostatua;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -92,11 +93,23 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
-					hotelZerrenda = micoordinador.bidaliSelectHotelak(getherriaBilatu());
-					taulaBete(hotelZerrenda);
+					ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
+					String herria="";
+					String ostatumota="";
+					try {
+						herria = txbxHerria.getText();
+					}catch (Exception e) {
+						herria="";
+					}
+					try {
+						ostatumota = (String) cbxOstatuMota.getSelectedItem();
+					}catch (Exception e) {
+						ostatumota="";
+					}
+					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
+					//taulaBete(ostatuZerrenda);
 				} catch (Exception e) {
-					System.out.println("Ez dago hotelik herri honetan.");
+					System.out.println("Txarto daude datuak sartuta.");
 				}
 
 			}
@@ -216,7 +229,7 @@ public class DatuakErakutsi extends JFrame {
 
 	}
 
-	private void taulaBete(ArrayList<Hotela> hotelZerrenda) {
+	private void taulaBete(ArrayList<Ostatua> hotelZerrenda) {
 
 		List<String[]> filas = loadtable(hotelZerrenda);
 
@@ -263,13 +276,13 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota.addItem("Apartamentua");
 	}
 	
-	private List<String[]> loadtable(ArrayList<Hotela> hotelZerrenda) {
+	private List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
 		List<String[]> filas = new ArrayList<String[]>();
-		Hotela hotel = new Hotela();
+		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
 			hotel = hotelZerrenda.get(i);
-			filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
-					String.valueOf(hotel.getPrezioa()) });
+			/*filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
+					String.valueOf(hotel.getPrezioa()) });*/
 		}
 		return filas;
 	}
@@ -278,7 +291,7 @@ public class DatuakErakutsi extends JFrame {
 		this.micoordinador = micoordinador;
 	}
 
-	public static String getherriaBilatu() {
+	public static String hartuDatuak() {
 		return txbxHerria.getText();
 	}
 }

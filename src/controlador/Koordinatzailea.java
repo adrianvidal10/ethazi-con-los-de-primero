@@ -175,9 +175,8 @@ public class Koordinatzailea {
 		// idatxiTxt();
 	}
 
-	public ArrayList<Hotela> bidaliSelectHotelak(String herria) {
-		return this.kon.mandarhotel(herria);
-
+	public ArrayList<Ostatua> bidaliOstatuSelect(String herria, String ostMota) {
+		return this.kon.bidaliOstatua(herria, ostMota);
 	}
 
 	public boolean kontsultaBezeroa(String nick, String passwd) {
