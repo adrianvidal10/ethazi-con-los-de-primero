@@ -259,7 +259,7 @@ public class DatuakErakutsi extends JFrame {
 	private void sartuKomboOstMota() {
 		cbxOstatuMota.addItem("---Guztiak---");
 		cbxOstatuMota.addItem("Hotela");
-		cbxOstatuMota.addItem("Extea");
+		cbxOstatuMota.addItem("Etxea");
 		cbxOstatuMota.addItem("Apartamentua");
 	}
 	

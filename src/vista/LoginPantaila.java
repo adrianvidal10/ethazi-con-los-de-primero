@@ -15,6 +15,7 @@ public class LoginPantaila extends JFrame {
 	private boolean youshouldnotpass;
 	private String pasahitza;
 	private String nick;
+	public String erabiltzailea;
 
 	public LoginPantaila() {
 		getContentPane().setBackground(UIManager.getColor("Button.background"));
@@ -71,6 +72,7 @@ public class LoginPantaila extends JFrame {
 				logindatuak();
 				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
 					micoordinador.mostrarErreserbaEgin();
+					erabiltzailea = textField.getText();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);

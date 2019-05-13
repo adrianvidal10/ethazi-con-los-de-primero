@@ -27,6 +27,7 @@ public class Kontsultak {
 	private ResultSet resultado;
 	private String herria;
 	private String izena;
+	private String erabilKodigoa;
 	private int kodigoa, izarrak;
 	private double prezioa;
 	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
@@ -364,6 +365,21 @@ public class Kontsultak {
 			e.getMessage();
 		}
 
+	}
+	
+	public String cogerPromocion(String erabil){
+		resultado = conexion.getQuery("SELECT promoKodigoa FROM erabiltzaileak WHERE nick = '" + erabil + "'");
+		try {
+			while (resultado.next()) {
+				erabilKodigoa = resultado.getString("promoKodigoa");
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return erabilKodigoa;
 	}
 
 }

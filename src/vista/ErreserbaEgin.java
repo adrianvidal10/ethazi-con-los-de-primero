@@ -38,7 +38,7 @@ public class ErreserbaEgin extends JFrame {
 
 	private JPanel contentPane;
 	private Koordinatzailea micoordinador;
-	private double prezioa;
+	private double prezioa, dirua;
 	private int tarifa;
 	JDateChooser dateChooser, dateChooser_1;
 	// Date erreserbaHasiera, erreserbaAmaiera;
@@ -64,6 +64,8 @@ public class ErreserbaEgin extends JFrame {
 	private JRadioButton rbu2;
 	private JRadioButton rbu3;
 	ButtonGroup lehenTaldea, bigarrenTaldea, hirugarrenTaldea;
+	
+	JLabel Label_Promoa;
 
 	/**
 	 * Launch the application.
@@ -194,7 +196,7 @@ public class ErreserbaEgin extends JFrame {
 		btnBalidatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				setPrezioa(25.50);
+				setPrezioa(25.00);
 				boolean jarraitu = comprobatuDataHutsik();
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
@@ -215,9 +217,13 @@ public class ErreserbaEgin extends JFrame {
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
 					// erreserbaAmaiera));
-					double dirua = tarifaKalkulatu(prezioa, tarifa);
+					dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
 
+					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();
+								
+					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
+					
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
 				}
 			}
@@ -330,12 +336,23 @@ public class ErreserbaEgin extends JFrame {
 		lblNewLabel.setBounds(321, 197, 92, 23);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(331, 222, 77, 14);
-		contentPane.add(lblNewLabel_1);
+		Label_Promoa = new JLabel("");
+		Label_Promoa.setFont(new Font("Tahoma", Font.BOLD, 11));
+		Label_Promoa.setBounds(331, 222, 77, 14);
+		contentPane.add(Label_Promoa);
 
 		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
+		chckbxErabiliNahi.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+
+				if (chckbxErabiliNahi.isSelected()) {
+					double dirua2 = dirua - ((dirua * 10 ) /100 );
+					lblPrezioTotErakutsi.setText(Double.toString(dirua2) + "€");
+				} else {
+					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
+				}
+			}
+		});
 		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
 		contentPane.add(chckbxErabiliNahi);
 
@@ -361,7 +378,7 @@ public class ErreserbaEgin extends JFrame {
 			emaitza = prezioa;
 		} else {
 			emaitza = prezioa * temp;
-			emaitza += prezioa;
+			emaitza = (emaitza + prezioa) * micoordinador.bidaliDataLista().size();
 		}
 
 		return emaitza;

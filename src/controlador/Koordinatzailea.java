@@ -17,13 +17,18 @@ import vista.*;
 public class Koordinatzailea {
 	// Atributuak:
 	private Kontsultak kon = new Kontsultak();
-	private LoginPantaila PantailaLogin;
+	public LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
+	private java.util.List<Date> listaData;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+	
+	
+	private Bezeroa bezero = new Bezeroa();
+	
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**
@@ -525,8 +530,16 @@ public class Koordinatzailea {
 		//metodo honek dataren arabera tarifa desberdin bat bidaltzen dizu
 		
 		//PantailaErreserba.
-		
+		this.listaData = dataLista;
 		return tarifa;
+	}
+	
+	public java.util.List<Date> bidaliDataLista(){
+		return this.listaData;
+	}
+	
+	public String bidaliPromoKodigo(String erabiltzailea) {
+		return kon.cogerPromocion(erabiltzailea);
 	}
 	
 }
