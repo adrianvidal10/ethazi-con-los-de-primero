@@ -180,12 +180,12 @@ public class ErreserbaEgin extends JFrame {
 
 		contentPane.add(lblDisponibilidad);
 		lblPrezioTotErakutsi = new JLabel("");
+		lblPrezioTotErakutsi.setSize(116, 23);
+		lblPrezioTotErakutsi.setLocation(112, 324);
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				setPrezioa(25.50);
 				boolean jarraitu = comprobatuDataHutsik();
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
@@ -206,10 +206,12 @@ public class ErreserbaEgin extends JFrame {
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
 					// erreserbaAmaiera));
+					prezioa = Double.parseDouble(micoordinador.bidaliOstatuPrezioa());
 					double dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
 
 					lblPrezioTotErakutsi.setText(Double.toString(dirua));
+					micoordinador.erreserbarenPrezioa(Double.toString(dirua));
 				}
 			}
 		});
@@ -338,11 +340,14 @@ public class ErreserbaEgin extends JFrame {
 	 */
 
 	public double tarifaKalkulatu(double prezioa, int tarifa) {
+		double temptarifa = tarifa;
+		temptarifa=temptarifa/100;
 		double emaitza = 0;
 		if (tarifa == 0) {
 			emaitza = prezioa;
 		} else {
-			emaitza = prezioa * (tarifa / 100);
+			emaitza = prezioa * temptarifa;
+			emaitza = prezioa + emaitza;
 		}
 
 		return emaitza;

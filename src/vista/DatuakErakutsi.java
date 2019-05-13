@@ -107,7 +107,7 @@ public class DatuakErakutsi extends JFrame {
 						ostatumota="";
 					}
 					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
-					//taulaBete(ostatuZerrenda);
+					taulaBete(ostatuZerrenda);
 				} catch (Exception e) {
 					System.out.println("Txarto daude datuak sartuta.");
 				}
@@ -229,7 +229,7 @@ public class DatuakErakutsi extends JFrame {
 
 	}
 
-	private void taulaBete(ArrayList<Ostatua> hotelZerrenda) {
+	public void taulaBete(ArrayList<Ostatua> hotelZerrenda) {
 
 		List<String[]> filas = loadtable(hotelZerrenda);
 
@@ -248,8 +248,11 @@ public class DatuakErakutsi extends JFrame {
 				final int row = table.rowAtPoint(new Point(e.getX(), e.getY()));
 				table.setRowSelectionInterval(row, row);
 				int row2 = table.rowAtPoint(e.getPoint());
-				String prezioa = table.getValueAt(row2, 3).toString();
+				String prezioa = table.getValueAt(row2, 2).toString();
+				String izena = table.getValueAt(row2, 0).toString();
 				micoordinador.erreserbarenPrezioa(prezioa);
+				micoordinador.OstatuIzenajarri(izena);
+			
 			}
 		});
 
@@ -263,16 +266,17 @@ public class DatuakErakutsi extends JFrame {
 	private List<String> getColumns() {
 		List<String> columnas = new ArrayList<String>();
 		columnas.add("Izena");
-		columnas.add("Izarrak");
 		columnas.add("Herria");
-		columnas.add("Prezioa");
+		columnas.add("Tarifa");
+		columnas.add("Gosaria");
+		columnas.add("Ostatu Mota");
 		return columnas;
 	}
 
 	private void sartuKomboOstMota() {
 		cbxOstatuMota.addItem("---Guztiak---");
 		cbxOstatuMota.addItem("Hotela");
-		cbxOstatuMota.addItem("Extea");
+		cbxOstatuMota.addItem("Etxea");
 		cbxOstatuMota.addItem("Apartamentua");
 	}
 	
@@ -281,8 +285,8 @@ public class DatuakErakutsi extends JFrame {
 		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
 			hotel = hotelZerrenda.get(i);
-			/*filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
-					String.valueOf(hotel.getPrezioa()) });*/
+			filas.add(new String[] { hotel.getIzena(), hotel.getHerria(), String.valueOf(hotel.getTarifa()), 
+					hotel.getGosaria(), hotel.getOstMota() });
 		}
 		return filas;
 	}

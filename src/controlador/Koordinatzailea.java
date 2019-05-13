@@ -23,6 +23,9 @@ public class Koordinatzailea {
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
+	private String ostatuprezioa = "";
+	private String ostatuizena = "";
+
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 	// Bistaratzeko pantailak:
 	// LOGIN:
@@ -470,9 +473,21 @@ public class Koordinatzailea {
 	}
 
 	public void erreserbarenPrezioa(String prezioa) {
+		this.ostatuprezioa = prezioa;
 		PantailaOrdainketa.setPrezioa(prezioa);
 	}
-
+	
+	public void OstatuIzenajarri(String izena) {
+		this.ostatuizena = izena;
+	}
+	
+	public String bidaliOstatuIzena(){
+		return this.ostatuizena;
+	}
+	
+	public String bidaliOstatuPrezioaTarifaGabe(){
+		return this.ostatuprezioa;
+	}
 
 	public String promoKodeaSortu() {
 		// promo kodea 6 karaktere
@@ -527,7 +542,9 @@ public class Koordinatzailea {
 		return tarifa;
 	}
 	
-	
+	public String bidaliOstatuPrezioa() {
+		return this.ostatuprezioa;
+	}
 	
 	
 
