@@ -250,7 +250,8 @@ public class DatuakErakutsi extends JFrame {
 				int row2 = table.rowAtPoint(e.getPoint());
 				String prezioa = table.getValueAt(row2, 2).toString();
 				String izena = table.getValueAt(row2, 0).toString();
-				micoordinador.erreserbarenPrezioa(prezioa);
+				micoordinador.erreserbarenPrezioa(Double.parseDouble(prezioa));
+				micoordinador.setOstatuarenPrezioa(Double.parseDouble(prezioa));
 				micoordinador.OstatuIzenajarri(izena);
 			
 			}

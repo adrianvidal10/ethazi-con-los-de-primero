@@ -120,6 +120,7 @@ public class ErreserbaEgin extends JFrame {
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				micoordinador.setPrezioaErreserbaPantailaOrdainketa();
 				micoordinador.mostrarVentanaLegedia();
 			}
 		});
@@ -197,6 +198,7 @@ public class ErreserbaEgin extends JFrame {
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
+						micoordinador.setErreserbaDatak(erreserbaHasiera, erreserbaAmaiera);
 
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -209,9 +211,8 @@ public class ErreserbaEgin extends JFrame {
 					prezioa = Double.parseDouble(micoordinador.bidaliOstatuPrezioa());
 					double dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
-
 					lblPrezioTotErakutsi.setText(Double.toString(dirua));
-					micoordinador.erreserbarenPrezioa(Double.toString(dirua));
+					micoordinador.erreserbarenPrezioa(dirua);
 				}
 			}
 		});

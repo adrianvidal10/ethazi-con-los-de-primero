@@ -23,8 +23,10 @@ public class Koordinatzailea {
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
-	private String ostatuprezioa = "";
-	private String ostatuizena = "";
+	private Ostatua ostatu = new Ostatua();
+	private Reserva erreserba = new Reserva();
+	//private String ostatuprezioa = "";
+	//private String ostatuizena = "";
 
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 	// Bistaratzeko pantailak:
@@ -472,21 +474,20 @@ public class Koordinatzailea {
 
 	}
 
-	public void erreserbarenPrezioa(String prezioa) {
-		this.ostatuprezioa = prezioa;
-		PantailaOrdainketa.setPrezioa(prezioa);
+	public void erreserbarenPrezioa(Double prezioa) {
+		this.erreserba.setPrezioa(prezioa);
 	}
 	
 	public void OstatuIzenajarri(String izena) {
-		this.ostatuizena = izena;
+		this.ostatu.setIzena(izena);
 	}
 	
 	public String bidaliOstatuIzena(){
-		return this.ostatuizena;
+		return this.ostatu.getIzena();
 	}
 	
-	public String bidaliOstatuPrezioaTarifaGabe(){
-		return this.ostatuprezioa;
+	public String bidaliErreserbaPrezioa(){
+		return Double.toString(this.erreserba.getPrezioa());
 	}
 
 	public String promoKodeaSortu() {
@@ -543,9 +544,21 @@ public class Koordinatzailea {
 	}
 	
 	public String bidaliOstatuPrezioa() {
-		return this.ostatuprezioa;
+		return Double.toString(this.ostatu.getTarifa());
+		
 	}
 	
+	public void setOstatuarenPrezioa(Double tarifa) {
+		this.ostatu.setTarifa(tarifa);
+	}
 	
+	public void setErreserbaDatak(Date hasiData, Date amaiData) {
+		this.erreserba.setHasiData(hasiData);
+		this.erreserba.setAmaiData(amaiData);
+	}
+	
+	public void setPrezioaErreserbaPantailaOrdainketa() {
+		PantailaOrdainketa.setPrezioa(Double.toString(this.erreserba.getPrezioa()));
+	}
 
 }
