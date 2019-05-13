@@ -29,6 +29,11 @@ public class Koordinatzailea {
 	
 	private Bezeroa bezero = new Bezeroa();
 	
+	
+	public void setBezero(Bezeroa bezero) {
+		this.bezero = bezero;
+	}
+
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**

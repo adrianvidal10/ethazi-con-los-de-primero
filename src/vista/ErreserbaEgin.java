@@ -27,6 +27,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.chrono.MinguoChronology;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
@@ -150,7 +151,13 @@ public class ErreserbaEgin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// ai ke pasar elñ presioaaaaaa
 				erreserbaHasiera = dateChooser.getDate();
-				dateChooser_1.setMinSelectableDate(erreserbaHasiera);
+				
+				Calendar c1 = Calendar.getInstance();
+				c1.setTime(erreserbaHasiera);
+				c1.add(Calendar.DAY_OF_MONTH, 1);
+				
+				java.util.Date utilDate = c1.getTime();				
+				dateChooser_1.setMinSelectableDate(utilDate);		
 
 			}
 
