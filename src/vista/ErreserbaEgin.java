@@ -20,6 +20,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import controlador.Koordinatzailea;
+import controlador.Reserva;
 
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -64,6 +65,7 @@ public class ErreserbaEgin extends JFrame {
 	private JRadioButton rbu2;
 	private JRadioButton rbu3;
 	ButtonGroup lehenTaldea, bigarrenTaldea, hirugarrenTaldea;
+	private Reserva reserva = new Reserva();
 	
 	JLabel Label_Promoa;
 
@@ -208,7 +210,9 @@ public class ErreserbaEgin extends JFrame {
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
-
+						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
+						reserva.setErreserbaAmaiera(erreserbaAmaiera.toString());
+						
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
@@ -379,6 +383,7 @@ public class ErreserbaEgin extends JFrame {
 		} else {
 			emaitza = prezioa * temp;
 			emaitza = (emaitza + prezioa) * micoordinador.bidaliDataLista().size();
+			reserva.setPrezioa(emaitza);
 		}
 
 		return emaitza;

@@ -23,9 +23,10 @@ public class Koordinatzailea {
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
+	private CrearFicheroReserva ficheroReserva;
 	private java.util.List<Date> listaData;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-	
+	private Reserva reserva = new Reserva();
 	
 	private Bezeroa bezero = new Bezeroa();
 	
@@ -138,6 +139,10 @@ public class Koordinatzailea {
 
 	public void setPantailaLegedia(LegediaPantaila PantailaLegedia) {
 		this.PantailaLegedia = PantailaLegedia;
+	}
+	
+	public void setFicheroReservaKlasea(CrearFicheroReserva ficheroReserva) {
+		this.ficheroReserva = ficheroReserva;
 	}
 	
 	public ErregistruPantaila PantailaErregistru() {
@@ -539,6 +544,15 @@ public class Koordinatzailea {
 	
 	public String bidaliPromoKodigo(String erabiltzailea) {
 		return kon.cogerPromocion(erabiltzailea);
+	}
+	
+	public void mireserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+	
+	public Reserva erreserbaFitxerora() {
+		return this.reserva;
+		
 	}
 	
 }
