@@ -231,6 +231,8 @@ public class ErreserbaEgin extends JFrame {
 								
 					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
 					
+					
+					
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
 				}
 			}
@@ -263,6 +265,10 @@ public class ErreserbaEgin extends JFrame {
 					rbs3.setEnabled(false);
 					rbb3.setEnabled(false);
 					rbu3.setEnabled(false);
+					
+					///////
+					dirua = dirua + (balorea * 10); 
+					
 
 					break;
 
@@ -273,6 +279,11 @@ public class ErreserbaEgin extends JFrame {
 					rbu3.setEnabled(true);
 					rbs3.setSelected(true);
 
+					
+				///////
+					dirua = dirua + (balorea * 10); 
+					
+					
 				}
 
 			}

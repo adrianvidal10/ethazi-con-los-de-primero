@@ -381,21 +381,15 @@ public class Kontsultak {
 				erabilKodigoa = resultado.getString("promoKodigoa");
 				
 				String nick = resultado.getString("nick");
-
-				String pasahitza = resultado.getString("pasahitza");
-				
-				String nan = resultado.getString("nan");
-			
-				String erabil = resultado.getString("izena");
-				
-				String LehenAbizena = resultado.getString("abizenaA");
-				
+				String pasahitza = resultado.getString("pasahitza");			
+				String nan = resultado.getString("nan");		
+				String erabil = resultado.getString("izena");			
+				String LehenAbizena = resultado.getString("abizenaA");				
 				String BigarrenAbizena = resultado.getString("abizenaB");
 				
 				Bezeroa b = new Bezeroa(nan, erabil, LehenAbizena, BigarrenAbizena, pasahitza, nick);
 				
-				bezeroaZerrenda.add(b);
-				
+				bezeroaZerrenda.add(b);		
 				
 			}
 

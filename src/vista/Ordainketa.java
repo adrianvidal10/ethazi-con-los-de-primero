@@ -294,7 +294,7 @@ public class Ordainketa extends JFrame {
 						      System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
 						      System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
 						      
-						      
+						      micoordinador.mostrarPantailaDatuakErakutsi();
 						      
 						    } else {
 						      System.out.println("No Selection ");
