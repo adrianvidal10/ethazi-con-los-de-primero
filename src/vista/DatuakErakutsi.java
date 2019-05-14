@@ -239,8 +239,12 @@ public class DatuakErakutsi extends JFrame {
 			}
 		};
 		table = new JTable(tableModel);
+		for (int i = 0; i < table.getRowCount(); i++) {
+		table.remove(i);
+		}
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
+		table.setAutoscrolls(true);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
 		table.addMouseListener(new MouseAdapter() {
@@ -253,7 +257,7 @@ public class DatuakErakutsi extends JFrame {
 				micoordinador.erreserbarenPrezioa(Double.parseDouble(prezioa));
 				micoordinador.setOstatuarenPrezioa(Double.parseDouble(prezioa));
 				micoordinador.OstatuIzenajarri(izena);
-			
+
 			}
 		});
 
