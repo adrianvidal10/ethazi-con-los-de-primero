@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -47,19 +48,22 @@ public class CrearFicheroReserva {
 	private void rellenarFichero(Koordinatzailea micoordinador, String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
 		PrintWriter pw = null;
 		Reserva miReserva = micoordinador.getReserva();
-		String erreserbaAmaiera = miReserva.getErreserbaAmaiera();
-		String erreserbaHasiera = miReserva.getErreserbaHasiera();
+		String erreserbaAmaiera = new SimpleDateFormat("dd/MM/yyyy").format( miReserva.getAmaiData() );
+		String erreserbaHasiera = new SimpleDateFormat("dd/MM/yyyy").format( miReserva.getHasiData() );
 		String prezioa = Double.toString(miReserva.getPrezioa());
+		String nick = miReserva.getNick();
+		String OstaIzena = micoordinador.bidaliOstatuIzena();
 		try {
 			fichero = new FileWriter(fileChooser.getSelectedFile() + "\\reserva" + numeroReserva + ".txt");
 			pw = new PrintWriter(fichero);
 
 			pw.print("----------    BIDAION     ---------- \r\n"
-					+ "Hotel:                             x \r\n"
+					+ "Hotel:                             "+ OstaIzena +" \r\n"
 					+ "Nº habitaciones:                   x \r\n"
 					+ "Hasiera                            " + erreserbaAmaiera + " \r\n"
 					+ "Amaiera                            " + erreserbaHasiera + " \r\n"
 					+ "------------------------------------- \r\n"
+					+ "Erabiltzaile                       "+ nick +" \r\n" 
 					+ "Izena                              x \r\n" 
 					+ "Abizena                            x \r\n"
 					+ "NAN                                x \r\n"

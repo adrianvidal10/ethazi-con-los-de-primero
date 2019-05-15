@@ -300,16 +300,6 @@ public class Ordainketa extends JFrame {
 						    } else {
 						      System.out.println("No Selection ");
 						    }
-					
-
-
-					if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-						System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
-						System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
-
-					} else {
-						System.out.println("No Selection ");
-					}
 
 
 					//

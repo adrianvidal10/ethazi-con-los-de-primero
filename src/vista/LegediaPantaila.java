@@ -91,7 +91,7 @@ public class LegediaPantaila extends JFrame {
 		btnJarraitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				micoordinador.mostrarVentanaOrdainketa();
-				//System.out.println(micoordinador.getReserva());
+				System.out.println(micoordinador.getReserva());
 			}
 		});
 		btnJarraitu.setEnabled(false);
