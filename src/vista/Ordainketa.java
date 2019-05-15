@@ -282,7 +282,8 @@ public class Ordainketa extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 			
-					micoordinador.insertErreserba();
+					//HAU TXARTO DOA
+					//micoordinador.insertErreserba();
 					
 					JFileChooser fileChooser = new JFileChooser();
 					fileChooser.setDialogTitle("Aukeratu fitxeroaren helmuga");
