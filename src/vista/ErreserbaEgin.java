@@ -132,6 +132,7 @@ public class ErreserbaEgin extends JFrame {
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				micoordinador.setPrezioaErreserbaPantailaOrdainketa();
 				micoordinador.mostrarVentanaLegedia();
 			}
 		});
@@ -198,14 +199,18 @@ public class ErreserbaEgin extends JFrame {
 
 		contentPane.add(lblDisponibilidad);
 		lblPrezioTotErakutsi = new JLabel("");
+
+		lblPrezioTotErakutsi.setSize(116, 23);
+		lblPrezioTotErakutsi.setLocation(112, 324);
+
 		lblPrezioTotErakutsi.setSize(88, 14);
 		lblPrezioTotErakutsi.setLocation(107, 333);
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 
-				setPrezioa(25.00);
 				boolean jarraitu = comprobatuDataHutsik();
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
@@ -217,6 +222,8 @@ public class ErreserbaEgin extends JFrame {
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
+						micoordinador.setErreserbaDatak(erreserbaHasiera, erreserbaAmaiera);
+
 						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
 						reserva.setErreserbaAmaiera(erreserbaAmaiera.toString());
 						
@@ -228,16 +235,17 @@ public class ErreserbaEgin extends JFrame {
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
 					// erreserbaAmaiera));
+
+					prezioa = Double.parseDouble(micoordinador.bidaliOstatuPrezioa());
+
 					dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
-
-					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();
-								
+					lblPrezioTotErakutsi.setText(Double.toString(dirua));
+					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();		
 					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
-					
-					
-					
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
+					micoordinador.erreserbarenPrezioa(dirua);
+
 				}
 			}
 		});
@@ -377,7 +385,6 @@ public class ErreserbaEgin extends JFrame {
 		});
 		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
 		contentPane.add(chckbxErabiliNahi);
-
 	}
 
 	/*

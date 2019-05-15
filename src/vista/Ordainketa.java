@@ -315,7 +315,7 @@ public class Ordainketa extends JFrame {
 					//
 					//
 					// Movida de Borjita
-//					controlador.CrearFicheroReserva.sortuFitxeroa(fileChooser);
+					//controlador.CrearFicheroReserva.sortuFitxeroa(fileChooser);
 					
 					CrearFicheroReserva crearFicheroReserva = new CrearFicheroReserva();
 					crearFicheroReserva.sortuFitxeroa(micoordinador, fileChooser);

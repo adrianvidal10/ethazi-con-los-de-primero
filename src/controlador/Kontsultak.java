@@ -48,18 +48,20 @@ public class Kontsultak {
 		String sKodOst = " AND ostMota = '";
 		if (herri.equalsIgnoreCase("")==true) {
 			sHerria = "";
+			sKodOst = "ostMota = ' ";
 		}else {
-			sHerria += herri;
-			sHerria += "'";
+			sHerria = sHerria + herri;
+			sHerria = sHerria + "'";
 		}
 		if (ostMota.equalsIgnoreCase("")==true) {
 			sKodOst = "";
 		}else {
-			sKodOst += ostMota;
-			sKodOst += "'";
+			sKodOst = sKodOst + ostMota;
+			sKodOst = sKodOst + "'";
 		}
 		if (ostMota.equalsIgnoreCase("")==true && sHerria.equalsIgnoreCase("")==true) {
 			where = "";
+			
 		}
 		resultado = conexion.getQuery("SELECT * FROM ostatua "+ where + sHerria + sKodOst);
 		try {
@@ -74,12 +76,11 @@ public class Kontsultak {
 				ostatua.setGosaria(gosaria);
 				String ostatumota = resultado.getString("ostMota");
 				ostatua.setOstMota(ostatumota);
-				
 				zerrendaOstatua.add(ostatua);
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

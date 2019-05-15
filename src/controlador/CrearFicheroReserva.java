@@ -46,7 +46,7 @@ public class CrearFicheroReserva {
 
 	private void rellenarFichero(Koordinatzailea micoordinador, String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
 		PrintWriter pw = null;
-		Reserva miReserva = micoordinador.erreserbaFitxerora();
+		Reserva miReserva = micoordinador.getReserva();
 		String erreserbaAmaiera = miReserva.getErreserbaAmaiera();
 		String erreserbaHasiera = miReserva.getErreserbaHasiera();
 		String prezioa = Double.toString(miReserva.getPrezioa());

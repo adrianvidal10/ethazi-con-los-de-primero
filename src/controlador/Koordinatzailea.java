@@ -23,15 +23,16 @@ public class Koordinatzailea {
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
+	private Ostatua ostatu = new Ostatua();
+	private Reserva erreserba = new Reserva();
+	private Bezeroa bezero = new Bezeroa();
+	//private String ostatuprezioa = "";
+	//private String ostatuizena = "";
 	private CrearFicheroReserva ficheroReserva;
 	private java.util.List<Date> listaData;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
-	private Reserva reserva = new Reserva();
 	
-
-	private Bezeroa bezero = new Bezeroa();
-
 	public void setBezero(Bezeroa bezero) {
 		this.bezero = bezero;
 	}
@@ -486,8 +487,20 @@ public class Koordinatzailea {
 
 	}
 
-	public void erreserbarenPrezioa(String prezioa) {
-		PantailaOrdainketa.setPrezioa(prezioa);
+	public void erreserbarenPrezioa(Double prezioa) {
+		this.erreserba.setPrezioa(prezioa);
+	}
+	
+	public void OstatuIzenajarri(String izena) {
+		this.ostatu.setIzena(izena);
+	}
+	
+	public String bidaliOstatuIzena(){
+		return this.ostatu.getIzena();
+	}
+	
+	public String bidaliErreserbaPrezioa(){
+		return Double.toString(this.erreserba.getPrezioa());
 	}
 
 	public String promoKodeaSortu() {
@@ -539,6 +552,24 @@ public class Koordinatzailea {
 		this.listaData = dataLista;
 		return tarifa;
 	}
+	
+	public String bidaliOstatuPrezioa() {
+		return Double.toString(this.ostatu.getTarifa());
+		
+	}
+	
+	public void setOstatuarenPrezioa(Double tarifa) {
+		this.ostatu.setTarifa(tarifa);
+	}
+	
+	public void setErreserbaDatak(Date hasiData, Date amaiData) {
+		this.erreserba.setHasiData(hasiData);
+		this.erreserba.setAmaiData(amaiData);
+	}
+	
+	public void setPrezioaErreserbaPantailaOrdainketa() {
+		PantailaOrdainketa.setPrezioa(Double.toString(this.erreserba.getPrezioa()));
+	}
 
 	public java.util.List<Date> bidaliDataLista() {
 		return this.listaData;
@@ -547,15 +578,14 @@ public class Koordinatzailea {
 	public String bidaliPromoKodigo(String erabiltzailea) {
 		return kon.cogerPromocion(erabiltzailea);
 	}
-
 	
-	public void mireserva(Reserva reserva) {
-		this.reserva = reserva;
+	public void setReserva(Reserva erreserba) {
+		this.erreserba = erreserba;
 	}
-	
-	public Reserva erreserbaFitxerora() {
-		return this.reserva;
-		
+
+	public Reserva getReserva() {
+		return this.erreserba;
+
 	}
 	
 }
