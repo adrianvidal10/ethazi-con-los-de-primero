@@ -63,7 +63,7 @@ public class Kontsultak {
 			}
 		}
 	
-		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select + "ORDER BY izena");
+		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select + "ORDER BY plazaKant");
 		try {
 			while (resultado.next()) {
 				Ostatua ostatua = new Ostatua();
