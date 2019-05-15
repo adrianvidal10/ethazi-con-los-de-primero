@@ -24,16 +24,28 @@ import modelo.Bezeroa;
 
 public class Kontsultak {
 
+	//private Koordinatzailea micoordinador = new Koordinatzailea();
 	private Konexioa conexion = new Konexioa();
 	private ResultSet resultado;
+	private String herria;
+	private String izena;
+	private String erabilKodigoa;
+	private int kodigoa, izarrak;
+	private double prezioa;
+	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
+	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
+	
+	
+	private ArrayList<Bezeroa> bezeroaZerrenda = new ArrayList<Bezeroa>();
+
 	Ostatua ostatua = new Ostatua();
 	private ArrayList<Ostatua> zerrendaOstatua = new ArrayList<Ostatua>();
 	//private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
 	public void selectOstatuak(String herri, String ostMota) {
-		String where = "WHERE";
-		String sHerria = " herria ='";
-		String sKodOst = " AND ostMota ='";
+		String where = " WHERE ";
+		String sHerria = " herria = '";
+		String sKodOst = " AND ostMota = '";
 		if (herri.equalsIgnoreCase("")==true) {
 			sHerria = "";
 			sKodOst = "ostMota = ' ";
@@ -346,12 +358,12 @@ public class Kontsultak {
 	}
 
 	public void insertErreserba() {
-		boolean insert = true;// NANdago(beze.getDni());
+		boolean insert = true;
 
 		try {
 			if (insert = true) {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant)"
+						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant, oheLista)"
 						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'"
 						+ "'ostatuKod'" + "'errNick'" + "'gelaKant'");
 			}
@@ -359,6 +371,34 @@ public class Kontsultak {
 			e.getMessage();
 		}
 
+	}
+	
+	public String cogerPromocion(String erabilt){
+		resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE nick = '" + erabilt + "'");
+		try {
+			while (resultado.next()) {
+				
+				
+				erabilKodigoa = resultado.getString("promoKodigoa");
+				
+				String nick = resultado.getString("nick");
+				String pasahitza = resultado.getString("pasahitza");			
+				String nan = resultado.getString("nan");		
+				String erabil = resultado.getString("izena");			
+				String LehenAbizena = resultado.getString("abizenaA");				
+				String BigarrenAbizena = resultado.getString("abizenaB");
+				
+				Bezeroa b = new Bezeroa(nan, erabil, LehenAbizena, BigarrenAbizena, pasahitza, nick);
+				
+				bezeroaZerrenda.add(b);		
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return erabilKodigoa;
 	}
 
 }

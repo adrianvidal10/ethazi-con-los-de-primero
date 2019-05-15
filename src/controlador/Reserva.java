@@ -6,6 +6,8 @@ public class Reserva {
 	private double prezioa = 0;
 	private Date hasiData;
 	private Date amaiData;
+	private String erreserbaHasiera = "";
+	private String erreserbaAmaiera = "";
 	
 	public Reserva() {
 	}
@@ -19,7 +21,6 @@ public class Reserva {
 	public void setPrezioa(double prezioa) {
 		this.prezioa = prezioa;
 	}
-
 
 	public Date getHasiData() {
 		return hasiData;
@@ -40,7 +41,20 @@ public class Reserva {
 		this.amaiData = amaiData;
 	}
 
+	public String getErreserbaHasiera() {
+		return erreserbaHasiera;
+	}
 
+	public String getErreserbaAmaiera() {
+		return erreserbaAmaiera;
+	}
 
+	public void setErreserbaHasiera(String erreserbaHasiera) {
+		this.erreserbaHasiera = erreserbaHasiera;
+	}
+
+	public void setErreserbaAmaiera(String erreserbaAmaiera) {
+		this.erreserbaAmaiera = erreserbaAmaiera;
+	}
 
 }

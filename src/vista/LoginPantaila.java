@@ -15,6 +15,7 @@ public class LoginPantaila extends JFrame {
 	private boolean youshouldnotpass;
 	private String pasahitza;
 	private String nick;
+	public String erabiltzailea;
 
 	public LoginPantaila() {
 		getContentPane().setBackground(UIManager.getColor("Button.background"));
@@ -55,7 +56,7 @@ public class LoginPantaila extends JFrame {
 		btnSartu.setBounds(83, 282, 176, 32);
 		getContentPane().add(btnSartu);
 
-		JButton btnLogueatu = new JButton("ERREGISRTATU");
+		JButton btnLogueatu = new JButton("ERREGISTRATU");
 		btnLogueatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				micoordinador.mostrarPantailaErregistru();
@@ -71,6 +72,7 @@ public class LoginPantaila extends JFrame {
 				logindatuak();
 				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
 					micoordinador.mostrarErreserbaEgin();
+					erabiltzailea = textField.getText();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);

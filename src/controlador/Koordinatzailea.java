@@ -17,7 +17,7 @@ import vista.*;
 public class Koordinatzailea {
 	// Atributuak:
 	private Kontsultak kon = new Kontsultak();
-	private LoginPantaila PantailaLogin;
+	public LoginPantaila PantailaLogin;
 	private Ordainketa PantailaOrdainketa;
 	private DatuakErakutsi PantailaDatuakErakutsi;
 	private ErregistruPantaila PantailaErregistru;
@@ -25,10 +25,18 @@ public class Koordinatzailea {
 	private LegediaPantaila PantailaLegedia;
 	private Ostatua ostatu = new Ostatua();
 	private Reserva erreserba = new Reserva();
+	private Bezeroa bezero = new Bezeroa();
 	//private String ostatuprezioa = "";
 	//private String ostatuizena = "";
-
+	private CrearFicheroReserva ficheroReserva;
+	private java.util.List<Date> listaData;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+
+	
+	public void setBezero(Bezeroa bezero) {
+		this.bezero = bezero;
+	}
+
 	// Bistaratzeko pantailak:
 	// LOGIN:
 	/**
@@ -83,7 +91,7 @@ public class Koordinatzailea {
 		PantailaLegedia.setVisible(false);
 		PantailaOrdainketa.setVisible(true);
 	}
-	
+
 	public void mostrarVentanaLegedia() {
 		// VENTANA PRINTZIPALA.setVisible(false);
 		PantailaErregistru.setVisible(false);
@@ -118,19 +126,20 @@ public class Koordinatzailea {
 		PantailaLogin.setVisible(false);
 		PantailaDatuakErakutsi.setVisible(true);
 		PantailaOrdainketa.dispose();
+		PantailaErreserbaEgin.setVisible(false);
 	}
 
 	public void setDatuakErakutsi(ErreserbaEgin PantailaErreserbaEgin) {
 		this.PantailaErreserbaEgin = PantailaErreserbaEgin;
 	}
-	
+
 	/*
 	 * Erregistru Pantaila.
 	 */
 	public void setPantailaErregistru(ErregistruPantaila Erregistru) {
 		this.PantailaErregistru = Erregistru;
 	}
-	
+
 	public void setPantailaErreserba(ErreserbaEgin PantailaErreserbaEgin) {
 		this.PantailaErreserbaEgin = PantailaErreserbaEgin;
 	}
@@ -139,6 +148,10 @@ public class Koordinatzailea {
 		this.PantailaLegedia = PantailaLegedia;
 	}
 	
+	public void setFicheroReservaKlasea(CrearFicheroReserva ficheroReserva) {
+		this.ficheroReserva = ficheroReserva;
+	}
+
 	public ErregistruPantaila PantailaErregistru() {
 		return PantailaErregistru;
 	}
@@ -154,7 +167,7 @@ public class Koordinatzailea {
 		PantailaDatuakErakutsi.setVisible(false);
 		PantailaErreserbaEgin.setVisible(true);
 	}
-	
+
 	public void logueatzekoBotoiak() {
 		PantailaErregistru.setVisible(false);
 		PantailaLogin.setVisible(true);
@@ -493,7 +506,7 @@ public class Koordinatzailea {
 	public String promoKodeaSortu() {
 		// promo kodea 6 karaktere
 		String emaitza = "";
-		String znb="";
+		String znb = "";
 		String[] gauzak = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
 				"S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		do {
@@ -503,43 +516,40 @@ public class Koordinatzailea {
 			}
 		} while (kon.bilatuPromoa(emaitza) == true);
 
-		emaitza=znb;
+		emaitza = znb;
 		return emaitza;
 	}
 
 	public boolean bilatuNick(String nick) {
 		return kon.bilatuNick(nick);
 	}
-	
-	
-	//ERRESERBA EGIN BALIDAPENAK
-	
+
+	// ERRESERBA EGIN BALIDAPENAK
+
 	public int tarifaMotaBidali(Date erreserbaHasiera, Date erreserbaAmaiera) {
-		int tarifa=0;
+		int tarifa = 0;
 		java.util.List<Date> dataLista;
 		boolean oporraldiaDa, udaOporrakDira;
-		
+
 		System.out.println(erreserbaHasiera);
 		dataLista = Kontsultak.getErreserbarenDataGuztiak(erreserbaHasiera, erreserbaAmaiera);
 		oporraldiaDa = kon.oporraldiaDa(erreserbaHasiera, erreserbaAmaiera, dataLista);
 		udaOporrakDira = kon.udaOporrakDira(erreserbaHasiera, erreserbaAmaiera, dataLista);
-		
-		if (udaOporrakDira==true && oporraldiaDa==true){
+
+		if (udaOporrakDira == true && oporraldiaDa == true) {
 			tarifa = 50;
-		}
-		else if (udaOporrakDira==true){
+		} else if (udaOporrakDira == true) {
 			tarifa = 50;
-		}
-		else if (oporraldiaDa==true){
+		} else if (oporraldiaDa == true) {
 			tarifa = 25;
 		} else {
 			tarifa = 0;
 		}
-			
-		//metodo honek dataren arabera tarifa desberdin bat bidaltzen dizu
-		
-		//PantailaErreserba.
-		
+
+		// metodo honek dataren arabera tarifa desberdin bat bidaltzen dizu
+
+		// PantailaErreserba.
+		this.listaData = dataLista;
 		return tarifa;
 	}
 	
@@ -561,4 +571,12 @@ public class Koordinatzailea {
 		PantailaOrdainketa.setPrezioa(Double.toString(this.erreserba.getPrezioa()));
 	}
 
+	public java.util.List<Date> bidaliDataLista() {
+		return this.listaData;
+	}
+
+	public String bidaliPromoKodigo(String erabiltzailea) {
+		return kon.cogerPromocion(erabiltzailea);
+	}
+	
 }

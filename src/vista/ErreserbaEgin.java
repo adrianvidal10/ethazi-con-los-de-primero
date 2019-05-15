@@ -20,6 +20,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import controlador.Koordinatzailea;
+import controlador.Reserva;
 
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -27,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.chrono.MinguoChronology;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
@@ -38,7 +40,7 @@ public class ErreserbaEgin extends JFrame {
 
 	private JPanel contentPane;
 	private Koordinatzailea micoordinador;
-	private double prezioa;
+	private double prezioa, dirua;
 	private int tarifa;
 	JDateChooser dateChooser, dateChooser_1;
 	// Date erreserbaHasiera, erreserbaAmaiera;
@@ -64,6 +66,9 @@ public class ErreserbaEgin extends JFrame {
 	private JRadioButton rbu2;
 	private JRadioButton rbu3;
 	ButtonGroup lehenTaldea, bigarrenTaldea, hirugarrenTaldea;
+	private Reserva reserva = new Reserva();
+	
+	JLabel Label_Promoa;
 
 	/**
 	 * Launch the application.
@@ -93,6 +98,13 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.setLayout(null);
 
 		btnAtzera = new JButton("Atzera");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				micoordinador.mostrarPantailaDatuakErakutsi();
+
+			}
+		});
 		btnAtzera.setBounds(10, 11, 80, 23);
 		contentPane.add(btnAtzera);
 
@@ -142,7 +154,13 @@ public class ErreserbaEgin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// ai ke pasar elñ presioaaaaaa
 				erreserbaHasiera = dateChooser.getDate();
-				dateChooser_1.setMinSelectableDate(erreserbaHasiera);
+				
+				Calendar c1 = Calendar.getInstance();
+				c1.setTime(erreserbaHasiera);
+				c1.add(Calendar.DAY_OF_MONTH, 1);
+				
+				java.util.Date utilDate = c1.getTime();				
+				dateChooser_1.setMinSelectableDate(utilDate);		
 
 			}
 
@@ -181,12 +199,18 @@ public class ErreserbaEgin extends JFrame {
 
 		contentPane.add(lblDisponibilidad);
 		lblPrezioTotErakutsi = new JLabel("");
+
 		lblPrezioTotErakutsi.setSize(116, 23);
 		lblPrezioTotErakutsi.setLocation(112, 324);
+
+		lblPrezioTotErakutsi.setSize(88, 14);
+		lblPrezioTotErakutsi.setLocation(107, 333);
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+
 				boolean jarraitu = comprobatuDataHutsik();
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
@@ -200,6 +224,9 @@ public class ErreserbaEgin extends JFrame {
 						System.out.println(erreserbaHasiera);
 						micoordinador.setErreserbaDatak(erreserbaHasiera, erreserbaAmaiera);
 
+						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
+						reserva.setErreserbaAmaiera(erreserbaAmaiera.toString());
+						
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
@@ -208,11 +235,17 @@ public class ErreserbaEgin extends JFrame {
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
 					// erreserbaAmaiera));
+
 					prezioa = Double.parseDouble(micoordinador.bidaliOstatuPrezioa());
-					double dirua = tarifaKalkulatu(prezioa, tarifa);
+
+					dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
 					lblPrezioTotErakutsi.setText(Double.toString(dirua));
+					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();		
+					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
+					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
 					micoordinador.erreserbarenPrezioa(dirua);
+
 				}
 			}
 		});
@@ -232,7 +265,7 @@ public class ErreserbaEgin extends JFrame {
 					rbs2.setEnabled(false);
 					rbb2.setEnabled(false);
 					rbu2.setEnabled(false);
-					
+
 					break;
 
 				case 2:
@@ -244,6 +277,10 @@ public class ErreserbaEgin extends JFrame {
 					rbs3.setEnabled(false);
 					rbb3.setEnabled(false);
 					rbu3.setEnabled(false);
+					
+					///////
+					dirua = dirua + (balorea * 10); 
+					
 
 					break;
 
@@ -254,6 +291,11 @@ public class ErreserbaEgin extends JFrame {
 					rbu3.setEnabled(true);
 					rbs3.setSelected(true);
 
+					
+				///////
+					dirua = dirua + (balorea * 10); 
+					
+					
 				}
 
 			}
@@ -319,20 +361,30 @@ public class ErreserbaEgin extends JFrame {
 		hirugarrenTaldea.add(rbs3);
 		hirugarrenTaldea.add(rbb3);
 		hirugarrenTaldea.add(rbu3);
-		
+
 		JLabel lblNewLabel = new JLabel("Zure kodigoa:");
 		lblNewLabel.setBounds(321, 197, 92, 23);
 		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(331, 222, 77, 14);
-		contentPane.add(lblNewLabel_1);
-		
+
+		Label_Promoa = new JLabel("");
+		Label_Promoa.setFont(new Font("Tahoma", Font.BOLD, 11));
+		Label_Promoa.setBounds(331, 222, 77, 14);
+		contentPane.add(Label_Promoa);
+
 		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
+		chckbxErabiliNahi.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+
+				if (chckbxErabiliNahi.isSelected()) {
+					double dirua2 = dirua - ((dirua * 10 ) /100 );
+					lblPrezioTotErakutsi.setText(Double.toString(dirua2) + "€");
+				} else {
+					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
+				}
+			}
+		});
 		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
 		contentPane.add(chckbxErabiliNahi);
-
 	}
 
 	/*
@@ -341,14 +393,22 @@ public class ErreserbaEgin extends JFrame {
 	 */
 
 	public double tarifaKalkulatu(double prezioa, int tarifa) {
-		double temptarifa = tarifa;
-		temptarifa=temptarifa/100;
-		double emaitza = 0;
+		double emaitza;
+		double temp = 0;
+		System.out.println(temp);
+		System.out.println(tarifa);
+		System.out.println(prezioa);
+		double temptarifa= tarifa;
+		 temp = temptarifa/100;
+		System.out.println("-");
+		System.out.println(temp);
+		System.out.println(tarifa);
 		if (tarifa == 0) {
 			emaitza = prezioa;
 		} else {
-			emaitza = prezioa * temptarifa;
-			emaitza = prezioa + emaitza;
+			emaitza = prezioa * temp;
+			emaitza = (emaitza + prezioa) * micoordinador.bidaliDataLista().size();
+			reserva.setPrezioa(emaitza);
 		}
 
 		return emaitza;
