@@ -373,8 +373,10 @@ public class ErreserbaEgin extends JFrame {
 				if (chckbxErabiliNahi.isSelected()) {
 					double dirua2 = dirua - ((dirua * 10) / 100);
 					lblPrezioTotErakutsi.setText(Double.toString(dirua2) + "€");
+					micoordinador.erreserbarenPrezioa(dirua2);
 				} else {
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
+					micoordinador.erreserbarenPrezioa(dirua);
 				}
 			}
 		});
