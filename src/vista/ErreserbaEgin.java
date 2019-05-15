@@ -130,6 +130,7 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(lblGelaKant);
 
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
+		btnOrdainketaBurutu.setEnabled(false);
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				micoordinador.setPrezioaErreserbaPantailaOrdainketa();
@@ -210,7 +211,7 @@ public class ErreserbaEgin extends JFrame {
 		btnBalidatu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				btnOrdainketaBurutu.setEnabled(true);
 				boolean jarraitu = comprobatuDataHutsik();
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
