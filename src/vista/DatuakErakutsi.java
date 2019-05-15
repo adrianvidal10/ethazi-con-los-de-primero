@@ -94,20 +94,20 @@ public class DatuakErakutsi extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
-					String herria="";
-					String ostatumota="";
+					String herria = "";
+					String ostatumota = "";
 					try {
 						herria = txbxHerria.getText();
-					}catch (Exception e) {
-						herria="";
+					} catch (Exception e) {
+						herria = "";
 					}
 					try {
 						ostatumota = (String) cbxOstatuMota.getSelectedItem();
-					}catch (Exception e) {
-						ostatumota="";
+					} catch (Exception e) {
+						ostatumota = "";
 					}
 					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
-					//taulaBete(ostatuZerrenda);
+					// taulaBete(ostatuZerrenda);
 				} catch (Exception e) {
 					System.out.println("Txarto daude datuak sartuta.");
 				}
@@ -158,7 +158,7 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.add(lblOstatuMota);
 
 		cbxOstatuMota = new JComboBox();
-		//cbxOstatuMota.addItem();
+		// cbxOstatuMota.addItem();
 		cbxOstatuMota.setBounds(100, 74, 112, 20);
 		sartuKomboOstMota();
 		contentPane.add(cbxOstatuMota);
@@ -171,8 +171,7 @@ public class DatuakErakutsi extends JFrame {
 		lblAmaieraData.setBounds(345, 34, 71, 14);
 		contentPane.add(lblAmaieraData);
 
-
-		//hauek soilik erabilgarriak hotelak bilatzerakoan
+		// hauek soilik erabilgarriak hotelak bilatzerakoan
 		spnIzarKop = new JSpinner();
 		spnIzarKop.setModel(new SpinnerNumberModel(1, 1, 5, 1));
 		spnIzarKop.setEnabled(false);
@@ -183,9 +182,7 @@ public class DatuakErakutsi extends JFrame {
 		lblIzarKopurua.setBounds(376, 77, 75, 14);
 		contentPane.add(lblIzarKopurua);
 
-		
-
-		//hauek soilik erabilgarriak apartamentuak bilatzerakoan
+		// hauek soilik erabilgarriak apartamentuak bilatzerakoan
 		chckbxParkina = new JCheckBox("Parkina");
 		chckbxParkina.setEnabled(false);
 		chckbxParkina.setBounds(309, 140, 67, 23);
@@ -275,14 +272,17 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota.addItem("Etxea");
 		cbxOstatuMota.addItem("Apartamentua");
 	}
-	
+
 	private List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
 		List<String[]> filas = new ArrayList<String[]>();
 		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
 			hotel = hotelZerrenda.get(i);
-			/*filas.add(new String[] { hotel.getIzena(), Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
-					String.valueOf(hotel.getPrezioa()) });*/
+			/*
+			 * filas.add(new String[] { hotel.getIzena(),
+			 * Integer.toString(hotel.getIzarrak()), hotel.getHerria(),
+			 * String.valueOf(hotel.getPrezioa()) });
+			 */
 		}
 		return filas;
 	}
