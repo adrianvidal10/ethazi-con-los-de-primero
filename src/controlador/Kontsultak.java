@@ -43,27 +43,31 @@ public class Kontsultak {
 	//private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
 	public void selectOstatuak(String herri, String ostMota) {
+		String select = " WHERE ";
 		String where = " WHERE ";
 		String sHerria = " herria = '";
-		String sKodOst = " AND ostMota = '";
-		if (herri.equalsIgnoreCase("")==true) {
-			sHerria = "";
-			sKodOst = "ostMota = ' ";
-		}else {
-			sHerria = sHerria + herri;
-			sHerria = sHerria + "'";
+		String sKodOst = " ostMota = '";
+		
+		select += sHerria + herri + "' AND" + sKodOst + ostMota + "'";
+		
+		if (herri.equalsIgnoreCase("")==true || herri.equalsIgnoreCase(null)==true) {
+			if (ostMota.equalsIgnoreCase("---Guztiak---")==true) {
+				select="";
+			}else {
+				select = where + sKodOst + ostMota +"'";
+				sHerria = "";
+			}
 		}
-		if (ostMota.equalsIgnoreCase("")==true) {
-			sKodOst = "";
-		}else {
-			sKodOst = sKodOst + ostMota;
-			sKodOst = sKodOst + "'";
+		if (ostMota.equalsIgnoreCase("---Guztiak---")==true) {
+			if (herri.equalsIgnoreCase("")==true || herri.equalsIgnoreCase(null)==true) {
+				select="";
+			}else {
+				select = where + sHerria + herri +"'";
+				sKodOst = "";
+			}
 		}
-		if (ostMota.equalsIgnoreCase("")==true && sHerria.equalsIgnoreCase("")==true) {
-			where = "";
-			
-		}
-		resultado = conexion.getQuery("SELECT * FROM ostatua "+ where + sHerria + sKodOst);
+	
+		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select);
 		try {
 			while (resultado.next()) {
 				String izena = resultado.getString("izena");

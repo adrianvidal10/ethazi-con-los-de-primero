@@ -91,7 +91,6 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
 					ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
 					String herria = "";
 					String ostatumota = "";
@@ -110,11 +109,6 @@ public class DatuakErakutsi extends JFrame {
 					// taulaBete(ostatuZerrenda);
 
 					taulaBete(ostatuZerrenda);
-
-				} catch (Exception e) {
-					System.out.println("Txarto daude datuak sartuta.");
-				}
-
 			}
 		});
 		btnBilatu.setBounds(422, 140, 89, 23);
@@ -224,7 +218,7 @@ public class DatuakErakutsi extends JFrame {
 		};
 		table = new JTable(tableModel);
 		for (int i = 0; i < table.getRowCount(); i++) {
-			table.remove(i);
+			//table.remove(i);
 		}
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
