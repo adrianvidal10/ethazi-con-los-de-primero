@@ -50,14 +50,13 @@ public class DatuakErakutsi extends JFrame {
 	private Koordinatzailea micoordinador;
 	private static JTextField txbxHerria;
 	private JButton btnBilatu, btnAtzera, btnOrdainketa;
-	private JLabel lblHerria, lblOstatuMota, lblHasieraData, lblAmaieraData, lblIzarKopurua;
+	private JLabel lblHerria, lblOstatuMota, lblIzarKopurua;
 	static String herriaBilatu;
 	private JPanel contentPane, panel;
 	private JTextField textField;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
-	JDateChooser dtChHasieraData, dtChAmaieraData;
 	JCheckBox chbxPreziozOrdenatu, chckbxParkina, chckbxwifi, chckbxSpa, chckbxIgerilekua, chckbxAireGirotua,
 			chckbxJatetxe, chckbxTaberna, chckbxGimnasioa;
 	JSeparator separator, separator_1, separator_2;
@@ -78,12 +77,12 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.setLayout(null);
 
 		txbxHerria = new JTextField();
-		txbxHerria.setBounds(70, 31, 89, 20);
+		txbxHerria.setBounds(137, 31, 336, 20);
 		getContentPane().add(txbxHerria);
 		txbxHerria.setColumns(10);
 
 		lblHerria = new JLabel("Herria:");
-		lblHerria.setBounds(31, 34, 46, 14);
+		lblHerria.setBounds(81, 34, 46, 14);
 		getContentPane().add(lblHerria);
 
 		btnAtzera = new JButton("Atzera");
@@ -137,14 +136,6 @@ public class DatuakErakutsi extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		dtChHasieraData = new JDateChooser();
-		dtChHasieraData.setBounds(240, 31, 95, 20);
-		contentPane.add(dtChHasieraData);
-
-		dtChAmaieraData = new JDateChooser();
-		dtChAmaieraData.setBounds(416, 31, 95, 20);
-		contentPane.add(dtChAmaieraData);
-
 		chbxPreziozOrdenatu = new JCheckBox("Prezioz ordenatu");
 		chbxPreziozOrdenatu.setBounds(240, 70, 111, 29);
 		contentPane.add(chbxPreziozOrdenatu);
@@ -166,14 +157,6 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota.setBounds(100, 74, 112, 20);
 		sartuKomboOstMota();
 		contentPane.add(cbxOstatuMota);
-
-		lblHasieraData = new JLabel("Hasiera data:");
-		lblHasieraData.setBounds(171, 34, 71, 14);
-		contentPane.add(lblHasieraData);
-
-		lblAmaieraData = new JLabel("Amaiera data:");
-		lblAmaieraData.setBounds(345, 34, 71, 14);
-		contentPane.add(lblAmaieraData);
 
 		// hauek soilik erabilgarriak hotelak bilatzerakoan
 		spnIzarKop = new JSpinner();
