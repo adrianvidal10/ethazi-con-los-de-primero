@@ -74,6 +74,7 @@ public class LoginPantaila extends JFrame {
 					micoordinador.mostrarErreserbaEgin();
 					erabiltzailea = textField.getText();
 					micoordinador.setErreserbaEginOstatuIzena();
+					micoordinador.setErreserbaEginPlazaKant();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);

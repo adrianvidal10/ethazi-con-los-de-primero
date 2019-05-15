@@ -18,6 +18,7 @@ public class Ostatua {
 	protected boolean taberna;
 	protected boolean gimnasioa;
 	protected String ostMota;
+	protected int PlazaKant;
 	
 	public Ostatua() {
 	}
@@ -178,6 +179,14 @@ public class Ostatua {
 
 	public void setOstMota(String ostMota) {
 		this.ostMota = ostMota;
+	}
+
+	public int getPlazaKant() {
+		return PlazaKant;
+	}
+
+	public void setPlazaKant(int plazaKant) {
+		PlazaKant = plazaKant;
 	}
 
 	@Override

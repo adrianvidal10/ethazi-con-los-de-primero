@@ -77,7 +77,8 @@ public class Kontsultak {
 				ostatua.setGosaria(gosaria);
 				String ostatumota = resultado.getString("ostMota");
 				ostatua.setOstMota(ostatumota);
-				System.out.println(ostatua);
+				int plazakant = resultado.getInt("plazaKant");
+				ostatua.setPlazaKant(plazakant);
 				zerrendaOstatua.add(ostatua);
 				
 			}

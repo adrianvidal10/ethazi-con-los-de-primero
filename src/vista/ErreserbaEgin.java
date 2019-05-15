@@ -180,23 +180,8 @@ public class ErreserbaEgin extends JFrame {
 		lblAmaieraData.setBounds(212, 122, 82, 14);
 		contentPane.add(lblAmaieraData);
 
-		lblDisponibilidad = new JLabel("New label");
+		lblDisponibilidad = new JLabel("");
 		lblDisponibilidad.setBounds(286, 299, 132, 14);
-
-		int cont = 1;
-
-		if (cont == 0) {
-
-			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
-			lblDisponibilidad.setForeground(Color.red);
-			btnOrdainketaBurutu.setVisible(false);
-
-		} else {
-
-			lblDisponibilidad.setText("Plazak eskuragarriak");
-			lblDisponibilidad.setForeground(Color.green);
-			btnOrdainketaBurutu.setVisible(true);
-		}
 
 		contentPane.add(lblDisponibilidad);
 		lblPrezioTotErakutsi = new JLabel("");
@@ -471,5 +456,24 @@ public class ErreserbaEgin extends JFrame {
 	
 	public void ipiniOstatuIzena(String izena) {
 		lblOstatuarenIzenaErakutsi.setText(izena);
+	}
+	
+	public void plazaKantErakutsi(int plazak) {
+		int cont = plazak;
+
+		if (cont == 0) {
+
+			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
+			lblDisponibilidad.setForeground(Color.red);
+			btnOrdainketaBurutu.setEnabled(false);
+			btnBalidatu.setEnabled(false);
+
+		} else {
+
+			lblDisponibilidad.setText("Plazak eskuragarriak");
+			lblDisponibilidad.setForeground(Color.green);
+			btnOrdainketaBurutu.setEnabled(true);
+			btnBalidatu.setEnabled(true);
+		}
 	}
 }

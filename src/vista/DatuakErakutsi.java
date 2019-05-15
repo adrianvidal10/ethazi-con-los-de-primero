@@ -231,10 +231,12 @@ public class DatuakErakutsi extends JFrame {
 				int row2 = table.rowAtPoint(e.getPoint());
 				String prezioa = table.getValueAt(row2, 2).toString();
 				String izena = table.getValueAt(row2, 0).toString();
+				String Plazak = table.getValueAt(row2, 5).toString();
+
 				micoordinador.erreserbarenPrezioa(Double.parseDouble(prezioa));
 				micoordinador.setOstatuarenPrezioa(Double.parseDouble(prezioa));
 				micoordinador.OstatuIzenajarri(izena);
-
+				micoordinador.setOstatuPLazaKant(Integer.parseInt(Plazak));
 			}
 		});
 
@@ -252,6 +254,7 @@ public class DatuakErakutsi extends JFrame {
 		columnas.add("Tarifa");
 		columnas.add("Gosaria");
 		columnas.add("Ostatu Mota");
+		columnas.add("PLaza Kantitate");
 		return columnas;
 	}
 
@@ -275,8 +278,7 @@ public class DatuakErakutsi extends JFrame {
 			 */
 
 			filas.add(new String[] { hotel.getIzena(), hotel.getHerria(), String.valueOf(hotel.getTarifa()), 
-					hotel.getGosaria(), hotel.getOstMota() });
-			System.out.println(hotel.getIzena());
+					hotel.getGosaria(), hotel.getOstMota(), String.valueOf(hotel.getPlazaKant()) });
 
 		}
 		System.out.println(hotelZerrenda.size());

@@ -593,4 +593,16 @@ public class Koordinatzailea {
 		PantailaErreserbaEgin.ipiniOstatuIzena(izena);
 	}
 	
+	public void setErreserbaEginPlazaKant() {
+		int plazak = this.ostatu.getPlazaKant();
+		PantailaErreserbaEgin.plazaKantErakutsi(plazak);
+	}
+	
+	public void setOstatuPLazaKant(int kanti) {
+		this.ostatu.setPlazaKant(kanti);
+	}
+	
+	public int getOstatuPLazaKant() {
+		return this.ostatu.getPlazaKant();
+	}
 }
