@@ -8,7 +8,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.xml.ws.soap.Addressing;
+//import javax.xml.ws.soap.Addressing;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -133,6 +133,8 @@ public class ErreserbaEgin extends JFrame {
 		btnOrdainketaBurutu.setEnabled(false);
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// erreserbako datuak zuzenak direnean ordainketa burutzera joango da
+				// erabiltzailea
 				micoordinador.setPrezioaErreserbaPantailaOrdainketa();
 				micoordinador.mostrarVentanaLegedia();
 			}
@@ -153,9 +155,12 @@ public class ErreserbaEgin extends JFrame {
 
 		dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// ai ke pasar elñ presioaaaaaa
+
+				// metodo honek erreserbaren hasierako data hartzen du
 				erreserbaHasiera = dateChooser.getDate();
 
+				// Date-a calendarrera pasatzen du, eta egun bat gehitu
+				// holan erreserbak, minimo gau batekoak izango dira
 				Calendar c1 = Calendar.getInstance();
 				c1.setTime(erreserbaHasiera);
 				c1.add(Calendar.DAY_OF_MONTH, 1);
@@ -184,7 +189,9 @@ public class ErreserbaEgin extends JFrame {
 		lblDisponibilidad.setBounds(286, 299, 132, 14);
 
 		int cont = 1;
-
+		// erreserba egiteko plazarik baldin ez badago mezu bat agertuko da
+		// Eta baldin badago be, baina plazarik ez badauka ez du utziko erreserba
+		// garatzen utziko
 		if (cont == 0) {
 
 			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
@@ -218,11 +225,12 @@ public class ErreserbaEgin extends JFrame {
 				} else {
 
 					try {
-
+						// balidatu botoia sakatzean, datak aukeratuta daudela bermatuko du
 						erreserbaHasiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser.getDate()));
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
+
 						micoordinador.setErreserbaDatak(erreserbaHasiera, erreserbaAmaiera);
 
 						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
@@ -232,6 +240,10 @@ public class ErreserbaEgin extends JFrame {
 						e1.printStackTrace();
 					}
 
+					// behin bi datak gordeta daudenean tarifa mota eskuratzeko metodoari deituko
+					// zaio
+					// metodo horrek uda, jaieguna edo egun normala denaren arabera tarifa mota
+					// ezberdinak itzuliko ditu
 					// erreserbaAmaiera = dateChooser_1.getDate();
 					setTarifa(micoordinador.tarifaMotaBidali(erreserbaHasiera, erreserbaAmaiera));
 					// setTarifa(tarifaMotaBidali(erreserbaHasiera,
@@ -239,6 +251,11 @@ public class ErreserbaEgin extends JFrame {
 
 					prezioa = Double.parseDouble(micoordinador.bidaliOstatuPrezioa());
 
+					// behin tarifa eukiterakoan prezioa kalkulatuko dugu, egun koporua eta
+					// tarifaren arabera
+
+					// ondoren, ohe/gela kopuruen arabera gehixago edo gutxixo ordaindu beharko da
+					// plus, promo kodigoa erabiltzekotan 10%-ko deskontua egiten da
 					dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
 					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();
@@ -255,8 +272,8 @@ public class ErreserbaEgin extends JFrame {
 
 		spinnerGelaKant = new JSpinner();
 		spinnerGelaKant.addChangeListener(new ChangeListener() {
-			
-		public void stateChanged(ChangeEvent arg0) {
+			// spinner honen arabera, radio button talde desberdinak sortuko ditu
+			public void stateChanged(ChangeEvent arg0) {
 
 				int balorea = (int) spinnerGelaKant.getValue();
 
@@ -342,6 +359,7 @@ public class ErreserbaEgin extends JFrame {
 		rbu3.setBounds(191, 244, 96, 23);
 		contentPane.add(rbu3);
 
+		// radio button taldeak sortu
 		lehenTaldea = new ButtonGroup();
 		lehenTaldea.add(rbs1);
 		lehenTaldea.add(rbb1);
@@ -369,7 +387,7 @@ public class ErreserbaEgin extends JFrame {
 		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
 		chckbxErabiliNahi.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-
+				// promo kodigoa egon eta erabiltzekotan 10%-ko deskontua egingo da
 				if (chckbxErabiliNahi.isSelected()) {
 					double dirua2 = dirua - ((dirua * 10) / 100);
 					lblPrezioTotErakutsi.setText(Double.toString(dirua2) + "€");
@@ -390,6 +408,9 @@ public class ErreserbaEgin extends JFrame {
 	 */
 
 	public double tarifaKalkulatu(double prezioa, int tarifa) {
+		// metodo honek tarifa eta prezioa jasotzen ditu
+		// eta horiekin egun kantitatea eta motaren arabera prezio desberdinak itzuliko
+		// ditu
 		double emaitza;
 		double temp = 1;
 		System.out.println(temp);
@@ -413,18 +434,16 @@ public class ErreserbaEgin extends JFrame {
 
 	public double tarifarenDiruTotalaKalkulatu(double dirua) {
 		double diruTot = dirua;
-		
-		
+		// ohe kopuruaren arabera, diru kantitate bat gehituko zaio
 		int balorea = (int) spinnerGelaKant.getValue();
 		switch (balorea) {
 
 		case 1:
-			
-			
+
 			break;
 
 		case 2:
-			
+
 			diruTot = diruTot * 2;
 			break;
 

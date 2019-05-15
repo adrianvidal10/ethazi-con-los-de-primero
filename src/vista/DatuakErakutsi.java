@@ -91,23 +91,31 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					//ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
-					String herria = "";
-					String ostatumota = "";
-					try {
-						herria = txbxHerria.getText();
-					} catch (Exception e) {
-						herria = "";
-					}
-					try {
-						ostatumota = (String) cbxOstatuMota.getSelectedItem();
-					} catch (Exception e) {
-						ostatumota = "";
-					}
-					/*ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
 
-					taulaBete(ostatuZerrenda);*/
-					taulaBete(micoordinador.bidaliOstatuSelect(herria, ostatumota));
+				// bilatu botoia sakatzean herriaren eta ostatu motan dauden baloreak hartzen
+				// ditu
+				// eta taula betetzeko metodoa deituko du
+				// taula eskatutako datuekin bete dadin
+
+				// ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
+				String herria = "";
+				String ostatumota = "";
+				try {
+					herria = txbxHerria.getText();
+				} catch (Exception e) {
+					herria = "";
+				}
+				try {
+					ostatumota = (String) cbxOstatuMota.getSelectedItem();
+				} catch (Exception e) {
+					ostatumota = "";
+				}
+				/*
+				 * ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
+				 * 
+				 * taulaBete(ostatuZerrenda);
+				 */
+				taulaBete(micoordinador.bidaliOstatuSelect(herria, ostatumota));
 			}
 		});
 		btnBilatu.setBounds(422, 140, 89, 23);
@@ -116,7 +124,7 @@ public class DatuakErakutsi extends JFrame {
 		btnOrdainketa = new JButton("Ordainketa");
 		btnOrdainketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// ordainketa
+				// ordainketa pantaila erakutsi
 				micoordinador.mostrarVentanaLogin();
 			}
 
@@ -148,6 +156,7 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota = new JComboBox();
 		// cbxOstatuMota.addItem();
 		cbxOstatuMota.setBounds(100, 74, 112, 20);
+		// komboboxa betetzeko emtodoari deitu
 		sartuKomboOstMota();
 		contentPane.add(cbxOstatuMota);
 
@@ -167,7 +176,7 @@ public class DatuakErakutsi extends JFrame {
 		chckbxParkina.setEnabled(false);
 		chckbxParkina.setBounds(309, 140, 67, 23);
 
-		JCheckBox chckbxParkina = new JCheckBox("Parkina");
+		chckbxParkina = new JCheckBox("Parkina");
 		chckbxParkina.setBounds(309, 140, 97, 23);
 
 		contentPane.add(chckbxParkina);
@@ -216,9 +225,9 @@ public class DatuakErakutsi extends JFrame {
 			}
 		};
 		table = new JTable(tableModel);
-		/*for (int i = 0; i < table.getRowCount(); i++) {
-			table.remove(i);
-		}*/
+		/*
+		 * for (int i = 0; i < table.getRowCount(); i++) { table.remove(i); }
+		 */
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
 		table.setAutoscrolls(true);
@@ -246,6 +255,7 @@ public class DatuakErakutsi extends JFrame {
 	}
 
 	private List<String> getColumns() {
+		// taulak izango dituen zutabeak arraylit batean gorde
 		List<String> columnas = new ArrayList<String>();
 		columnas.add("Izena");
 		columnas.add("Herria");
@@ -263,6 +273,10 @@ public class DatuakErakutsi extends JFrame {
 	}
 
 	public List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
+
+		// metodo honek egindako bilaketaren kontsultaren emaitza jasotzen du parametroz
+		// eta honekin taula betetzen du
+
 		List<String[]> filas = new ArrayList<String[]>();
 		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
@@ -274,7 +288,7 @@ public class DatuakErakutsi extends JFrame {
 			 * String.valueOf(hotel.getPrezioa()) });
 			 */
 
-			filas.add(new String[] { hotel.getIzena(), hotel.getHerria(), String.valueOf(hotel.getTarifa()), 
+			filas.add(new String[] { hotel.getIzena(), hotel.getHerria(), String.valueOf(hotel.getTarifa()),
 					hotel.getGosaria(), hotel.getOstMota() });
 			System.out.println(hotel.getIzena());
 

@@ -24,7 +24,8 @@ import modelo.Bezeroa;
 
 public class Kontsultak {
 
-	//private Koordinatzailea micoordinador = new Koordinatzailea();
+	// klasearen atributuak
+	// private Koordinatzailea micoordinador = new Koordinatzailea();
 	private Konexioa conexion = new Konexioa();
 	private ResultSet resultado;
 	private String herria;
@@ -36,35 +37,42 @@ public class Kontsultak {
 	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 	private ArrayList<Bezeroa> bezeroaZerrenda = new ArrayList<Bezeroa>();
 	private ArrayList<Ostatua> zerrendaOstatua = new ArrayList<Ostatua>();
-	//private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
+	// private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
 	public void selectOstatuak(String herri, String ostMota) {
+
+		// erabilitako atalen arabera selecta osatuko da
 		String select = " WHERE ";
 		String where = " WHERE ";
 		String sHerria = " herria = '";
 		String sKodOst = " ostMota = '";
-		
+
 		select += sHerria + herri + "' AND" + sKodOst + ostMota + "'";
-		
-		if (herri.equalsIgnoreCase("")==true || herri.equalsIgnoreCase(null)==true) {
-			if (ostMota.equalsIgnoreCase("---Guztiak---")==true) {
-				select="";
-			}else {
-				select = where + sKodOst + ostMota +"'";
+
+		// herria erabiltzekotan ..
+		if (herri.equalsIgnoreCase("") == true || herri.equalsIgnoreCase(null) == true) {
+			if (ostMota.equalsIgnoreCase("---Guztiak---") == true) {
+				select = "";
+			} else {
+				select = where + sKodOst + ostMota + "'";
 				sHerria = "";
 			}
 		}
-		if (ostMota.equalsIgnoreCase("---Guztiak---")==true) {
-			if (herri.equalsIgnoreCase("")==true || herri.equalsIgnoreCase(null)==true) {
-				select="";
-			}else {
-				select = where + sHerria + herri +"'";
+		// ostatu mota erabiltzekotan ..
+		if (ostMota.equalsIgnoreCase("---Guztiak---") == true) {
+			if (herri.equalsIgnoreCase("") == true || herri.equalsIgnoreCase(null) == true) {
+				select = "";
+			} else {
+				select = where + sHerria + herri + "'";
 				sKodOst = "";
 			}
 		}
-	
-		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select + "ORDER BY plazaKant");
+
+		// selecta abiaratu
+		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua " + select + "ORDER BY plazaKant");
 		try {
+
+			// selecta jasotzen dituen sail desberdinak dagokion zutabeetan kokatuko ditu
 			while (resultado.next()) {
 				Ostatua ostatua = new Ostatua();
 				String izena = resultado.getString("izena");
@@ -79,7 +87,7 @@ public class Kontsultak {
 				ostatua.setOstMota(ostatumota);
 				System.out.println(ostatua);
 				zerrendaOstatua.add(ostatua);
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -93,6 +101,7 @@ public class Kontsultak {
 	}
 
 	public boolean bezeroaDago(String nick, String pass) {
+		// bezeroa existitzen den edo ez konprobatzen duen metodoa
 		boolean emaitza = false;
 		String name = "";
 		String passwd = "";
@@ -136,6 +145,7 @@ public class Kontsultak {
 	}
 
 	public void insertBezero(Bezeroa beze) {
+		// bezero berri bat gordetzen duen metodoa
 		boolean insert = NANdago(beze.getDni());
 		try {
 			if (insert = true) {
@@ -152,6 +162,7 @@ public class Kontsultak {
 	}
 
 	public static String getMD5(String input) {
+		// datuak enkriptatzen dituen metodoa
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] messageDigest = md.digest(input.getBytes());
@@ -168,6 +179,7 @@ public class Kontsultak {
 	}
 
 	public boolean bilatuNick(String izena) {
+		// nicka konprobatzen duen metodoa
 		boolean emaitza = true;
 		String datuak = "";
 		try {
@@ -225,6 +237,8 @@ public class Kontsultak {
 
 	public boolean oporraldiaDa(Date erreserba1, Date erreserba2, java.util.List<Date> listaEntreFechas) {
 
+		// metodo honek erreserba hasiera eta erreserba amaiera hartzen ditu, haien
+		// tarteko egunak be eta oporrak diren edo ez bueltatzen du
 		boolean emaitza = false;
 		// String data1, data2;
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
@@ -266,6 +280,8 @@ public class Kontsultak {
 
 	public boolean udaOporrakDira(Date erreserba1, Date erreserba2, java.util.List<Date> listaEntreFechas) {
 
+		// metodo honek erreserba hasiera eta erreserba amaiera hartzen ditu, haien
+		// tarteko egunak be eta udako egunak diren edo ez bueltatzen du
 		boolean emaitza = false;
 
 		// String data1hilabetea, data2hilabetea;
@@ -340,6 +356,10 @@ public class Kontsultak {
 
 	public static java.util.List<Date> getErreserbarenDataGuztiak(Date hasData, Date amaData) {
 
+		// metodo honek hasiera eta amaiera daten harteko egunak lita batean gordetzen
+		// ditu
+		// gero konprobaketak errexteko
+
 		// calendar bihurtuko ditugu datak haien harteko operazioak errezagoak
 		// izan daitezen
 		Calendar c1 = Calendar.getInstance();
@@ -363,44 +383,44 @@ public class Kontsultak {
 	public void insertErreserba() {
 		boolean insert = true;
 
+		// erreserba garatzeko komandua
 		try {
 			if (insert = true) {
 				conexion.setQuery("INSERT INTO erreserbak "
 						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant, oheLista)"
-						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'"
-						+ "'ostatuKod'" + "'errNick'" + "'gelaKant'");
+						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'" + "'ostatuKod'"
+						+ "'errNick'" + "'gelaKant'");
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
 
 	}
-	
-	public String cogerPromocion(String erabilt){
+
+	public String cogerPromocion(String erabilt) {
 		resultado = conexion.getQuery("SELECT * FROM erabiltzaileak WHERE nick = '" + erabilt + "'");
 		try {
 			while (resultado.next()) {
-				
-				
+
 				erabilKodigoa = resultado.getString("promoKodigoa");
-				
+
 				String nick = resultado.getString("nick");
-				String pasahitza = resultado.getString("pasahitza");			
-				String nan = resultado.getString("nan");		
-				String erabil = resultado.getString("izena");			
-				String LehenAbizena = resultado.getString("abizenaA");				
+				String pasahitza = resultado.getString("pasahitza");
+				String nan = resultado.getString("nan");
+				String erabil = resultado.getString("izena");
+				String LehenAbizena = resultado.getString("abizenaA");
 				String BigarrenAbizena = resultado.getString("abizenaB");
-				
+
 				Bezeroa b = new Bezeroa(nan, erabil, LehenAbizena, BigarrenAbizena, pasahitza, nick);
-				
-				bezeroaZerrenda.add(b);		
-				
+
+				bezeroaZerrenda.add(b);
+
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return erabilKodigoa;
 	}
 

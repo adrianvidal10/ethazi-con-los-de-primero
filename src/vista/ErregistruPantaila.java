@@ -1,4 +1,5 @@
 package vista;
+
 //
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -50,6 +51,9 @@ public class ErregistruPantaila extends JFrame {
 	private JTextField textField_3;
 	private JLabel lblBiAbizena;
 	private JTextField textField_4;
+	private JLabel lblNewLabel;
+	private JLabel lblIzena;
+	private JLabel lblAbizena, lblAbizenaBi, lblNewLabel_1, lblNickname, lblPasahitza;
 
 	/**
 	 * LOGUEATU Jframe-aren kodea da.
@@ -62,7 +66,7 @@ public class ErregistruPantaila extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Nan:");
+		lblNewLabel = new JLabel("Nan:");
 		lblNewLabel.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblNewLabel.setBounds(78, 128, 58, 20);
 		contentPane.add(lblNewLabel);
@@ -74,7 +78,7 @@ public class ErregistruPantaila extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		JLabel lblIzena = new JLabel("Izena:");
+		lblIzena = new JLabel("Izena:");
 		lblIzena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblIzena.setBounds(64, 221, 58, 17);
 		contentPane.add(lblIzena);
@@ -91,33 +95,33 @@ public class ErregistruPantaila extends JFrame {
 		textField_2.setColumns(10);
 		textField_2.setBounds(131, 276, 254, 20);
 		contentPane.add(textField_2);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setBounds(131, 336, 254, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 
-		JLabel lblAbizena = new JLabel("Lehen Abizena:");
+		lblAbizena = new JLabel("Lehen Abizena:");
 		lblAbizena.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblAbizena.setBounds(11, 277, 116, 20);
 		contentPane.add(lblAbizena);
-		
-		JLabel lblAbizenaBi = new JLabel("Bigarren Abizena:");
+
+		lblAbizenaBi = new JLabel("Bigarren Abizena:");
 		lblAbizenaBi.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblAbizenaBi.setBounds(10, 337, 136, 19);
 		contentPane.add(lblAbizenaBi);
 
-		JLabel lblNewLabel_1 = new JLabel("Pasahitza:");
+		lblNewLabel_1 = new JLabel("Pasahitza:");
 		lblNewLabel_1.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(36, 393, 81, 17);
 		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNickname = new JLabel("Nickname:");
+
+		lblNickname = new JLabel("Nickname:");
 		lblNickname.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblNickname.setBounds(50, 185, 86, 14);
 		contentPane.add(lblNickname);
 
-		JLabel lblPasahitza = new JLabel("Pasahitza:");
+		lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 15));
 		lblPasahitza.setBounds(36, 442, 81, 17);
 		contentPane.add(lblPasahitza);
@@ -162,7 +166,7 @@ public class ErregistruPantaila extends JFrame {
 		textField_5.setColumns(10);
 		textField_5.setBounds(472, 128, 35, 20);
 		contentPane.add(textField_5);
-		
+
 		lblBiAbizena = new JLabel("");
 		lblBiAbizena.setBounds(131, 367, 254, 14);
 		contentPane.add(lblBiAbizena);
@@ -216,7 +220,7 @@ public class ErregistruPantaila extends JFrame {
 		btnAtzera.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAtzera.setBounds(97, 497, 89, 23);
 		contentPane.add(btnAtzera);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setBounds(131, 184, 254, 20);
 		contentPane.add(textField_4);
@@ -291,7 +295,7 @@ public class ErregistruPantaila extends JFrame {
 		String abizena = textField_2.getText();
 		return abizena;
 	}
-	
+
 	public String balidatuAbizenaBi() {
 		String abizena = textField_3.getText();
 		return abizena;
@@ -305,7 +309,7 @@ public class ErregistruPantaila extends JFrame {
 	public void erakutsiErrorea4(String katea) {
 		lblNewLabel_5.setText(katea);
 	}
-	
+
 	public void erakutsiErrorea6(String katea) {
 		lblBiAbizena.setText(katea);
 	}
@@ -365,7 +369,7 @@ public class ErregistruPantaila extends JFrame {
 	public String getNick() {
 		return textField_4.getText();
 	}
-	
+
 	/**
 	 * String bat hartzen du eta katea MD5-ekin enkriptatzen du.
 	 * 
