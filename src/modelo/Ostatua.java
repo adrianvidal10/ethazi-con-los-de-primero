@@ -180,6 +180,15 @@ public class Ostatua {
 		this.ostMota = ostMota;
 	}
 
+	@Override
+	public String toString() {
+		return "Ostatua [kod=" + kod + ", izena=" + izena + ", herria=" + herria + ", tarifa=" + tarifa
+				+ ", ostGelaKode=" + ostGelaKode + ", erreserbaKopurua=" + erreserbaKopurua + ", ostAltzariKod="
+				+ ostAltzariKod + ", gosaria=" + gosaria + ", wifi=" + wifi + ", igerileku=" + igerileku + ", spa="
+				+ spa + ", parkin=" + parkin + ", aire_girotua=" + aire_girotua + ", jatetxe=" + jatetxe + ", taberna="
+				+ taberna + ", gimnasioa=" + gimnasioa + ", ostMota=" + ostMota + "]";
+	}
+
 	
 	
 	

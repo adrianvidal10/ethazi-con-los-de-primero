@@ -91,7 +91,7 @@ public class DatuakErakutsi extends JFrame {
 		btnBilatu = new JButton("Bilatu");
 		btnBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
+					//ArrayList<Ostatua> ostatuZerrenda = new ArrayList<Ostatua>();
 					String herria = "";
 					String ostatumota = "";
 					try {
@@ -104,11 +104,10 @@ public class DatuakErakutsi extends JFrame {
 					} catch (Exception e) {
 						ostatumota = "";
 					}
-					ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
+					/*ostatuZerrenda = micoordinador.bidaliOstatuSelect(herria, ostatumota);
 
-					// taulaBete(ostatuZerrenda);
-
-					taulaBete(ostatuZerrenda);
+					taulaBete(ostatuZerrenda);*/
+					taulaBete(micoordinador.bidaliOstatuSelect(herria, ostatumota));
 			}
 		});
 		btnBilatu.setBounds(422, 140, 89, 23);
@@ -217,9 +216,9 @@ public class DatuakErakutsi extends JFrame {
 			}
 		};
 		table = new JTable(tableModel);
-		for (int i = 0; i < table.getRowCount(); i++) {
-			//table.remove(i);
-		}
+		/*for (int i = 0; i < table.getRowCount(); i++) {
+			table.remove(i);
+		}*/
 		table.setShowVerticalLines(false);
 		table.setShowHorizontalLines(false);
 		table.setAutoscrolls(true);
@@ -263,7 +262,7 @@ public class DatuakErakutsi extends JFrame {
 		cbxOstatuMota.addItem("Apartamentua");
 	}
 
-	private List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
+	public List<String[]> loadtable(ArrayList<Ostatua> hotelZerrenda) {
 		List<String[]> filas = new ArrayList<String[]>();
 		Ostatua hotel = new Ostatua();
 		for (int i = 0; i < hotelZerrenda.size(); i++) {
@@ -277,8 +276,10 @@ public class DatuakErakutsi extends JFrame {
 
 			filas.add(new String[] { hotel.getIzena(), hotel.getHerria(), String.valueOf(hotel.getTarifa()), 
 					hotel.getGosaria(), hotel.getOstMota() });
+			System.out.println(hotel.getIzena());
 
 		}
+		System.out.println(hotelZerrenda.size());
 		return filas;
 	}
 

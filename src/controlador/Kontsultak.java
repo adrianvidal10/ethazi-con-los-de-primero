@@ -34,11 +34,7 @@ public class Kontsultak {
 	private double prezioa;
 	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
 	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
-	
-	
 	private ArrayList<Bezeroa> bezeroaZerrenda = new ArrayList<Bezeroa>();
-
-	Ostatua ostatua = new Ostatua();
 	private ArrayList<Ostatua> zerrendaOstatua = new ArrayList<Ostatua>();
 	//private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
@@ -67,9 +63,10 @@ public class Kontsultak {
 			}
 		}
 	
-		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select);
+		resultado = conexion.getQuery("SELECT DISTINCT * FROM ostatua "+ select + "ORDER BY izena");
 		try {
 			while (resultado.next()) {
+				Ostatua ostatua = new Ostatua();
 				String izena = resultado.getString("izena");
 				ostatua.setIzena(izena);
 				String herria = resultado.getString("herria");
@@ -80,7 +77,9 @@ public class Kontsultak {
 				ostatua.setGosaria(gosaria);
 				String ostatumota = resultado.getString("ostMota");
 				ostatua.setOstMota(ostatumota);
+				System.out.println(ostatua);
 				zerrendaOstatua.add(ostatua);
+				
 			}
 
 		} catch (SQLException e) {
