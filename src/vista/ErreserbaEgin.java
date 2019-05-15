@@ -67,7 +67,7 @@ public class ErreserbaEgin extends JFrame {
 	private JRadioButton rbu3;
 	ButtonGroup lehenTaldea, bigarrenTaldea, hirugarrenTaldea;
 	private Reserva reserva = new Reserva();
-	
+
 	JLabel Label_Promoa;
 
 	/**
@@ -154,13 +154,13 @@ public class ErreserbaEgin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// ai ke pasar elñ presioaaaaaa
 				erreserbaHasiera = dateChooser.getDate();
-				
+
 				Calendar c1 = Calendar.getInstance();
 				c1.setTime(erreserbaHasiera);
 				c1.add(Calendar.DAY_OF_MONTH, 1);
-				
-				java.util.Date utilDate = c1.getTime();				
-				dateChooser_1.setMinSelectableDate(utilDate);		
+
+				java.util.Date utilDate = c1.getTime();
+				dateChooser_1.setMinSelectableDate(utilDate);
 
 			}
 
@@ -208,7 +208,7 @@ public class ErreserbaEgin extends JFrame {
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
 		btnBalidatu.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 
 				boolean jarraitu = comprobatuDataHutsik();
@@ -226,7 +226,7 @@ public class ErreserbaEgin extends JFrame {
 
 						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
 						reserva.setErreserbaAmaiera(erreserbaAmaiera.toString());
-						
+
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
@@ -240,9 +240,9 @@ public class ErreserbaEgin extends JFrame {
 
 					dirua = tarifaKalkulatu(prezioa, tarifa);
 					System.out.println(dirua);
-					lblPrezioTotErakutsi.setText(Double.toString(dirua));
-					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();		
+					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();
 					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
+					dirua = tarifarenDiruTotalaKalkulatu(dirua);
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
 					micoordinador.erreserbarenPrezioa(dirua);
 
@@ -254,7 +254,8 @@ public class ErreserbaEgin extends JFrame {
 
 		spinnerGelaKant = new JSpinner();
 		spinnerGelaKant.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
+			
+		public void stateChanged(ChangeEvent arg0) {
 
 				int balorea = (int) spinnerGelaKant.getValue();
 
@@ -277,10 +278,6 @@ public class ErreserbaEgin extends JFrame {
 					rbs3.setEnabled(false);
 					rbb3.setEnabled(false);
 					rbu3.setEnabled(false);
-					
-					///////
-					dirua = dirua + (balorea * 10); 
-					
 
 					break;
 
@@ -291,11 +288,8 @@ public class ErreserbaEgin extends JFrame {
 					rbu3.setEnabled(true);
 					rbs3.setSelected(true);
 
-					
-				///////
-					dirua = dirua + (balorea * 10); 
-					
-					
+					break;
+
 				}
 
 			}
@@ -376,7 +370,7 @@ public class ErreserbaEgin extends JFrame {
 			public void stateChanged(ChangeEvent arg0) {
 
 				if (chckbxErabiliNahi.isSelected()) {
-					double dirua2 = dirua - ((dirua * 10 ) /100 );
+					double dirua2 = dirua - ((dirua * 10) / 100);
 					lblPrezioTotErakutsi.setText(Double.toString(dirua2) + "€");
 				} else {
 					lblPrezioTotErakutsi.setText(Double.toString(dirua) + "€");
@@ -394,16 +388,16 @@ public class ErreserbaEgin extends JFrame {
 
 	public double tarifaKalkulatu(double prezioa, int tarifa) {
 		double emaitza;
-		double temp = 0;
+		double temp = 1;
 		System.out.println(temp);
 		System.out.println(tarifa);
 		System.out.println(prezioa);
-		double temptarifa= tarifa;
-		 temp = temptarifa/100;
+		double temptarifa = tarifa;
+		temp = temptarifa / 100;
 		System.out.println("-");
 		System.out.println(temp);
 		System.out.println(tarifa);
-		if (tarifa == 0) {
+		if (tarifa == 1) {
 			emaitza = prezioa;
 		} else {
 			emaitza = prezioa * temp;
@@ -412,6 +406,33 @@ public class ErreserbaEgin extends JFrame {
 		}
 
 		return emaitza;
+	}
+
+	public double tarifarenDiruTotalaKalkulatu(double dirua) {
+		double diruTot = dirua;
+		
+		
+		int balorea = (int) spinnerGelaKant.getValue();
+		switch (balorea) {
+
+		case 1:
+			
+			
+			break;
+
+		case 2:
+			
+			diruTot = diruTot * 2;
+			break;
+
+		case 3:
+
+			diruTot = diruTot * 3;
+			break;
+
+		}
+
+		return diruTot;
 	}
 
 	public void setcoordinador(Koordinatzailea micoordinador) {
