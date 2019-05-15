@@ -6,13 +6,29 @@ public class Reserva {
 	private double prezioa = 0;
 	private Date hasiData;
 	private Date amaiData;
+	private String nick;
 	private String erreserbaHasiera = "";
 	private String erreserbaAmaiera = "";
 	
 	public Reserva() {
 	}
 
+	public Reserva(double prezioa, Date hasiData, Date amaiData, String nick) {
+		this.prezioa = prezioa;
+		this.hasiData = hasiData;
+		this.amaiData = amaiData;
+		this.nick = nick;
+	}
 
+	public String getNick() {
+		return nick;
+	}
+
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	
 	public double getPrezioa() {
 		
 		return prezioa;
@@ -55,6 +71,12 @@ public class Reserva {
 
 	public void setErreserbaAmaiera(String erreserbaAmaiera) {
 		this.erreserbaAmaiera = erreserbaAmaiera;
+	}
+
+	@Override
+	public String toString() {
+		return "Reserva [prezioa=" + prezioa + ", hasiData=" + hasiData + ", amaiData=" + amaiData + ", nick=" + nick
+				+ ", erreserbaHasiera=" + erreserbaHasiera + ", erreserbaAmaiera=" + erreserbaAmaiera + "]";
 	}
 
 }

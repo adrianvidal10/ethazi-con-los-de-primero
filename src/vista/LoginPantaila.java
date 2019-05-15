@@ -73,6 +73,8 @@ public class LoginPantaila extends JFrame {
 				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
 					micoordinador.mostrarErreserbaEgin();
 					erabiltzailea = textField.getText();
+					micoordinador.setBezeroaNick(erabiltzailea);
+					micoordinador.setErreserbaNick(erabiltzailea);
 					micoordinador.setErreserbaEginOstatuIzena();
 					micoordinador.setErreserbaEginPlazaKant();
 				} else {

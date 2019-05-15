@@ -12,7 +12,7 @@ public class Main {
 	private ErregistruPantaila PantailaErregistru;
 	private ErreserbaEgin PantailaErreserbaEgin;
 	private LegediaPantaila PantailaLegedia;
-	private CrearFicheroReserva ficheroReservaKlasea;
+
 
 	public static void main(String[] args) {
 		//Modelo.BD konek = new Modelo.BD();
@@ -29,7 +29,6 @@ public class Main {
 		PantailaErregistru  = new ErregistruPantaila();
 		PantailaErreserbaEgin  = new ErreserbaEgin();
 		PantailaLegedia  = new LegediaPantaila();
-		ficheroReservaKlasea = new CrearFicheroReserva();
 		micoordinador= new Koordinatzailea();
 		
 		/*Se establecen las relaciones entre clases*/
@@ -47,7 +46,6 @@ public class Main {
 		micoordinador.setPantailaErregistru(PantailaErregistru);
 		micoordinador.setPantailaErreserba(PantailaErreserbaEgin);
 		micoordinador.setPantailaLegedia(PantailaLegedia);
-		micoordinador.setFicheroReservaKlasea(ficheroReservaKlasea);
 		PantailaDatuakErakutsi.setVisible(true);
 	}
 			

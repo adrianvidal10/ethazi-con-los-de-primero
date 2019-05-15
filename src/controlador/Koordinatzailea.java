@@ -26,9 +26,6 @@ public class Koordinatzailea {
 	private Ostatua ostatu = new Ostatua();
 	private Reserva erreserba = new Reserva();
 	private Bezeroa bezero = new Bezeroa();
-	//private String ostatuprezioa = "";
-	//private String ostatuizena = "";
-	private CrearFicheroReserva ficheroReserva;
 	private java.util.List<Date> listaData;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -146,10 +143,6 @@ public class Koordinatzailea {
 
 	public void setPantailaLegedia(LegediaPantaila PantailaLegedia) {
 		this.PantailaLegedia = PantailaLegedia;
-	}
-	
-	public void setFicheroReservaKlasea(CrearFicheroReserva ficheroReserva) {
-		this.ficheroReserva = ficheroReserva;
 	}
 
 	public ErregistruPantaila PantailaErregistru() {
@@ -579,10 +572,14 @@ public class Koordinatzailea {
 		return kon.cogerPromocion(erabiltzailea);
 	}
 	
-	public void setReserva(Reserva erreserba) {
+	public void aplikatuErreserbaObjektua(Reserva erreserba) {
 		this.erreserba = erreserba;
 	}
 
+	public void setErreserbaNick(String nick) {
+		this.erreserba.setNick(nick);
+	}
+	
 	public Reserva getReserva() {
 		return this.erreserba;
 
@@ -604,5 +601,13 @@ public class Koordinatzailea {
 	
 	public int getOstatuPLazaKant() {
 		return this.ostatu.getPlazaKant();
+	}
+	
+	public void setBezeroaNick(String nick) {
+		this.bezero.setNick(nick);
+	}
+	
+	public String getBezeroaNick() {
+		return this.bezero.getNick();
 	}
 }

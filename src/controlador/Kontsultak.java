@@ -361,16 +361,14 @@ public class Kontsultak {
 		return listaFechas;
 	}
 
-	public void insertErreserba() {
-		boolean insert = true;
+	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick) {
+		String datahasi = new SimpleDateFormat("dd/MM/yyyy").format( hasieradata );
+		String dataama = new SimpleDateFormat("dd/MM/yyyy").format( amaieradata );
 
 		try {
-			if (insert = true) {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, tarifaMota, ostatuKod, errNick, gelaKant, oheLista)"
-						+ " VALUES ('hasieradata'," + "amaieradata" + "'prezioa'" + "'tarifamota'"
-						+ "'ostatuKod'" + "'errNick'" + "'gelaKant'");
-			}
+						+ " (hasieraData, amaieraData, prezioa, errNick)"
+						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "'");
 		} catch (Exception e) {
 			e.getMessage();
 		}
