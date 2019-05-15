@@ -362,15 +362,15 @@ public class Kontsultak {
 	}
 
 	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick) {
-		String datahasi = new SimpleDateFormat("dd/MM/yyyy").format( hasieradata );
-		String dataama = new SimpleDateFormat("dd/MM/yyyy").format( amaieradata );
+		String datahasi = new SimpleDateFormat("yyyy-MM-dd").format( hasieradata );
+		String dataama = new SimpleDateFormat("yyyy-MM-dd").format( amaieradata );
 
 		try {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, errNick)"
-						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "'");
+						+ " (hasieraData, amaieraData, prezioa, errNick) "
+						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa.toString() + ",'" + nick + "'");
 		} catch (Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 
 	}

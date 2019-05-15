@@ -281,11 +281,10 @@ public class Ordainketa extends JFrame {
 		btnAurrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					//
-					// JFileChooser saiakera
-
+			
+					micoordinador.insertErreserba();
+					
 					JFileChooser fileChooser = new JFileChooser();
-					// fileChooser.setCurrentDirectory(new java.io.File("."));
 					fileChooser.setDialogTitle("Aukeratu fitxeroaren helmuga");
 					fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 					fileChooser.setAcceptAllFileFilterUsed(false);
@@ -300,12 +299,6 @@ public class Ordainketa extends JFrame {
 						    } else {
 						      System.out.println("No Selection ");
 						    }
-
-
-					//
-					//
-					// Movida de Borjita
-					//controlador.CrearFicheroReserva.sortuFitxeroa(fileChooser);
 					
 					CrearFicheroReserva crearFicheroReserva = new CrearFicheroReserva();
 					crearFicheroReserva.sortuFitxeroa(micoordinador, fileChooser);
