@@ -73,6 +73,7 @@ public class LoginPantaila extends JFrame {
 				if (micoordinador.kontsultaBezeroa(nick, pasahitza) == true) {
 					micoordinador.mostrarErreserbaEgin();
 					erabiltzailea = textField.getText();
+					micoordinador.setErreserbaEginOstatuIzena();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);

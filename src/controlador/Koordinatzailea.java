@@ -588,4 +588,9 @@ public class Koordinatzailea {
 
 	}
 	
+	public void setErreserbaEginOstatuIzena() {
+		String izena = this.ostatu.getIzena();
+		PantailaErreserbaEgin.ipiniOstatuIzena(izena);
+	}
+	
 }

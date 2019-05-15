@@ -121,7 +121,7 @@ public class ErreserbaEgin extends JFrame {
 		lblOheMota.setBounds(25, 173, 80, 14);
 		contentPane.add(lblOheMota);
 
-		lblOstatuarenIzenaErakutsi = new JLabel("New label");
+		lblOstatuarenIzenaErakutsi = new JLabel("");
 		lblOstatuarenIzenaErakutsi.setBounds(67, 80, 142, 14);
 		contentPane.add(lblOstatuarenIzenaErakutsi);
 
@@ -467,5 +467,9 @@ public class ErreserbaEgin extends JFrame {
 		}
 
 		return emaitza;
+	}
+	
+	public void ipiniOstatuIzena(String izena) {
+		lblOstatuarenIzenaErakutsi.setText(izena);
 	}
 }
