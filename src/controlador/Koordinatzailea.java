@@ -215,7 +215,7 @@ public class Koordinatzailea {
 		Abizena = PantailaErregistru.balidatuAbizena();
 		ABIZENA = balidatuAbizena(Abizena);
 		BiAbizena = PantailaErregistru.balidatuAbizenaBi();
-		BiABIZENA = balidatuAbizenaBi(Abizena);
+		BiABIZENA = balidatuAbizenaBi(BiAbizena);
 		System.out.println(ABIZENA);
 		pasahitzak = PantailaErregistru.balidatuPasahitza();
 		for (String p : pasahitzak) {
