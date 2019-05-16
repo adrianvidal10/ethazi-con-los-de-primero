@@ -48,6 +48,7 @@ public class ErreserbaEgin extends JFrame {
 	private Koordinatzailea micoordinador;
 	private double prezioa, dirua;
 	private int tarifa;
+	private int ostatuPlazaKant;
 	JDateChooser dateChooser, dateChooser_1;
 	// Date erreserbaHasiera, erreserbaAmaiera;
 	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
@@ -233,14 +234,11 @@ public class ErreserbaEgin extends JFrame {
 						// balidatu botoia sakatzean, datak aukeratuta daudela bermatuko du
 						erreserbaHasiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser.getDate()));
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
-						konprobatuErreserbak();
-						System.out.println(erreserbaAmaiera);
-						System.out.println(erreserbaHasiera);
-
 						micoordinador.setErreserbaDatak(erreserbaHasiera, erreserbaAmaiera);
-
 						reserva.setErreserbaHasiera(erreserbaHasiera.toString());
 						reserva.setErreserbaAmaiera(erreserbaAmaiera.toString());
+						
+						konprobatuErreserbak();
 
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -263,7 +261,6 @@ public class ErreserbaEgin extends JFrame {
 					// ondoren, ohe/gela kopuruen arabera gehixago edo gutxixo ordaindu beharko da
 					// plus, promo kodigoa erabiltzekotan 10%-ko deskontua egiten da
 					dirua = tarifaKalkulatu(prezioa, tarifa);
-					System.out.println(dirua);
 					String temp = micoordinador.PantailaLogin.erabiltzailea.toString();
 					Label_Promoa.setText(micoordinador.bidaliPromoKodigo(temp));
 					dirua = tarifarenDiruTotalaKalkulatu(dirua);
@@ -499,14 +496,8 @@ public class ErreserbaEgin extends JFrame {
 		// ditu
 		double emaitza;
 		double temp = 1;
-		System.out.println(temp);
-		System.out.println(tarifa);
-		System.out.println(prezioa);
 		double temptarifa = tarifa;
 		temp = temptarifa / 100;
-		System.out.println("-");
-		System.out.println(temp);
-		System.out.println(tarifa);
 		if (tarifa == 1) {
 			emaitza = prezioa;
 		} else {
@@ -609,29 +600,52 @@ public class ErreserbaEgin extends JFrame {
 	}
 	
 	public void konprobatuErreserbak() {
+		this.ostatuPlazaKant = micoordinador.getOstatuPLazaKant();
+		System.out.println(this.ostatuPlazaKant);
 		ArrayList<Reserva> erreserbaLista = micoordinador.getErreserbaOstatuKodea(micoordinador.getOstatuKod());
 		
 		for (int i = 0; i < erreserbaLista.size(); i++) {
-			Date hasieraData = erreserbaLista.get(i).getHasiData();
-			Date amaieraData = erreserbaLista.get(i).getAmaiData();
-			int plazaKant = erreserbaLista.get(i).getGelaKant();
-			konprobatuData(hasieraData, amaieraData, plazaKant);
+			try {
+				String hasieraData = erreserbaLista.get(i).getErreserbaHasiera();
+				Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(hasieraData);
+				String amaieraData = erreserbaLista.get(i).getErreserbaAmaiera();
+				Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(amaieraData);
+				int plazaKant = erreserbaLista.get(i).getGelaKant();
+				konprobatuData(date1, date2, plazaKant);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		if (this.ostatuPlazaKant<0) {
+			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
+			lblDisponibilidad.setForeground(Color.red);
+			btnOrdainketaBurutu.setEnabled(false);
+			btnBalidatu.setEnabled(false);
+		}
+		else {
+			lblDisponibilidad.setText("Plazak eskuragarriak");
+			lblDisponibilidad.setForeground(Color.green);
+			btnOrdainketaBurutu.setEnabled(true);
+			btnBalidatu.setEnabled(true);
 		}
 		
 	}
 	
 	public void konprobatuData(Date hasieraData, Date amaieraData, int plazaKant) {
-		int ostatuPlazaKant = micoordinador.getOstatuPLazaKant();
-		DateTime aukeratutakoHasieraData = new DateTime(this.erreserbaAmaiera);
-		DateTime aukeratutakoAmaieraData = new DateTime(this.erreserbaHasiera);
-		DateTime hasieraData1 = new DateTime(hasieraData);
-		DateTime amaieraData1 = new DateTime(amaieraData);
-		Interval intervalo1 = new Interval( hasieraData1, amaieraData1 );
-		Interval intervalo2 = new Interval( aukeratutakoAmaieraData, aukeratutakoHasieraData );
-		if (intervalo1.overlaps( intervalo2 ) == true) {
+		int hasi = this.erreserbaHasiera.compareTo(hasieraData);
+		int ama = this.erreserbaAmaiera.compareTo(amaieraData);
+
+		if (hasi==0 || ama==0) {
 			ostatuPlazaKant = ostatuPlazaKant - plazaKant;
-		}
-		
-		
+		}	
+	}
+
+	public int getOstatuPlazaKant() {
+		return ostatuPlazaKant;
+	}
+
+	public void setOstatuPlazaKant(int ostatuPlazaKant) {
+		this.ostatuPlazaKant = ostatuPlazaKant;
 	}
 }

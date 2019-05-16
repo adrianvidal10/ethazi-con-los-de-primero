@@ -392,7 +392,7 @@ public class Kontsultak {
 		try {
 				conexion.setQuery("INSERT INTO erreserbak "
 						+ " (hasieraData, amaieraData, prezioa, errNick, ostatuKod, gelaKant) "
-						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "', '"+ 1 +"','"+ gelaKant +"')");
+						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "', '"+ ostatuKod +"','"+ gelaKant +"')");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -434,9 +434,9 @@ public class Kontsultak {
 		int emaitza = 1;
 		
 		try {
-			resultado = conexion.getQuery("SELECT ostatuKod FROM ostatua WHERE izena = '" + ostatuIzena + "'");
+			resultado = conexion.getQuery("SELECT Kod FROM ostatua WHERE izena = '" + ostatuIzena + "'");
 			while (resultado.next()) {
-				emaitza = resultado.getInt("ostatuKod");
+				emaitza = resultado.getInt("Kod");
 			
 			}
 			
@@ -453,10 +453,11 @@ public class Kontsultak {
 	
 	public ArrayList<Reserva> erreserbaLista(int ostatuKod) {
 		ArrayList <Reserva> erreserbaLista = new ArrayList<Reserva>();
-		Reserva r = new Reserva();
+
 		try {
 			resultado = conexion.getQuery("SELECT * FROM erreserbak WHERE ostatuKod = " + ostatuKod );
 			while (resultado.next()) {
+				Reserva r = new Reserva();
 				String hasieraData = resultado.getString("hasieraData");
 				r.setErreserbaHasiera(hasieraData);
 				String amaieraData = resultado.getString("amaieraData");

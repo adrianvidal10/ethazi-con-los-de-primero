@@ -71,17 +71,14 @@ public class CrearFicheroReserva {
 			pw.print("----------    BIDAION     ---------- \r\n"
 					+ "Hotel:                             "+ OstaIzena +" \r\n"
 					+ "Nº habitaciones:                   "+ spinnerBalorea +" \r\n"
-					+ "Hasiera                            " + erreserbaAmaiera + " \r\n"
-					+ "Amaiera                            " + erreserbaHasiera + " \r\n"
+					+ "Hasiera                            " + erreserbaHasiera + " \r\n"
+					+ "Amaiera                            " + erreserbaAmaiera + " \r\n"
 					+ "------------------------------------- \r\n"
 					+ "Erabiltzaile                       " + nick +" \r\n" 
 					+ "Izena                              " + izena + " \r\n" 
 					+ "Abizena                            " + abizena + " \r\n"
 					+ "NAN                                " + NAN + " \r\n"
 					+ "------------------------------------- \r\n"
-
-					+ "Prezioa                            " + prezioa + " \r\n"
-					+ "Ordainduta                         " + ordainduta + " \r\n"
 					+ "Bueltak                            " + Math.abs(bueltak) + " \r\n"
 					+ "Prezioa                            " + prezioa + "€ \r\n"); 
 
