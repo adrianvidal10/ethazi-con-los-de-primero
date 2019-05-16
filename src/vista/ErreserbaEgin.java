@@ -28,11 +28,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.chrono.MinguoChronology;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
+
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.JCheckBox;
 
@@ -211,6 +216,7 @@ public class ErreserbaEgin extends JFrame {
 						// balidatu botoia sakatzean, datak aukeratuta daudela bermatuko du
 						erreserbaHasiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser.getDate()));
 						erreserbaAmaiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser_1.getDate()));
+						konprobatuErreserbak();
 						System.out.println(erreserbaAmaiera);
 						System.out.println(erreserbaHasiera);
 
@@ -249,6 +255,7 @@ public class ErreserbaEgin extends JFrame {
 
 				}
 			}
+
 		});
 		btnBalidatu.setBounds(311, 154, 97, 23);
 		contentPane.add(btnBalidatu);
@@ -503,5 +510,32 @@ public class ErreserbaEgin extends JFrame {
 	
 	public void setEnableFalseOrdeinketaBurutu() {
 		btnOrdainketaBurutu.setEnabled(false);
+	}
+	
+	public void konprobatuErreserbak() {
+		ArrayList<Reserva> erreserbaLista = micoordinador.getErreserbaOstatuKodea(micoordinador.getOstatuKod());
+		
+		for (int i = 0; i < erreserbaLista.size(); i++) {
+			Date hasieraData = erreserbaLista.get(i).getHasiData();
+			Date amaieraData = erreserbaLista.get(i).getAmaiData();
+			int plazaKant = erreserbaLista.get(i).getGelaKant();
+			konprobatuData(hasieraData, amaieraData, plazaKant);
+		}
+		
+	}
+	
+	public void konprobatuData(Date hasieraData, Date amaieraData, int plazaKant) {
+		int ostatuPlazaKant = micoordinador.getOstatuPLazaKant();
+		DateTime aukeratutakoHasieraData = new DateTime(this.erreserbaAmaiera);
+		DateTime aukeratutakoAmaieraData = new DateTime(this.erreserbaHasiera);
+		DateTime hasieraData1 = new DateTime(hasieraData);
+		DateTime amaieraData1 = new DateTime(amaieraData);
+		Interval intervalo1 = new Interval( hasieraData1, amaieraData1 );
+		Interval intervalo2 = new Interval( aukeratutakoAmaieraData, aukeratutakoHasieraData );
+		if (intervalo1.overlaps( intervalo2 ) == true) {
+			ostatuPlazaKant = ostatuPlazaKant - plazaKant;
+		}
+		
+		
 	}
 }

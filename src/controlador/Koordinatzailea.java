@@ -612,7 +612,8 @@ public class Koordinatzailea {
 	}
 	
 	public void insertErreserba() {
-		kon.insertErreserba(this.erreserba.getHasiData(), this.erreserba.getAmaiData(), this.erreserba.getPrezioa(), this.erreserba.getNick(), this.ostatu.getKod());
+		kon.insertErreserba(this.erreserba.getHasiData(), this.erreserba.getAmaiData(), 
+				this.erreserba.getPrezioa(), this.erreserba.getNick(), this.ostatu.getKod(), bidaliSpinnerBalorea());
 	}
 	
 	public void bezeroDatuakUpdate() {
@@ -634,5 +635,14 @@ public class Koordinatzailea {
 	public void setOstatuKod() {
 		int zbk = kon.ostatuKodigoaPasatu(this.ostatu.getIzena());
 		this.ostatu.setKod(zbk);
+	}
+	
+	public ArrayList<Reserva> getErreserbaOstatuKodea(int ostatuKod){
+		return kon.erreserbaLista(ostatuKod);
+	}
+	
+	public int getOstatuKod() {
+		int zbk = kon.ostatuKodigoaPasatu(this.ostatu.getIzena());
+		return zbk;
 	}
 }

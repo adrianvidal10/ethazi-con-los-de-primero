@@ -9,6 +9,7 @@ public class Reserva {
 	private String nick;
 	private String erreserbaHasiera = "";
 	private String erreserbaAmaiera = "";
+	private int gelaKant;
 	
 	public Reserva() {
 	}
@@ -77,6 +78,14 @@ public class Reserva {
 	public String toString() {
 		return "Reserva [prezioa=" + prezioa + ", hasiData=" + hasiData + ", amaiData=" + amaiData + ", nick=" + nick
 				+ ", erreserbaHasiera=" + erreserbaHasiera + ", erreserbaAmaiera=" + erreserbaAmaiera + "]";
+	}
+
+	public int getGelaKant() {
+		return gelaKant;
+	}
+
+	public void setGelaKant(int gelaKant) {
+		this.gelaKant = gelaKant;
 	}
 
 }

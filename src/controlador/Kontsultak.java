@@ -383,7 +383,7 @@ public class Kontsultak {
 		return listaFechas;
 	}
 
-	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick, int ostatuKod) {
+	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick, int ostatuKod, int gelaKant) {
 		String datahasi = new SimpleDateFormat("yyyy-MM-dd").format( hasieradata );
 		String dataama = new SimpleDateFormat("yyyy-MM-dd").format( amaieradata );
 		
@@ -391,8 +391,8 @@ public class Kontsultak {
 		// erreserba garatzeko komandua
 		try {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, errNick, ostatuKod) "
-						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "', '"+ 1 +"')");
+						+ " (hasieraData, amaieraData, prezioa, errNick, ostatuKod, gelaKant) "
+						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "', '"+ 1 +"','"+ gelaKant +"')");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -450,5 +450,26 @@ public class Kontsultak {
 		ArrayList<Ostatua> reset = new ArrayList<Ostatua>();
 		this.zerrendaOstatua = reset;
 	}
-
+	
+	public ArrayList<Reserva> erreserbaLista(int ostatuKod) {
+		ArrayList <Reserva> erreserbaLista = new ArrayList<Reserva>();
+		Reserva r = new Reserva();
+		try {
+			resultado = conexion.getQuery("SELECT * FROM erreserbak WHERE ostatuKod = " + ostatuKod );
+			while (resultado.next()) {
+				String hasieraData = resultado.getString("hasieraData");
+				r.setErreserbaHasiera(hasieraData);
+				String amaieraData = resultado.getString("amaieraData");
+				r.setErreserbaAmaiera(amaieraData);
+				int ostatuKodea = resultado.getInt("gelaKant");
+				r.setGelaKant(ostatuKodea);
+				erreserbaLista.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return erreserbaLista;
+	}
 }
