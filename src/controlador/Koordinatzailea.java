@@ -622,4 +622,8 @@ public class Koordinatzailea {
 	public Bezeroa getBezero() {
 		return bezero;
 	}
+
+	public int bidaliSpinnerBalorea() {
+		return PantailaErreserbaEgin.getSpinner();
+	}
 }

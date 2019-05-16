@@ -57,8 +57,9 @@ public class CrearFicheroReserva {
 		String nick = miReserva.getNick();
 		String OstaIzena = micoordinador.bidaliOstatuIzena();
 		String izena = bezero.getIzena();
-		String abizena = bezero.getIzena();
-		String NAN = bezero.getIzena();
+		String abizena = bezero.getLehenAbizena();
+		String NAN = bezero.getDni();
+		int spinnerBalorea = micoordinador.bidaliSpinnerBalorea();
 
 		
 		try {
@@ -67,7 +68,7 @@ public class CrearFicheroReserva {
 
 			pw.print("----------    BIDAION     ---------- \r\n"
 					+ "Hotel:                             "+ OstaIzena +" \r\n"
-					+ "Nº habitaciones:                   x \r\n"
+					+ "Nº habitaciones:                   "+spinnerBalorea+" \r\n"
 					+ "Hasiera                            " + erreserbaAmaiera + " \r\n"
 					+ "Amaiera                            " + erreserbaHasiera + " \r\n"
 					+ "------------------------------------- \r\n"

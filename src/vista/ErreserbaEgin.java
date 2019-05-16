@@ -206,7 +206,7 @@ public class ErreserbaEgin extends JFrame {
 				if (jarraitu == false) {
 					System.out.println("Sartu ondo datuak data");
 				} else {
-
+					
 					try {
 						// balidatu botoia sakatzean, datak aukeratuta daudela bermatuko du
 						erreserbaHasiera = new SimpleDateFormat("yyyy/MM/dd").parse(df.format(dateChooser.getDate()));
@@ -460,6 +460,10 @@ public class ErreserbaEgin extends JFrame {
 		this.tarifa = tarifa;
 	}
 
+	public int getSpinner() {
+		return (int) spinnerGelaKant.getValue();
+	}
+
 	public boolean comprobatuDataHutsik() {
 		boolean emaitza = false;
 		if (erreserbaAmaiera != null) {
@@ -470,11 +474,11 @@ public class ErreserbaEgin extends JFrame {
 
 		return emaitza;
 	}
-	
+
 	public void ipiniOstatuIzena(String izena) {
 		lblOstatuarenIzenaErakutsi.setText(izena);
 	}
-	
+
 	// erreserba egiteko plazarik baldin ez badago mezu bat agertuko da
 	// Eta baldin badago be, baina plazarik ez badauka ez du utziko erreserba
 	// garatzen utziko
