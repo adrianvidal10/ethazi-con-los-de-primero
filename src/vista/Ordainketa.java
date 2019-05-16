@@ -34,7 +34,9 @@ public class Ordainketa extends JFrame {
 	private JTextField textField_1;
 	private Koordinatzailea micoordinador;
 	private JTextField textField_2;
-
+	private double kenketa;
+	private String ordainketa;
+	
 	public Ordainketa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 600, 600);
@@ -252,7 +254,7 @@ public class Ordainketa extends JFrame {
 
 		ordaindu_Botoia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ordainketaKudeatu();
+				ordainketaKudeatu(ordainketa);
 				ordaindu_Botoia.setEnabled(false);
 				textField_1.setText("");
 				totala = "";
@@ -302,7 +304,7 @@ public class Ordainketa extends JFrame {
 						    }
 					
 					CrearFicheroReserva crearFicheroReserva = new CrearFicheroReserva();
-					crearFicheroReserva.sortuFitxeroa(micoordinador, fileChooser);
+					crearFicheroReserva.sortuFitxeroa(ordainketa,kenketa, micoordinador, fileChooser);
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -427,13 +429,12 @@ public class Ordainketa extends JFrame {
 
 	/**
 	 * Metodo honek ordainketa prozesuaren kudeaketa egiten du.
+	 * @return 
 	 */
-	public void ordainketaKudeatu() {
+	public String ordainketaKudeatu(String ordainketa) {
 		String dirua;
-		String ordainketa;
 		double dirua1;
 		double ordainketa1;
-		double kenketa;
 		dirua = deuda();
 		ordainketa = ordaindu();
 		dirua1 = Double.parseDouble(dirua);
@@ -454,7 +455,7 @@ public class Ordainketa extends JFrame {
 			kenketa = Math.abs(kenketa);
 			textField.setText(String.valueOf(kenketa));
 		}
-
+		return ordainketa;
 	}
 
 	public void setPrezioa(String prezioa) {

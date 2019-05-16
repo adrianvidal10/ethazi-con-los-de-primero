@@ -13,14 +13,14 @@ import modelo.Bezeroa;
 
 public class CrearFicheroReserva {
 
-	public void sortuFitxeroa(Koordinatzailea micoordinador, JFileChooser fileChooser) throws IOException {
+	public void sortuFitxeroa(String ordainketa, double kenketa, Koordinatzailea micoordinador, JFileChooser fileChooser) throws IOException {
 		String numeroReserva = "0001";
 		File carpeta = new File(fileChooser.getSelectedFile(), "");
 		String[] listado = carpeta.list();
 		try {
 			if (listado == null || listado.length == 0) {
 				FileWriter fichero = new FileWriter(fileChooser.getSelectedFile() + "\\" + "reserva0001.txt");
-				rellenarFichero(micoordinador, numeroReserva, fichero, fileChooser);
+				rellenarFichero(ordainketa, kenketa, micoordinador, numeroReserva, fichero, fileChooser);
 				return;
 			} else {
 				for (int i = 0; i < listado.length; i++) {
@@ -33,7 +33,7 @@ public class CrearFicheroReserva {
 				numeroReserva = String.format("%04d", numeroEntero);
 				FileWriter fichero = new FileWriter(
 						fileChooser.getSelectedFile() + "\\reserva" + numeroReserva + ".txt");
-				rellenarFichero(micoordinador, numeroReserva, fichero, fileChooser);
+				rellenarFichero(ordainketa, kenketa, micoordinador, numeroReserva, fichero, fileChooser);
 				return;
 			}
 		} catch (Exception e) {
@@ -41,13 +41,13 @@ public class CrearFicheroReserva {
 			FileWriter fichero = new FileWriter(direc + "\\" + "reserva0001.txt");
 			int numAleatorio = (int) Math.floor(Math.random() * (1 - 999) + 999);
 			numeroReserva = Integer.toString(numAleatorio);
-			rellenarFichero(micoordinador, numeroReserva, fichero, fileChooser);
+			rellenarFichero(ordainketa, kenketa, micoordinador, numeroReserva, fichero, fileChooser);
 			JOptionPane.showMessageDialog(null, "Faktura " + fileChooser.getSelectedFile() + "-an sortu da.",
 					"Mensaje Informativo", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
-	private void rellenarFichero(Koordinatzailea micoordinador, String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
+	private void rellenarFichero(String ordainketa, double kenketa, Koordinatzailea micoordinador, String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
 		PrintWriter pw = null;
 		Reserva miReserva = micoordinador.getReserva();
 		Bezeroa bezero = micoordinador.getBezero();
@@ -59,6 +59,8 @@ public class CrearFicheroReserva {
 		String izena = bezero.getIzena();
 		String abizena = bezero.getLehenAbizena();
 		String NAN = bezero.getDni();
+		String ordainduta = ordainketa;
+		double bueltak = kenketa;
 		int spinnerBalorea = micoordinador.bidaliSpinnerBalorea();
 
 		
@@ -68,7 +70,7 @@ public class CrearFicheroReserva {
 
 			pw.print("----------    BIDAION     ---------- \r\n"
 					+ "Hotel:                             "+ OstaIzena +" \r\n"
-					+ "Nº habitaciones:                   "+spinnerBalorea+" \r\n"
+					+ "Nº habitaciones:                   "+ spinnerBalorea +" \r\n"
 					+ "Hasiera                            " + erreserbaAmaiera + " \r\n"
 					+ "Amaiera                            " + erreserbaHasiera + " \r\n"
 					+ "------------------------------------- \r\n"
@@ -77,7 +79,9 @@ public class CrearFicheroReserva {
 					+ "Abizena                            " + abizena + " \r\n"
 					+ "NAN                                " + NAN + " \r\n"
 					+ "------------------------------------- \r\n"
-					+ "Prezioa                            " + prezioa + " \r\n"); 
+					+ "Prezioa                            " + prezioa + " \r\n"
+					+ "Ordainduta                         " + ordainduta + " \r\n"
+					+ "Bueltak                            " + Math.abs(bueltak) + " \r\n"); 
 
 		} catch (Exception e) {
 			e.printStackTrace();
