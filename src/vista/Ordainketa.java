@@ -39,7 +39,7 @@ public class Ordainketa extends JFrame {
 	
 	public Ordainketa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 600, 600);
+		setBounds(100, 100 ,592, 513);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +48,7 @@ public class Ordainketa extends JFrame {
 		txtpnDiruaSartuMesedez.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 11));
 		txtpnDiruaSartuMesedez.setBackground(SystemColor.scrollbar);
 		txtpnDiruaSartuMesedez.setText("DIRUA SARTU, MESEDEZ");
-		txtpnDiruaSartuMesedez.setBounds(167, 11, 126, 20);
+		txtpnDiruaSartuMesedez.setBounds(212, 22, 126, 20);
 		getContentPane().add(txtpnDiruaSartuMesedez);
 
 		JButton button = new JButton("1");
@@ -60,7 +60,7 @@ public class Ordainketa extends JFrame {
 		});
 
 		button.setBackground(SystemColor.scrollbar);
-		button.setBounds(106, 88, 73, 23);
+		button.setBounds(142, 134, 73, 23);
 		getContentPane().add(button);
 
 		JButton button_1 = new JButton("4");
@@ -73,7 +73,7 @@ public class Ordainketa extends JFrame {
 
 		button_1.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_1.setBounds(106, 122, 73, 23);
+		button_1.setBounds(142, 168, 73, 23);
 		getContentPane().add(button_1);
 
 		JButton button_2 = new JButton("7");
@@ -86,7 +86,7 @@ public class Ordainketa extends JFrame {
 
 		button_2.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_2.setBounds(106, 156, 73, 23);
+		button_2.setBounds(142, 202, 73, 23);
 		getContentPane().add(button_2);
 
 		JButton button_3 = new JButton("8");
@@ -99,7 +99,7 @@ public class Ordainketa extends JFrame {
 
 		button_3.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_3.setBounds(189, 156, 73, 23);
+		button_3.setBounds(225, 202, 73, 23);
 		getContentPane().add(button_3);
 
 		JButton button_4 = new JButton("5");
@@ -112,7 +112,7 @@ public class Ordainketa extends JFrame {
 
 		button_4.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_4.setBounds(189, 122, 73, 23);
+		button_4.setBounds(225, 168, 73, 23);
 		getContentPane().add(button_4);
 
 		JButton button_5 = new JButton("2");
@@ -125,7 +125,7 @@ public class Ordainketa extends JFrame {
 
 		button_5.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_5.setBounds(189, 88, 73, 23);
+		button_5.setBounds(225, 134, 73, 23);
 		getContentPane().add(button_5);
 
 		JButton button_6 = new JButton("3");
@@ -138,7 +138,7 @@ public class Ordainketa extends JFrame {
 
 		button_6.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_6.setBounds(272, 88, 73, 23);
+		button_6.setBounds(308, 134, 73, 23);
 		getContentPane().add(button_6);
 
 		JButton button_7 = new JButton("6");
@@ -151,7 +151,7 @@ public class Ordainketa extends JFrame {
 
 		button_7.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_7.setBounds(272, 122, 73, 23);
+		button_7.setBounds(308, 168, 73, 23);
 		getContentPane().add(button_7);
 
 		JButton button_8 = new JButton("9");
@@ -164,7 +164,7 @@ public class Ordainketa extends JFrame {
 
 		button_8.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_8.setBounds(272, 156, 73, 23);
+		button_8.setBounds(308, 202, 73, 23);
 		getContentPane().add(button_8);
 
 		JButton button_9 = new JButton("0");
@@ -177,27 +177,27 @@ public class Ordainketa extends JFrame {
 
 		button_9.setBackground(SystemColor.scrollbar);
 		button.setBackground(SystemColor.scrollbar);
-		button_9.setBounds(189, 190, 73, 23);
+		button_9.setBounds(225, 236, 73, 23);
 		getContentPane().add(button_9);
 
 		JTextPane txtpnDiruTotala = new JTextPane();
 		txtpnDiruTotala.setFont(new Font("Source Sans Pro Black", Font.PLAIN, 11));
 		txtpnDiruTotala.setBackground(SystemColor.scrollbar);
 		txtpnDiruTotala.setText("Diru totala:");
-		txtpnDiruTotala.setBounds(10, 37, 59, 35);
+		txtpnDiruTotala.setBounds(84, 64, 59, 35);
 		getContentPane().add(txtpnDiruTotala);
 
 		JTextPane txtpnbezarekin = new JTextPane();
 		txtpnbezarekin.setBackground(SystemColor.scrollbar);
 		txtpnbezarekin.setText("(BEZ-arekin)");
-		txtpnbezarekin.setBounds(10, 69, 66, 23);
+		txtpnbezarekin.setBounds(71, 97, 73, 20);
 		getContentPane().add(txtpnbezarekin);
 
 		JTextPane txtpnZureDirua = new JTextPane();
 		txtpnZureDirua.setText("Zure dirua:");
 		txtpnZureDirua.setFont(new Font("Dialog", Font.PLAIN, 11));
 		txtpnZureDirua.setBackground(SystemColor.scrollbar);
-		txtpnZureDirua.setBounds(222, 42, 59, 20);
+		txtpnZureDirua.setBounds(296, 69, 59, 20);
 		getContentPane().add(txtpnZureDirua);
 
 		JButton button_10 = new JButton(",");
@@ -208,7 +208,7 @@ public class Ordainketa extends JFrame {
 		});
 
 		button_10.setBackground(SystemColor.scrollbar);
-		button_10.setBounds(272, 190, 73, 23);
+		button_10.setBounds(308, 236, 73, 23);
 		getContentPane().add(button_10);
 
 		JButton button_11 = new JButton("C");
@@ -221,7 +221,7 @@ public class Ordainketa extends JFrame {
 		});
 
 		button_11.setBackground(SystemColor.scrollbar);
-		button_11.setBounds(106, 190, 73, 23);
+		button_11.setBounds(142, 236, 73, 23);
 		getContentPane().add(button_11);
 
 		baieztatu_botoia.addActionListener(new ActionListener() {
@@ -243,7 +243,7 @@ public class Ordainketa extends JFrame {
 		// Baieztatu botoia sistema sartzen du dirua.
 		baieztatu_botoia.setFont(new Font("Tahoma", Font.PLAIN, 7));
 
-		baieztatu_botoia.setBounds(368, 167, 72, 46);
+		baieztatu_botoia.setBounds(404, 213, 72, 46);
 		getContentPane().add(baieztatu_botoia);
 
 		/*
@@ -261,14 +261,14 @@ public class Ordainketa extends JFrame {
 			}
 		});
 
-		ordaindu_Botoia.setBounds(130, 270, 275, 68);
+		ordaindu_Botoia.setBounds(130, 295, 275, 68);
 		getContentPane().add(ordaindu_Botoia);
 		ordaindu_Botoia.setEnabled(false);
 
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField.setBounds(79, 37, 100, 35);
+		textField.setBounds(153, 64, 100, 35);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
@@ -276,7 +276,7 @@ public class Ordainketa extends JFrame {
 		textField_1.setEditable(false);
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_1.setColumns(10);
-		textField_1.setBounds(304, 37, 100, 35);
+		textField_1.setBounds(378, 64, 100, 35);
 		contentPane.add(textField_1);
 
 		btnAurrera = new JButton("Aurrera");
@@ -320,23 +320,24 @@ public class Ordainketa extends JFrame {
 		 */
 
 		btnAurrera.setEnabled(false);
-		btnAurrera.setBounds(130, 406, 275, 68);
+		btnAurrera.setBounds(130, 385, 275, 68);
 		contentPane.add(btnAurrera);
 
 		textField_2 = new JTextField();
 		textField_2.setBorder(null);
 		textField_2.setEnabled(false);
-		textField_2.setBounds(106, 227, 267, 20);
+		textField_2.setBounds(114, 264, 267, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 
 		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				micoordinador.mostrarPantailaDatuakErakutsi();
 			}
 		});
-		btnAtzera.setBounds(10, 11, 89, 23);
+		btnAtzera.setBounds(10, 11, 100, 23);
 		contentPane.add(btnAtzera);
 	}
 

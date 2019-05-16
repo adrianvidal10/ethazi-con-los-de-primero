@@ -35,6 +35,7 @@ import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 public class ErreserbaEgin extends JFrame {
 
@@ -57,7 +58,7 @@ public class ErreserbaEgin extends JFrame {
 	private JLabel lblDisponibilidad;
 	private JSpinner spinnerGelaKant;
 	private JRadioButton rbs3;
-	private JRadioButton rbs1;
+	private JRadioButton rbs1, rbs4, rbb4, rbu4, rbs5, rbb5, rbu5;
 	private JRadioButton rbs2;
 	private JRadioButton rbb1;
 	private JRadioButton rbb2;
@@ -69,6 +70,9 @@ public class ErreserbaEgin extends JFrame {
 	private Reserva reserva = new Reserva();
 
 	JLabel Label_Promoa;
+	private JRadioButton radioButton;
+	private JRadioButton radioButton_1;
+	private JRadioButton radioButton_2;
 
 	/**
 	 * Launch the application.
@@ -91,13 +95,14 @@ public class ErreserbaEgin extends JFrame {
 	 */
 	public ErreserbaEgin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 468, 396);
+		setBounds(100, 100, 592, 513);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		btnAtzera = new JButton("Atzera");
+		btnAtzera.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -105,31 +110,36 @@ public class ErreserbaEgin extends JFrame {
 
 			}
 		});
-		btnAtzera.setBounds(10, 11, 80, 23);
+		btnAtzera.setBounds(10, 11, 82, 23);
 		contentPane.add(btnAtzera);
 
 		lblErreserbaEgin = new JLabel("Erreserba egin");
 		lblErreserbaEgin.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		lblErreserbaEgin.setBounds(144, 11, 143, 29);
+		lblErreserbaEgin.setBounds(211, 11, 143, 29);
 		contentPane.add(lblErreserbaEgin);
 
 		lblOstatuarenIzena = new JLabel("Izena:");
-		lblOstatuarenIzena.setBounds(25, 80, 47, 14);
+		lblOstatuarenIzena.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblOstatuarenIzena.setBounds(45, 80, 47, 14);
 		contentPane.add(lblOstatuarenIzena);
 
 		lblOheMota = new JLabel("Ohe mota(k):");
-		lblOheMota.setBounds(25, 173, 80, 14);
+		lblOheMota.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblOheMota.setBounds(45, 182, 92, 14);
 		contentPane.add(lblOheMota);
 
 		lblOstatuarenIzenaErakutsi = new JLabel("");
-		lblOstatuarenIzenaErakutsi.setBounds(67, 80, 142, 14);
+		lblOstatuarenIzenaErakutsi.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblOstatuarenIzenaErakutsi.setBounds(98, 80, 153, 14);
 		contentPane.add(lblOstatuarenIzenaErakutsi);
 
 		lblGelaKant = new JLabel("Gela kantitatea:");
-		lblGelaKant.setBounds(25, 122, 92, 14);
+		lblGelaKant.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblGelaKant.setBounds(45, 126, 113, 14);
 		contentPane.add(lblGelaKant);
 
 		btnOrdainketaBurutu = new JButton("Ordainketa burutu");
+		btnOrdainketaBurutu.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnOrdainketaBurutu.setEnabled(false);
 		btnOrdainketaBurutu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -139,16 +149,17 @@ public class ErreserbaEgin extends JFrame {
 				micoordinador.mostrarVentanaLegedia();
 			}
 		});
-		btnOrdainketaBurutu.setBounds(251, 324, 157, 23);
+		btnOrdainketaBurutu.setBounds(356, 407, 168, 23);
 		contentPane.add(btnOrdainketaBurutu);
 
 		lblPrezioTotala = new JLabel("Prezio totala:");
-		lblPrezioTotala.setBounds(25, 328, 92, 14);
+		lblPrezioTotala.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPrezioTotala.setBounds(25, 411, 92, 14);
 		contentPane.add(lblPrezioTotala);
 
 		dateChooser = new JDateChooser();
 		dateChooser.setMinSelectableDate(gaur);
-		dateChooser.setBounds(301, 80, 106, 20);
+		dateChooser.setBounds(408, 95, 106, 20);
 		contentPane.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
@@ -174,30 +185,36 @@ public class ErreserbaEgin extends JFrame {
 
 		erreserbaAmaiera = dateChooser_1.getDate();
 
-		dateChooser_1.setBounds(301, 122, 105, 20);
+		dateChooser_1.setBounds(409, 138, 105, 20);
 		contentPane.add(dateChooser_1);
 
 		lblHasieraData = new JLabel("Hasiera data:");
-		lblHasieraData.setBounds(219, 80, 82, 14);
+		lblHasieraData.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblHasieraData.setBounds(316, 95, 92, 14);
 		contentPane.add(lblHasieraData);
 
 		lblAmaieraData = new JLabel("Amaiera data:");
-		lblAmaieraData.setBounds(212, 122, 82, 14);
+		lblAmaieraData.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblAmaieraData.setBounds(310, 138, 98, 14);
 		contentPane.add(lblAmaieraData);
 
 		lblDisponibilidad = new JLabel("");
-		lblDisponibilidad.setBounds(286, 299, 132, 14);
+		lblDisponibilidad.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDisponibilidad.setBounds(282, 373, 242, 23);
 
 		contentPane.add(lblDisponibilidad);
+		
 		lblPrezioTotErakutsi = new JLabel("");
+		lblPrezioTotErakutsi.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPrezioTotErakutsi.setBounds(111, 407, 165, 23);
+		
+		
+		
 
-		lblPrezioTotErakutsi.setSize(116, 23);
-		lblPrezioTotErakutsi.setLocation(112, 324);
-
-		lblPrezioTotErakutsi.setSize(88, 14);
-		lblPrezioTotErakutsi.setLocation(107, 333);
+		
 		contentPane.add(lblPrezioTotErakutsi);
 		btnBalidatu = new JButton("Balidatu");
+		btnBalidatu.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBalidatu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -250,7 +267,7 @@ public class ErreserbaEgin extends JFrame {
 				}
 			}
 		});
-		btnBalidatu.setBounds(311, 154, 97, 23);
+		btnBalidatu.setBounds(416, 324, 97, 23);
 		contentPane.add(btnBalidatu);
 
 		spinnerGelaKant = new JSpinner();
@@ -288,58 +305,97 @@ public class ErreserbaEgin extends JFrame {
 					rbb3.setEnabled(true);
 					rbu3.setEnabled(true);
 					rbs3.setSelected(true);
+					
+					rbs4.setEnabled(false);
+					rbb4.setEnabled(false);
+					rbu4.setEnabled(false);
 
+					break;
+					
+				case 4:
+					
+					rbs4.setEnabled(true);
+					rbb4.setEnabled(true);
+					rbu4.setEnabled(true);
+					rbs4.setSelected(true);
+					
+					rbs5.setEnabled(false);
+					rbb5.setEnabled(false);
+					rbu5.setEnabled(false);
+					
+					
+					
+					break;
+					
+				case 5:
+					
+					rbs5.setEnabled(true);
+					rbb5.setEnabled(true);
+					rbu5.setEnabled(true);
+					
+					rbs5.setSelected(true);
+					
+					
 					break;
 
 				}
 
 			}
 		});
-		spinnerGelaKant.setModel(new SpinnerNumberModel(1, 1, 3, 1));
-		spinnerGelaKant.setBounds(127, 119, 37, 20);
+		spinnerGelaKant.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spinnerGelaKant.setBounds(158, 124, 37, 20);
 		contentPane.add(spinnerGelaKant);
 
 		rbs3 = new JRadioButton("Sinplea");
+		rbs3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbs3.setEnabled(false);
-		rbs3.setBounds(27, 244, 80, 23);
+		rbs3.setBounds(57, 269, 80, 23);
 		contentPane.add(rbs3);
 
 		rbs1 = new JRadioButton("Sinplea");
+		rbs1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbs1.setSelected(true);
-		rbs1.setBounds(27, 193, 80, 23);
+		rbs1.setBounds(57, 216, 80, 23);
 		contentPane.add(rbs1);
 
 		rbs2 = new JRadioButton("Sinplea");
+		rbs2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbs2.setEnabled(false);
-		rbs2.setBounds(27, 218, 80, 23);
+		rbs2.setBounds(57, 242, 80, 23);
 		contentPane.add(rbs2);
 
 		rbb1 = new JRadioButton("Bikoitza");
-		rbb1.setBounds(109, 193, 86, 23);
+		rbb1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbb1.setBounds(139, 216, 86, 23);
 		contentPane.add(rbb1);
 
 		rbb2 = new JRadioButton("Bikoitza");
+		rbb2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbb2.setEnabled(false);
-		rbb2.setBounds(109, 218, 86, 23);
+		rbb2.setBounds(139, 242, 86, 23);
 		contentPane.add(rbb2);
 
 		rbb3 = new JRadioButton("Bikoitza");
+		rbb3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbb3.setEnabled(false);
-		rbb3.setBounds(109, 244, 86, 23);
+		rbb3.setBounds(139, 269, 86, 23);
 		contentPane.add(rbb3);
 
 		rbu1 = new JRadioButton("Umeentzat");
-		rbu1.setBounds(191, 193, 96, 23);
+		rbu1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbu1.setBounds(221, 216, 96, 23);
 		contentPane.add(rbu1);
 
 		rbu2 = new JRadioButton("Umeentzat");
+		rbu2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbu2.setEnabled(false);
-		rbu2.setBounds(191, 218, 96, 23);
+		rbu2.setBounds(221, 242, 96, 23);
 		contentPane.add(rbu2);
 
 		rbu3 = new JRadioButton("Umeentzat");
+		rbu3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rbu3.setEnabled(false);
-		rbu3.setBounds(191, 244, 96, 23);
+		rbu3.setBounds(221, 269, 96, 23);
 		contentPane.add(rbu3);
 
 		// radio button taldeak sortu
@@ -359,15 +415,17 @@ public class ErreserbaEgin extends JFrame {
 		hirugarrenTaldea.add(rbu3);
 
 		JLabel lblNewLabel = new JLabel("Zure kodigoa:");
-		lblNewLabel.setBounds(321, 197, 92, 23);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(437, 218, 92, 23);
 		contentPane.add(lblNewLabel);
 
 		Label_Promoa = new JLabel("");
-		Label_Promoa.setFont(new Font("Tahoma", Font.BOLD, 11));
-		Label_Promoa.setBounds(331, 222, 77, 14);
+		Label_Promoa.setFont(new Font("Tahoma", Font.BOLD, 13));
+		Label_Promoa.setBounds(447, 243, 77, 22);
 		contentPane.add(Label_Promoa);
 
 		JCheckBox chckbxErabiliNahi = new JCheckBox("Erabili nahi?");
+		chckbxErabiliNahi.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		chckbxErabiliNahi.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				// promo kodigoa egon eta erabiltzekotan 10%-ko deskontua egingo da
@@ -381,8 +439,46 @@ public class ErreserbaEgin extends JFrame {
 				}
 			}
 		});
-		chckbxErabiliNahi.setBounds(312, 244, 106, 23);
+		chckbxErabiliNahi.setBounds(423, 270, 106, 23);
 		contentPane.add(chckbxErabiliNahi);
+		
+		rbs4 = new JRadioButton("Sinplea");
+		rbs4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbs4.setEnabled(false);
+		rbs4.setBounds(57, 299, 80, 23);
+		contentPane.add(rbs4);
+		
+		rbb4 = new JRadioButton("Bikoitza");
+		rbb4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbb4.setEnabled(false);
+		rbb4.setBounds(139, 299, 86, 23);
+		contentPane.add(rbb4);
+		
+		rbu4 = new JRadioButton("Umeentzat");
+		rbu4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbu4.setEnabled(false);
+		rbu4.setBounds(221, 299, 96, 23);
+		contentPane.add(rbu4);
+		
+		rbs5 = new JRadioButton("Sinplea");
+		rbs5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbs5.setEnabled(false);
+		rbs5.setBounds(57, 325, 80, 23);
+		contentPane.add(rbs5);
+		
+		rbu5 = new JRadioButton("Umeentzat");
+		rbu5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbu5.setEnabled(false);
+		rbu5.setBounds(221, 325, 96, 23);
+		contentPane.add(rbu5);
+		
+		rbb5 = new JRadioButton("Bikoitza");
+		rbb5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rbb5.setEnabled(false);
+		rbb5.setBounds(139, 325, 86, 23);
+		contentPane.add(rbb5);
+		
+	
 	}
 
 	/*

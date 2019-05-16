@@ -20,7 +20,7 @@ public class LoginPantaila extends JFrame {
 	public LoginPantaila() {
 		getContentPane().setBackground(UIManager.getColor("Button.background"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 600, 600);
+		setBounds(100, 100, 592, 513);
 		getContentPane().setLayout(null);
 		// Login textua.
 		JLabel lbllogin = new JLabel("LOGIN");

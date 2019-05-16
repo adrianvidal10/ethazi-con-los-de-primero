@@ -52,13 +52,14 @@ public class LegediaPantaila extends JFrame {
 	 */
 	public LegediaPantaila() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 517, 428);
+		setBounds(100, 100, 592, 513);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		chckbxOinarriakOnartu = new JCheckBox("Oinarriak onartu");
+		chckbxOinarriakOnartu.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		chckbxOinarriakOnartu.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 
@@ -69,7 +70,7 @@ public class LegediaPantaila extends JFrame {
 				}
 			}
 		});
-		chckbxOinarriakOnartu.setBounds(35, 318, 172, 23);
+		chckbxOinarriakOnartu.setBounds(31, 388, 172, 23);
 		contentPane.add(chckbxOinarriakOnartu);
 
 		txtpnDatuenTratamendua = new JTextArea();
@@ -84,10 +85,11 @@ public class LegediaPantaila extends JFrame {
 
 		scrollBar = new JScrollPane(txtpnDatuenTratamendua);
 		scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollBar.setBounds(21, 25, 459, 270);
+		scrollBar.setBounds(31, 31, 522, 322);
 		contentPane.add(scrollBar);
 
 		btnJarraitu = new JButton("Jarraitu");
+		btnJarraitu.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 		btnJarraitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				micoordinador.mostrarVentanaOrdainketa();
@@ -97,7 +99,7 @@ public class LegediaPantaila extends JFrame {
 		});
 		btnJarraitu.setEnabled(false);
 
-		btnJarraitu.setBounds(373, 345, 89, 23);
+		btnJarraitu.setBounds(427, 415, 106, 23);
 		contentPane.add(btnJarraitu);
 
 	}
