@@ -41,7 +41,8 @@ public class Kontsultak {
 	// private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
 	public void selectOstatuak(String herri, String ostMota) {
-
+		//Reset egiten dugu, daturen bat balego.
+		resetZerrendaOstatua();
 		// erabilitako atalen arabera selecta osatuko da
 		String select = " WHERE ";
 		String where = " WHERE ";
@@ -443,6 +444,11 @@ public class Kontsultak {
 			emaitza = 0;
 		}
 		return emaitza;
+	}
+	
+	public void resetZerrendaOstatua() {
+		ArrayList<Ostatua> reset = new ArrayList<Ostatua>();
+		this.zerrendaOstatua = reset;
 	}
 
 }
