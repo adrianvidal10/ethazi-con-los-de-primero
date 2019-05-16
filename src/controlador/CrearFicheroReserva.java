@@ -77,7 +77,7 @@ public class CrearFicheroReserva {
 					+ "Abizena                            " + abizena + " \r\n"
 					+ "NAN                                " + NAN + " \r\n"
 					+ "------------------------------------- \r\n"
-					+ "Prezioa                            " + prezioa + " \r\n"); 
+					+ "Prezioa                            " + prezioa + "€ \r\n"); 
 
 		} catch (Exception e) {
 			e.printStackTrace();

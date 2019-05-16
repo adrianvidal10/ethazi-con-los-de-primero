@@ -382,15 +382,16 @@ public class Kontsultak {
 		return listaFechas;
 	}
 
-	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick) {
+	public void insertErreserba(Date hasieradata, Date amaieradata, Double prezioa, String nick, int ostatuKod) {
 		String datahasi = new SimpleDateFormat("yyyy-MM-dd").format( hasieradata );
 		String dataama = new SimpleDateFormat("yyyy-MM-dd").format( amaieradata );
+		
 
 		// erreserba garatzeko komandua
 		try {
 				conexion.setQuery("INSERT INTO erreserbak "
-						+ " (hasieraData, amaieraData, prezioa, errNick) "
-						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa.toString() + ",'" + nick + "'");
+						+ " (hasieraData, amaieraData, prezioa, errNick, ostatuKod) "
+						+ " VALUES ('" + datahasi + "','" + dataama + "'," + prezioa + ",'" + nick + "', '"+ 1 +"')");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -426,6 +427,22 @@ public class Kontsultak {
 
 	public Bezeroa getBezero() {
 		return bezero;
+	}
+	
+	public int ostatuKodigoaPasatu(String ostatuIzena) {
+		int emaitza = 1;
+		
+		try {
+			resultado = conexion.getQuery("SELECT ostatuKod FROM ostatua WHERE izena = '" + ostatuIzena + "'");
+			while (resultado.next()) {
+				emaitza = resultado.getInt("ostatuKod");
+			
+			}
+			
+		} catch (SQLException e) {
+			emaitza = 0;
+		}
+		return emaitza;
 	}
 
 }
