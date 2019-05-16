@@ -610,18 +610,30 @@ public class ErreserbaEgin extends JFrame {
 	
 	public void konprobatuErreserbak() {
 		ArrayList<Reserva> erreserbaLista = micoordinador.getErreserbaOstatuKodea(micoordinador.getOstatuKod());
-		
+		int ostatuPlazaKant = micoordinador.getOstatuPLazaKant();
 		for (int i = 0; i < erreserbaLista.size(); i++) {
 			Date hasieraData = erreserbaLista.get(i).getHasiData();
 			Date amaieraData = erreserbaLista.get(i).getAmaiData();
 			int plazaKant = erreserbaLista.get(i).getGelaKant();
-			konprobatuData(hasieraData, amaieraData, plazaKant);
+			konprobatuData(hasieraData, amaieraData, plazaKant, ostatuPlazaKant);
+		}
+		ostatuPlazaKant = ostatuPlazaKant - (int) spinnerGelaKant.getValue(); 
+		if (ostatuPlazaKant <= 0) {
+			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
+			lblDisponibilidad.setForeground(Color.red);
+			btnOrdainketaBurutu.setEnabled(false);
+		}
+		else {
+			lblDisponibilidad.setText("Plazak eskuragarriak");
+			lblDisponibilidad.setForeground(Color.green);
+			btnOrdainketaBurutu.setEnabled(true);
+			btnBalidatu.setEnabled(true);
 		}
 		
 	}
 	
-	public void konprobatuData(Date hasieraData, Date amaieraData, int plazaKant) {
-		int ostatuPlazaKant = micoordinador.getOstatuPLazaKant();
+	public int konprobatuData(Date hasieraData, Date amaieraData, int plazaKant, int ostatuPlazaKant) {
+		
 		DateTime aukeratutakoHasieraData = new DateTime(this.erreserbaAmaiera);
 		DateTime aukeratutakoAmaieraData = new DateTime(this.erreserbaHasiera);
 		DateTime hasieraData1 = new DateTime(hasieraData);
@@ -631,7 +643,7 @@ public class ErreserbaEgin extends JFrame {
 		if (intervalo1.overlaps( intervalo2 ) == true) {
 			ostatuPlazaKant = ostatuPlazaKant - plazaKant;
 		}
-		
+		return ostatuPlazaKant;
 		
 	}
 }
