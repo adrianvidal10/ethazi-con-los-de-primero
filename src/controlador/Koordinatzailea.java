@@ -592,7 +592,7 @@ public class Koordinatzailea {
 	
 	public void setErreserbaEginPlazaKant() {
 		int plazak = this.ostatu.getPlazaKant();
-		PantailaErreserbaEgin.plazaKantErakutsi(plazak);
+		//PantailaErreserbaEgin.plazaKantErakutsi(plazak);
 	}
 	
 	public void setOstatuPLazaKant(int kanti) {
@@ -644,5 +644,14 @@ public class Koordinatzailea {
 	public int getOstatuKod() {
 		int zbk = kon.ostatuKodigoaPasatu(this.ostatu.getIzena());
 		return zbk;
+	}
+	
+	public void reset() {
+		PantailaDatuakErakutsi.hide();
+		PantailaLogin.hide();
+		PantailaOrdainketa.hide();
+		PantailaErregistru.hide();
+		PantailaErreserbaEgin.hide();
+		PantailaLegedia.hide();
 	}
 }

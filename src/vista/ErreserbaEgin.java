@@ -111,8 +111,8 @@ public class ErreserbaEgin extends JFrame {
 		btnAtzera.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				micoordinador.mostrarPantailaDatuakErakutsi();
+				reset();
+				//micoordinador.mostrarPantailaDatuakErakutsi();
 
 			}
 		});
@@ -206,7 +206,7 @@ public class ErreserbaEgin extends JFrame {
 
 		lblDisponibilidad = new JLabel("");
 		lblDisponibilidad.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDisponibilidad.setBounds(282, 373, 242, 23);
+		lblDisponibilidad.setBounds(221, 373, 303, 23);
 
 		contentPane.add(lblDisponibilidad);
 		
@@ -576,7 +576,7 @@ public class ErreserbaEgin extends JFrame {
 	// erreserba egiteko plazarik baldin ez badago mezu bat agertuko da
 	// Eta baldin badago be, baina plazarik ez badauka ez du utziko erreserba
 	// garatzen utziko
-	public void plazaKantErakutsi(int plazak) {
+	/*public void plazaKantErakutsi(int plazak) {
 		int cont = plazak;
 
 		if (cont == 0) {
@@ -593,7 +593,7 @@ public class ErreserbaEgin extends JFrame {
 			btnOrdainketaBurutu.setEnabled(true);
 			btnBalidatu.setEnabled(true);
 		}
-	}
+	}*/
 	
 	public void setEnableFalseOrdeinketaBurutu() {
 		btnOrdainketaBurutu.setEnabled(false);
@@ -617,7 +617,7 @@ public class ErreserbaEgin extends JFrame {
 			}
 		}
 		
-		if (this.ostatuPlazaKant<0) {
+		if (this.ostatuPlazaKant<=0) {
 			lblDisponibilidad.setText("Ez daude plazarik erreserbak egiteko");
 			lblDisponibilidad.setForeground(Color.red);
 			btnOrdainketaBurutu.setEnabled(false);
@@ -634,10 +634,18 @@ public class ErreserbaEgin extends JFrame {
 	
 	public void konprobatuData(Date hasieraData, Date amaieraData, int plazaKant) {
 		int hasi = this.erreserbaHasiera.compareTo(hasieraData);
+		System.out.println(hasi);
+		System.out.println("pito");
 		int ama = this.erreserbaAmaiera.compareTo(amaieraData);
-
+		System.out.println(ama);
+		System.out.println("pito");
+		System.out.println("-------");
+		System.out.println(ostatuPlazaKant);
+		System.out.println("-------");
+		
 		if (hasi==0 || ama==0) {
 			ostatuPlazaKant = ostatuPlazaKant - plazaKant;
+			System.out.println(ostatuPlazaKant);
 		}	
 	}
 
@@ -647,5 +655,10 @@ public class ErreserbaEgin extends JFrame {
 
 	public void setOstatuPlazaKant(int ostatuPlazaKant) {
 		this.ostatuPlazaKant = ostatuPlazaKant;
+	}
+	
+	public void reset() {
+		micoordinador.reset();
+		controlador.Main.main(null);
 	}
 }
