@@ -36,6 +36,7 @@ public class Kontsultak {
 	private ArrayList<Hotela> hotelZerrenda = new ArrayList<Hotela>();
 	private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 	private ArrayList<Bezeroa> bezeroaZerrenda = new ArrayList<Bezeroa>();
+	private Bezeroa bezero = new Bezeroa();
 	private ArrayList<Ostatua> zerrendaOstatua = new ArrayList<Ostatua>();
 	// private ArrayList<String> ostMotaZerrenda = new ArrayList<String>();
 
@@ -411,7 +412,7 @@ public class Kontsultak {
 				String BigarrenAbizena = resultado.getString("abizenaB");
 
 				Bezeroa b = new Bezeroa(nan, erabil, LehenAbizena, BigarrenAbizena, pasahitza, nick);
-
+				this.bezero = b;
 				bezeroaZerrenda.add(b);
 
 			}
@@ -421,6 +422,10 @@ public class Kontsultak {
 		}
 
 		return erabilKodigoa;
+	}
+
+	public Bezeroa getBezero() {
+		return bezero;
 	}
 
 }

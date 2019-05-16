@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import modelo.Bezeroa;
+
 public class CrearFicheroReserva {
 
 	public void sortuFitxeroa(Koordinatzailea micoordinador, JFileChooser fileChooser) throws IOException {
@@ -48,11 +50,17 @@ public class CrearFicheroReserva {
 	private void rellenarFichero(Koordinatzailea micoordinador, String numeroReserva, FileWriter fichero, JFileChooser fileChooser) {
 		PrintWriter pw = null;
 		Reserva miReserva = micoordinador.getReserva();
+		Bezeroa bezero = micoordinador.getBezero();
 		String erreserbaAmaiera = new SimpleDateFormat("dd/MM/yyyy").format( miReserva.getAmaiData() );
 		String erreserbaHasiera = new SimpleDateFormat("dd/MM/yyyy").format( miReserva.getHasiData() );
 		String prezioa = Double.toString(miReserva.getPrezioa());
 		String nick = miReserva.getNick();
 		String OstaIzena = micoordinador.bidaliOstatuIzena();
+		String izena = bezero.getIzena();
+		String abizena = bezero.getIzena();
+		String NAN = bezero.getIzena();
+
+		
 		try {
 			fichero = new FileWriter(fileChooser.getSelectedFile() + "\\reserva" + numeroReserva + ".txt");
 			pw = new PrintWriter(fichero);
@@ -63,13 +71,12 @@ public class CrearFicheroReserva {
 					+ "Hasiera                            " + erreserbaAmaiera + " \r\n"
 					+ "Amaiera                            " + erreserbaHasiera + " \r\n"
 					+ "------------------------------------- \r\n"
-					+ "Erabiltzaile                       "+ nick +" \r\n" 
-					+ "Izena                              x \r\n" 
-					+ "Abizena                            x \r\n"
-					+ "NAN                                x \r\n"
+					+ "Erabiltzaile                       " + nick +" \r\n" 
+					+ "Izena                              " + izena + " \r\n" 
+					+ "Abizena                            " + abizena + " \r\n"
+					+ "NAN                                " + NAN + " \r\n"
 					+ "------------------------------------- \r\n"
-					+ "Prezioa                            " + prezioa + " \r\n" 
-					+ "Ordainketa                         x \r\n");
+					+ "Prezioa                            " + prezioa + " \r\n"); 
 
 		} catch (Exception e) {
 			e.printStackTrace();

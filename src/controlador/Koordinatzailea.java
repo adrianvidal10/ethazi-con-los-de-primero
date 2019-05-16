@@ -614,4 +614,12 @@ public class Koordinatzailea {
 	public void insertErreserba() {
 		kon.insertErreserba(this.erreserba.getHasiData(), this.erreserba.getAmaiData(), this.erreserba.getPrezioa(), this.erreserba.getNick());
 	}
+	
+	public void bezeroDatuakUpdate() {
+		setBezero(kon.getBezero());
+	}
+
+	public Bezeroa getBezero() {
+		return bezero;
+	}
 }
