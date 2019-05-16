@@ -77,6 +77,7 @@ public class LoginPantaila extends JFrame {
 					micoordinador.setErreserbaNick(erabiltzailea);
 					micoordinador.setErreserbaEginOstatuIzena();
 					micoordinador.setErreserbaEginPlazaKant();
+					micoordinador.OrdainketaBurutuErreserbaEgin();
 				} else {
 					JOptionPane.showMessageDialog(null, "Sartu ondo datuak, sartzeko.", "Mensaje Informativo",
 							JOptionPane.INFORMATION_MESSAGE);
