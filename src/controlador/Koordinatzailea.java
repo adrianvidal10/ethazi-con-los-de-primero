@@ -626,4 +626,8 @@ public class Koordinatzailea {
 	public int bidaliSpinnerBalorea() {
 		return PantailaErreserbaEgin.getSpinner();
 	}
+	
+	public void OrdainketaBurutuErreserbaEgin() {
+		PantailaErreserbaEgin.setEnableFalseOrdeinketaBurutu();
+	}
 }

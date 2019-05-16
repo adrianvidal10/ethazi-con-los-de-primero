@@ -139,7 +139,7 @@ public class ErreserbaEgin extends JFrame {
 				micoordinador.mostrarVentanaLegedia();
 			}
 		});
-		btnOrdainketaBurutu.setBounds(276, 324, 132, 23);
+		btnOrdainketaBurutu.setBounds(251, 324, 157, 23);
 		contentPane.add(btnOrdainketaBurutu);
 
 		lblPrezioTotala = new JLabel("Prezio totala:");
@@ -499,5 +499,9 @@ public class ErreserbaEgin extends JFrame {
 			btnOrdainketaBurutu.setEnabled(true);
 			btnBalidatu.setEnabled(true);
 		}
+	}
+	
+	public void setEnableFalseOrdeinketaBurutu() {
+		btnOrdainketaBurutu.setEnabled(false);
 	}
 }
