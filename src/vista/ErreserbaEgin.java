@@ -634,18 +634,11 @@ public class ErreserbaEgin extends JFrame {
 	
 	public void konprobatuData(Date hasieraData, Date amaieraData, int plazaKant) {
 		int hasi = this.erreserbaHasiera.compareTo(hasieraData);
-		System.out.println(hasi);
-		System.out.println("pito");
 		int ama = this.erreserbaAmaiera.compareTo(amaieraData);
-		System.out.println(ama);
-		System.out.println("pito");
-		System.out.println("-------");
-		System.out.println(ostatuPlazaKant);
-		System.out.println("-------");
+
 		
 		if (hasi==0 || ama==0) {
 			ostatuPlazaKant = ostatuPlazaKant - plazaKant;
-			System.out.println(ostatuPlazaKant);
 		}	
 	}
 

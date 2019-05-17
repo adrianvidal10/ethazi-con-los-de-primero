@@ -297,7 +297,8 @@ public class Ordainketa extends JFrame {
 						      System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
 						      System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
 						      
-						      micoordinador.mostrarPantailaDatuakErakutsi();
+						      //micoordinador.mostrarPantailaDatuakErakutsi();
+						      reset();
 						      
 						    } else {
 						      System.out.println("No Selection ");
@@ -461,5 +462,9 @@ public class Ordainketa extends JFrame {
 
 	public void setPrezioa(String prezioa) {
 		textField.setText(prezioa);
+	}
+	public void reset() {
+		micoordinador.reset();
+		controlador.Main.main(null);
 	}
 }
