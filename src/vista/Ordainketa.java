@@ -214,7 +214,7 @@ public class Ordainketa extends JFrame {
 		JButton button_11 = new JButton("C");
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				totala += "";
+				totala = "";
 				textField_1.setText("");
 
 			}
